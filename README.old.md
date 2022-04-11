@@ -1,2 +1,0 @@
-# GASUT
-Proyecto #1
