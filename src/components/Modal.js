@@ -2,7 +2,7 @@ import React from 'react'
 const images = require.context('../assets/images', true);
 const icons = require.context('../assets/icons', true);
 
-export const Modal = ({nombre, cantidad, propietario, ubicacion, descripcion}) => {    
+export const Modal = () => {    
     return (
         <>
             <div className='container mt-5'>
