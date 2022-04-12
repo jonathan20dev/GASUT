@@ -1,0 +1,56 @@
+:root {
+  --button-color: #395B45;
+  --page-background: #F7F7F6;
+  --white: #FFFFFF;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--page-background);
+}
+
+.categories {
+  background-color: var(--white);
+  height: 550px;
+  max-width: 300px;
+}
+
+.cards-center {
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-control {
+  padding: 5px 35px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.btn-success {
+  background-color: var(--button-color);
+}
