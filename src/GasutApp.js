@@ -1,10 +1,12 @@
-import React from 'react'
-import { Container } from './components/Container'
+import React from 'react';
+import { ProductScreen } from './components/ProductScreen';
 
 export const GasutApp = () => {
   return (
     <>
-      <Container />
+      <div className='container-lg gap-5 d-flex'>
+      <ProductScreen />
+      </div>
     </>
   )
 }
