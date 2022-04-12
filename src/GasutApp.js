@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container } from './components/Container'
+import { Modal } from './components/Modal'
+//import { Container } from './components/Container'
 
 export const GasutApp = () => {
   return (
     <>
-      <Container />
+      <Modal />
     </>
   )
 }

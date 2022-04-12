@@ -2,6 +2,7 @@
   --button-color: #395B45;
   --page-background: #F7F7F6;
   --white: #FFFFFF;
+  --light-green: #EEF6F0;
 }
 
 * {
@@ -53,4 +54,21 @@ body {
 
 .btn-success {
   background-color: var(--button-color);
+}
+
+.modal-cards{
+  width: 400px;
+}
+
+.modal-cards--color{
+  background-color: var(--light-green);
+  border-radius: 5px;
+  height: 200px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-table{
+  margin: 0 auto;
 }

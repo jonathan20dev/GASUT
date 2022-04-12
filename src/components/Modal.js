@@ -4,41 +4,55 @@ const icons = require.context('../assets/icons', true);
 
 export const Modal = () => {    
     return (
-        <body>
-            <main className="main">
-                <div className='container'>
-                    <div className='row g-2'>
-                        <div className='col-6 text-center'>
-                            <img src={images('./planta.png')} className="" alt="Planta" />
+        <>
+            <div className='container mt-5'>
+                <div className='row g-2'>
+                    <div className='col-5 cards-center'>
+                        <div className='modal-cards m-3 p-4'>
+                            <img src={images('./planta.png')} className="card-img-top" alt="Planta" /> 
                         </div>
+                    </div>
 
-                        <div className='col-6'>
+                    <div className='col-5 cards-center'>
+                        <div className='modal-cards m-3 p-4'>
                             <h3 className='text-center'>Detalles</h3>
-                            <p className='mb-1'><span>Nombre: </span>Cactus A</p>
+                            <p className='mb-1 mt-3'><span>Nombre: </span>Cactus A</p>
                             <p className='mb-1'><span>Cantidad: </span>2</p>
                             <p className='mb-1'><span>Propietario: </span>Fabricio Ulate</p>
                             <p className='mb-1'><span>Ubicación: </span>Calle las rosas en Agua Zarcas, 100 metros norte de la iglesia</p>
                         </div>
+                    </div>
 
-                        <div className='col-6'>
+                    <div className='col-5 cards-center'>
+                        
+                        <div className='modal-cards m-3'>
                             <h5>Descripción</h5>
-                            <p className='mb-1'>Es un cactus muy bonito, lo regalo porque ya tengo muchos en mi casa, espero que el siguiente dueño lo cuide tanto como yo.</p> 
-                        </div>
-
-                        <div className='col-6'>
-                            <h5 className='text-center'>Contacto</h5>
-                            <div className='d-flex'>
-                                <img src={icons('./telefono.svg')} className="" alt="Teléfono" />
-                                <p className='ms-3'>5013-5656</p>
+                            <div className='modal-cards--color p-4'>
+                                <p className='cards-center'>Es un cactus muy bonito, lo regalo porque ya tengo muchos en mi casa, espero que el siguiente dueño lo cuide tanto como yo.</p> 
                             </div>
-                            <div className='d-flex'>
-                                <img src={icons('./correo.svg')} className="" alt="Teléfono" />
-                                <p className='ms-3'>Calichin19@gmail.com</p>
+                            
+                        </div>
+                    </div>
+
+                    <div className='col-5 cards-center'>
+                        <div className=' modal-cards m-3'>
+                            <h5>Contacto</h5>
+                            <div className='modal-cards--color p-4'>
+                                <table className='contact-table'>
+                                    <tr>
+                                        <td><img src={icons('./telefono.svg')} className="" alt="Teléfono" /></td>
+                                        <td><p className='ms-3'>5013-5656</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src={icons('./correo.svg')} className="" alt="Teléfono" /></td>
+                                        <td><p className='ms-3'>Calichin19@gmail.com</p></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>    
-            </main>
-        </body>
+                </div>
+            </div>    
+        </>
     )
 }
