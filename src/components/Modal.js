@@ -2,7 +2,7 @@ import React from 'react'
 const images = require.context('../assets/images', true);
 const icons = require.context('../assets/icons', true);
 
-export const Modal = () => {    
+export const Modal = ({nombre, cantidad, propietario, ubicacion, descripcion}) => {    
     return (
         <>
             <div className='container mt-5'>
@@ -16,17 +16,17 @@ export const Modal = () => {
                     <div className='col-5 cards-center'>
                         <div className='modal-cards m-3 p-4'>
                             <h3 className='text-center'>Detalles</h3>
-                            <p className='mb-1 mt-3'><span>Nombre: </span>Cactus A</p>
-                            <p className='mb-1'><span>Cantidad: </span>2</p>
-                            <p className='mb-1'><span>Propietario: </span>Fabricio Ulate</p>
-                            <p className='mb-1'><span>Ubicación: </span>Calle las rosas en Agua Zarcas, 100 metros norte de la iglesia</p>
+                            <p className='mb-1 mt-3'><span className='fw-bold'>Nombre: </span>Cactus A</p>
+                            <p className='mb-1'><span className='fw-bold'>Cantidad: </span>2</p>
+                            <p className='mb-1'><span className='fw-bold'>Propietario: </span>Fabricio Ulate</p>
+                            <p className='mb-1'><span className='fw-bold'>Ubicación: </span>Calle las rosas en Agua Zarcas, 100 metros norte de la iglesia</p>
                         </div>
                     </div>
 
                     <div className='col-5 cards-center'>
                         
                         <div className='modal-cards m-3'>
-                            <h5>Descripción</h5>
+                            <h5 className='fw-bold'>Descripción</h5>
                             <div className='modal-cards--color p-4'>
                                 <p className='cards-center'>Es un cactus muy bonito, lo regalo porque ya tengo muchos en mi casa, espero que el siguiente dueño lo cuide tanto como yo.</p> 
                             </div>
@@ -36,7 +36,7 @@ export const Modal = () => {
 
                     <div className='col-5 cards-center'>
                         <div className=' modal-cards m-3'>
-                            <h5>Contacto</h5>
+                            <h5 className='fw-bold'>Contacto</h5>
                             <div className='modal-cards--color p-4'>
                                 <table className='contact-table'>
                                     <tr>
