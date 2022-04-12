@@ -1,9 +1,10 @@
 import React from 'react'
+import { Container } from './components/Container'
 
 export const GasutApp = () => {
   return (
     <>
-      <h1>GASUT</h1>
+      <Container />
     </>
   )
 }
