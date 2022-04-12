@@ -6,7 +6,7 @@ export const Modal = () => {
     return (
         <>
             <div className='container mt-5'>
-                <div className='row g-2'>
+                <div className='row g-2 row-cols-sm-1 row-cols-lg-2'>
                     <div className='col-5 cards-center'>
                         <div className='modal-cards m-3 p-4'>
                             <img src={images('./planta.png')} className="card-img-top" alt="Planta" /> 
@@ -39,14 +39,16 @@ export const Modal = () => {
                             <h5 className='fw-bold'>Contacto</h5>
                             <div className='modal-cards--color p-4'>
                                 <table className='contact-table'>
-                                    <tr>
-                                        <td><img src={icons('./telefono.svg')} className="" alt="Teléfono" /></td>
-                                        <td><p className='ms-3'>5013-5656</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src={icons('./correo.svg')} className="" alt="Teléfono" /></td>
-                                        <td><p className='ms-3'>Calichin19@gmail.com</p></td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src={icons('./telefono.svg')} className="" alt="Teléfono" /></td>
+                                            <td><p className='ms-3'>5013-5656</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src={icons('./correo.svg')} className="" alt="Teléfono" /></td>
+                                            <td><p className='ms-3'>Calichin19@gmail.com</p></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
