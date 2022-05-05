@@ -4,10 +4,9 @@ import { Header } from "../../Shared/Header"
 import {Footer} from "../../Shared/Footer"
 
 const UserProfile = () => {
-  const { user } = useAuth();
-  const userImg =  user.photoURL !== "" ?  user.photoURL : "../../../../public/img/profileAux.jpg";
-  const nombreCompleto = user.displayName !== "" ? user.displayName.split(" ") : "Nombre Apellido".split(" ");
-
+  const { user } = useAuth();  
+  const nombre = ((user.displayName === null) ? "Nombre Apellido" : user.displayName).split(" ")
+  
   return (
     <>
     <Header/>
@@ -15,7 +14,7 @@ const UserProfile = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 offset-lg-0 text-center">
-              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userImg} width={216} height="auto" />
+              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={(user.photoURL||"https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png")} width={216} height="auto" />
                 <p className="lead" style={{marginTop: '10px'}}>{(user.displayName || "Usuario")}</p><button className="btn btn-primary" type="button" style={{borderRadius: '20px'}}>Cambiar contraseña</button>
               </form>
             </div>
@@ -34,7 +33,7 @@ const UserProfile = () => {
                       <div>
                         <form className="p-3 p-xl-4" method="post">
                           <p style={{color: 'rgb(0,0,0)'}}>Nombre</p>
-                          <div className="mb-3"><input className="form-control" type="text" id="name-1" name="name" placeholder={nombreCompleto[0]} style={{borderRadius: '5px'}} /></div>
+                          <div className="mb-3"><input className="form-control" type="text" id="name-1" name="name" placeholder={nombre[0]} style={{borderRadius: '5px'}} /></div>
                           <p />
                           <p style={{color: 'rgb(0,0,0)'}}>Celular</p>
                           <div className="mb-3"><input className="form-control" type="tel" placeholder="0000-0000" style={{borderRadius: '5px'}} /></div>
@@ -46,7 +45,7 @@ const UserProfile = () => {
                     <div className="col-lg-6">
                       <form className="p-3 p-xl-4" method="post">
                         <p style={{color: 'rgb(0,0,0)'}}>Apellidos</p>
-                        <div className="mb-3"><input className="form-control" type="text" id="name-2" name="name" placeholder={nombreCompleto[1]} style={{borderRadius: '5px'}} /></div>
+                        <div className="mb-3"><input className="form-control" type="text" id="name-2" name="name" placeholder={nombre[1]} style={{borderRadius: '5px'}} /></div>
                         <p style={{color: 'rgb(0,0,0)'}}>Email</p>
                         <div className="mb-3"><input className="form-control" type="email" id="email-2" name="email" placeholder={user.email} disabled style={{borderRadius: '5px', backgroundColor: '#FFF'}} /></div>
                         <div className="mb-3" />
