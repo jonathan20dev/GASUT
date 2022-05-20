@@ -14,7 +14,7 @@ const UserProfile = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 offset-lg-0 text-center">
-              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={(user.photoURL||"https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png")} width={216} height="auto" />
+              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={("https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png")} width={216} height="auto" />
                 <p className="lead" style={{marginTop: '10px'}}>{(user.displayName || "Usuario")}</p><button className="btn btn-primary" type="button" style={{borderRadius: '20px'}}>Cambiar contraseña</button>
               </form>
             </div>
