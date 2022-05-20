@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from "../../../Business/Context/AuthContext";
 import { Header } from "../../Shared/Header"
 import {Footer} from "../../Shared/Footer"
+import { MisDatos } from '../MisDatos/MisDatos';
+import { MisServicios } from '../MisServicios/MisServicios';
+import { MisProductos } from '../MisProductos/MisProductos';
+import './UserProfile.css'
 
 const UserProfile = () => {
-  const { user } = useAuth();  
-  const nombre = ((user.displayName === null) ? "Nombre Apellido" : user.displayName).split(" ")
+  const { user } = useAuth(); 
+  const [opcion, setOpcion] = useState(<MisDatos/>)
+
+  const styles = {
+    navItem: {
+      cursor: 'pointer', 
+      color: 'rgb(0,0,0)',
+      textDecoration: 'none'
+    }
+  }
+
+  const handleOpcion = (componente) => {
+    setOpcion(componente)
+  }
   
   return (
     <>
@@ -24,46 +40,15 @@ const UserProfile = () => {
                   <div className="row d-flex justify-content-center">
                     <div className="col">
                       <nav className="navbar navbar-light navbar-expand-md sticky-top textprimary fs-6 fw-normal text-primary py-3">
-                        <div className="container"><a className="text-capitalize link-dark" href="#!" style={{color: 'rgb(0,0,0)', fontWeight: 'bold', textDecoration: 'none'}}>Mis Datos</a><a className="link-dark" href="#!" style={{color: 'rgb(0,0,0)', textDecoration: 'none'}}>Mis Servicios</a><a className="link-dark" href="#!" style={{color: 'rgb(0,0,0)', textDecoration: 'none'}}>Mis Productos</a></div>
+                        <div className="container">
+                          <p className="link-dark" onClick={() => handleOpcion(<MisDatos/>)} style={styles.navItem}>Mis Datos</p>
+                          <p className="link-dark" onClick={() => handleOpcion(<MisServicios/>)} style={styles.navItem}>Mis Servicios</p>
+                          <p className="link-dark" onClick={() => handleOpcion(<MisProductos/>)} style={styles.navItem}>Mis Productos</p>
+                        </div>
                       </nav>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-md-6 col-lg-6 col-xl-6">
-                      <div>
-                        <form className="p-3 p-xl-4" method="post">
-                          <p style={{color: 'rgb(0,0,0)'}}>Nombre</p>
-                          <div className="mb-3"><input className="form-control" type="text" id="name-1" name="name" placeholder={nombre[0]} style={{borderRadius: '5px'}} /></div>
-                          <p />
-                          <p style={{color: 'rgb(0,0,0)'}}>Celular</p>
-                          <div className="mb-3"><input className="form-control" type="tel" placeholder="0000-0000" style={{borderRadius: '5px'}} /></div>
-                          <div className="mb-3" />
-                          <div />
-                        </form>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <form className="p-3 p-xl-4" method="post">
-                        <p style={{color: 'rgb(0,0,0)'}}>Apellidos</p>
-                        <div className="mb-3"><input className="form-control" type="text" id="name-2" name="name" placeholder={nombre[1]} style={{borderRadius: '5px'}} /></div>
-                        <p style={{color: 'rgb(0,0,0)'}}>Email</p>
-                        <div className="mb-3"><input className="form-control" type="email" id="email-2" name="email" placeholder={user.email} disabled style={{borderRadius: '5px', backgroundColor: '#FFF'}} /></div>
-                        <div className="mb-3" />
-                        <div />
-                      </form>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <form className="p-3 p-xl-4" method="post">
-                        <div className="mb-3" />
-                        <p style={{color: 'rgb(0,0,0)'}}>Ubicación</p>
-                        <div className="mb-3"><textarea className="form-control" style={{borderRadius: '5px'}} defaultValue={""} /></div><button className="btn btn-primary" type="button" style={{borderRadius: '20px'}}>Guardar cambios</button>
-                        <div className="mb-3" />
-                        <div />
-                      </form>
-                    </div>
-                  </div>
+                  {opcion}
                 </div>
               </section>
             </div>
