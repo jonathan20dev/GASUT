@@ -1,33 +1,37 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Business/Context/AuthContext";
-import { Alert } from "./../Alert";
+import { Alert } from "../Alert";
+import "./Register.css"
 
-const Register = () => {
-    const { signup, insertUserFB } = useAuth();
+export function Register() {
+  const { signup,insertUserRegister } = useAuth();
 
-    const [user, setUser] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
-    });
+    nombre: "",
+    telefono: "",
+    codigo_postal: 0,
+    img: "https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png"
+  });
 
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
-        try {
-            await signup(user.email, user.password);
-            navigate("/");
-            insertUserFB()
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signup(user.email, user.password);
+      navigate("/");
+      insertUserRegister(user.codigo_postal, user.email, user.img, user.nombre, user.telefono)
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
-
-    return (
+  return (
     <div className="d-flex flex-column justify-content-center" id="login-box">
         {error && <Alert message={error} />}
         <div className="login-box-header">
@@ -44,9 +48,24 @@ const Register = () => {
                 placeholder="Correo"
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 autoComplete="off"/>
+            <input type="text" name="name" id="name" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Nombre Completo"
+                onChange={(e) => setUser({ ...user, nombre: e.target.value })}
+                autoComplete="off"/>
+            <input type="tel" name="phone" id="phone" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Teléfono"
+                onChange={(e) => setUser({ ...user, telefono: e.target.value })}
+                autoComplete="off"/>
+            <input type="number" name="cpostal" id="cpostal" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Código postal"
+                onChange={(e) => setUser({ ...user, codigo_postal: e.target.value })}
+                autoComplete="off"/>
             <input type="password" name="password" id="password" className="password-input form-control"
                 style={{marginTop: '10px'}}
-                placeholder="*****************"
+                placeholder="***********"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 />
             </div>
@@ -62,7 +81,5 @@ const Register = () => {
         <p style={{marginBottom: '0px'}}>¿Ya tienes una cuenta?<Link to="/login" id="register-link" href="#">Logueate!</Link></p>
         </div>
     </div>
-)
+  );
 }
-
-export {Register}

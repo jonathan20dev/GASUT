@@ -16,6 +16,7 @@ const Header = () => {
   return (
     <div>
       Header
+      <a href="/profile" style={{marginLeft:"10px"}}>{"Perfil"}</a>
       <button onClick={handleLogout} style={{ marginLeft: '30px'}}>Cerrar sesion</button>
       <hr/>
     </div>

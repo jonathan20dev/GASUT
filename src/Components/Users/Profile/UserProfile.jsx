@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from "../../../Business/Context/AuthContext";
 import { Header } from "../../Shared/Header"
 import {Footer} from "../../Shared/Footer"
 import { MisDatos } from '../MisDatos/MisDatos';
 import { MisServicios } from '../MisServicios/MisServicios';
 import { MisProductos } from '../MisProductos/MisProductos';
+import { getUser } from "../../../Firebase/getUser"
 import './UserProfile.css'
 
 const UserProfile = () => {
-  const { user } = useAuth(); 
+  const [userP, setUser] = useState({nombre:"", img:"", correo:""})
+  const { user } = useAuth();
+  const extractProfile = async() => {
+    const usuario = await getUser(user.reloadUserInfo.localId)
+    setUser(usuario)
+  }
+
+  useEffect(() => {
+    extractProfile()
+  }, [])
+
   const [opcion, setOpcion] = useState(<MisDatos/>)
 
   const styles = {
@@ -30,8 +41,16 @@ const UserProfile = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 offset-lg-0 text-center">
-              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={("https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png")} width={216} height="auto" />
-                <p className="lead" style={{marginTop: '10px'}}>{(user.displayName || "Usuario")}</p><button className="btn btn-primary" type="button" style={{borderRadius: '20px'}}>Cambiar contraseña</button>
+              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
+                <p style={{ marginTop:"15px", color: "rgb(0,0,0)" }}>
+                  Email de inicio de sesión:
+                  <br />
+                  {userP.correo}
+                  <br />
+                  <em>Tu email de inicio de sesión no se puede cambiar</em>
+                  <br/>
+                </p>
+                <button className="btn btn-primary" type="button">Cambiar contraseña</button>
               </form>
             </div>
             <div className="col">

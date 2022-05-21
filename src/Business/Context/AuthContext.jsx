@@ -1,76 +1,73 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    GoogleAuthProvider,
-    signInWithPopup,
-    sendPasswordResetEmail,
-  } from "firebase/auth";
-  import { auth } from "../../Firebase/firebase";
-  import { insertUser } from "../../Firebase/insertUser"
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { auth } from "../../Firebase/firebase";
+import { insertUser } from '../../Firebase/insertUser'
 
-  const authContext = createContext();
+const authContext = createContext();
 
 export const useAuth = () => {
-const context = useContext(authContext);
-if (!context) throw new Error("There is no Auth provider");
-return context;
+  const context = useContext(authContext);
+  if (!context) throw new Error("There is no Auth provider");
+  return context;
 };
 
 export function AuthProvider({ children }) {
-const [user, setUser] = useState(null);
-const [userFb, setUserFb] = useState({correo: '', ubicacion: '', img: '', nombre: '', celular: ''});
-const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
 
-useEffect(() => {
+  useEffect(() => {
     const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    setLoading(false);
+      setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubuscribe();
-}, []);
+  }, []);
 
-//Inserta un usuario en la coleccion Usuarios
-const insertUserFB = () => {
+  const insertUserFB = () => {
     const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
-    const photo = currentUser.photoURL || " "
-    const disName = currentUser.displayName || "Usuario"
-    insertUser(currentUser.reloadUserInfo.localId, {...userFb, correo: currentUser.email, img: photo, nombre: disName})
-    setUserFb({...userFb, correo: currentUser.email, img: photo, nombre: disName})
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: "0000", correo: currentUser.email, img: currentUser.photoURL, nombre: currentUser.displayName, telefono: "0000-0000", direccion: ""})
     })
     obtenerUsuario()
-}
+  }
 
+  const insertUserRegister = (cp, mail, image, name, phone) => {
+    const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: cp, correo: mail, img: image, nombre: name, telefono: phone, direccion: ""})
+    })
+    obtenerUsuario()
+  }
 
-//Registro normal firebase
-const signup = (email, password) => {
+  const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
     
-};
+  };
 
-//Login noraml firebase
-const login = (email, password) => {
+  const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
-};
+  };
 
-//Login en firebase utilizando google
-const loginWithGoogle = () => {
+  const loginWithGoogle = () => {
     const googleProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleProvider);
-};
+  };
 
-//Cerrar sesion
-const logout = () => signOut(auth);
+  const logout = () => signOut(auth);
 
-//Reestablecer contraseña
-const resetPassword = async (email) => sendPasswordResetEmail(auth, email);
+  const resetPassword = async (email) => sendPasswordResetEmail(auth, email);
 
-return (
+  //Compartidos
+  return (
     <authContext.Provider
-    value={{
+      value={{
         signup,
         login,
         user,
@@ -78,11 +75,11 @@ return (
         loading,
         loginWithGoogle,
         resetPassword,
-        insertUserFB
-    }}
+        insertUserFB,
+        insertUserRegister
+      }}
     >
-    {children}
+      {children}
     </authContext.Provider>
-);
+  );
 }
-  

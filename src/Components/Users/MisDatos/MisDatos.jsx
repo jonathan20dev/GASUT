@@ -1,98 +1,102 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../Business/Context/AuthContext";
+import { getUser } from "../../../Firebase/getUser"
+import { insertUser } from "../../../Firebase/insertUser"
+import { useNavigate } from "react-router-dom";
 
 function MisDatos() {
+  const [userP, setUser] = useState({
+    codigo_postal: "",
+    correo: "",
+    id: "",
+    img: "",
+    nombre: "",
+    telefono: "",
+    direccion: ""
+  })
+  const navigate = useNavigate();
   const { user } = useAuth();
-  const nombre = (
-    user.displayName === null ? "Nombre Apellido" : user.displayName
-  ).split(" ");
+  const extractProfile = async() => {
+    const usuario = await getUser(user.reloadUserInfo.localId)
+    setUser(usuario)
+  }
+
+  useEffect(() => {
+    extractProfile()
+  }, [])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    insertUser(user.reloadUserInfo.localId, userP)
+    navigate("/profile");
+  };
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <div className="row">
-        <div className="col-md-6 col-lg-6 col-xl-6">
-          <div>
-            <form className="p-3 p-xl-4" method="post">
-              <p style={{ color: "rgb(0,0,0)" }}>Nombre</p>
-              <div className="mb-3">
-                <input
-                  className="form-control"
-                  type="text"
-                  id="name-1"
-                  name="name"
-                  placeholder={nombre[0]}
-                  style={{ borderRadius: "5px" }}
-                />
-              </div>
-              <p />
-              <p style={{ color: "rgb(0,0,0)" }}>Celular</p>
-              <div className="mb-3">
-                <input
-                  className="form-control"
-                  type="tel"
-                  placeholder="0000-0000"
-                  style={{ borderRadius: "5px" }}
-                />
-              </div>
-              <div className="mb-3" />
-              <div />
-            </form>
-          </div>
-        </div>
-        <div className="col-lg-6">
-          <form className="p-3 p-xl-4" method="post">
-            <p style={{ color: "rgb(0,0,0)" }}>Apellidos</p>
-            <div className="mb-3">
+          <div className="col">
+            <div className="p-3 p-xl-4" method="post">
+              <p style={{ color: "rgb(0,0,0)" }}>Nombre completo</p>
               <input
                 className="form-control"
                 type="text"
-                id="name-2"
+                id="name"
                 name="name"
-                placeholder={nombre[1]}
+                placeholder={userP.nombre}
+                onChange={(e) => setUser({ ...userP, nombre: e.target.value })}
                 style={{ borderRadius: "5px" }}
               />
             </div>
-            <p style={{ color: "rgb(0,0,0)" }}>Email</p>
-            <div className="mb-3">
+          </div>
+        </div>
+        <div className="row" style={{marginTop: "-20px"}}>
+          <div className="col-md-6 col-lg-6 col-xl-6">
+            <div className="p-3 p-xl-4">
+              <p style={{ color: "rgb(0,0,0)" }}>Teléfono</p>
               <input
                 className="form-control"
-                type="email"
-                id="email-2"
-                name="email"
-                placeholder={user.email}
-                disabled
-                style={{ borderRadius: "5px", backgroundColor: "#FFF" }}
+                type="tel"
+                placeholder={userP.telefono}
+                onChange={(e) => setUser({ ...userP, telefono: e.target.value })}
+                style={{ borderRadius: "5px" }}
               />
             </div>
-            <div className="mb-3" />
-            <div />
-          </form>
+          </div>
+          <div className="col-lg-6">
+            <div className="p-3 p-xl-4">
+              <p style={{ color: "rgb(0,0,0)" }}>Código postal</p>
+              <input
+                className="form-control"
+                type="number"
+                min="4"
+                placeholder={userP.codigo_postal}
+                onChange={(e) => setUser({ ...userP, codigo_postal: e.target.value })}
+                style={{ borderRadius: "5px" }}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <form className="p-3 p-xl-4" method="post">
-            <div className="mb-3" />
-            <p style={{ color: "rgb(0,0,0)" }}>Ubicación</p>
-            <div className="mb-3">
+        <div className="row" style={{marginTop: "-20px"}}>
+          <div className="col">
+            <div className="p-3 p-xl-4" method="post">
+              <p style={{ color: "rgb(0,0,0)" }}>Dirección</p>
               <textarea
                 className="form-control"
+                placeholder={userP.direccion}
                 style={{ borderRadius: "5px" }}
-                defaultValue={""}
-              />
+                onChange={(e) => setUser({ ...userP, direccion: e.target.value })}
+              ></textarea>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                style={{ marginTop: "20px" }}>
+                Actualizar información
+                <br />
+              </button>
             </div>
-            <button
-              className="btn btn-primary"
-              type="button"
-              style={{ borderRadius: "20px" }}
-            >
-              Guardar cambios
-            </button>
-            <div className="mb-3" />
-            <div />
-          </form>
+          </div>
         </div>
-      </div>
-    </div>
+    </form>
   );
 }
 

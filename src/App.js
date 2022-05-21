@@ -7,7 +7,6 @@ import { Services } from "./Components/Services/Services"
 import { ProtectedRoute } from "./Components/Security/ProtectedRoute";
 import { AuthProvider } from "./Business/Context/AuthContext";
 import { UserProfile } from "./Components/Users/Profile/UserProfile"
-import { Prueba } from "./Components/Users/Profile/Prueba"
 
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
     <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/prueba" element={<Prueba />} />
           <Route path="/register" element={<Register />}/>
           <Route
             path="/"
