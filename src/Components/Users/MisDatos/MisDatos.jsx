@@ -32,7 +32,7 @@ function MisDatos() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="container" onSubmit={handleSubmit}>
       <div className="row">
           <div className="col">
             <div className="p-3 p-xl-4" method="post">
