@@ -9,7 +9,7 @@ function Tabla({ titulos, filas }) {
             {titulos.map((t) => (
               <th scope="col">{t}</th>
             ))}
-            <th scope="col">Acciones</th>
+            <th scope="col" style={{textAlign: 'center'}}>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -18,8 +18,9 @@ function Tabla({ titulos, filas }) {
               {Object.values(f).map((v) => (
                 <td>{v}</td>
               ))}
-              <td>
-                Borrar/Editar
+              <td style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                <i class="bi bi-trash3" style={{color: 'red'}}></i>
+                <i class="bi bi-pencil" style={{color: 'blue'}}></i>
               </td>
             </tr>
           ))}
