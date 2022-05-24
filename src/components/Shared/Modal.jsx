@@ -1,40 +1,63 @@
 import React from 'react'
-const images = require.context('../assets/images', true);
-const icons = require.context('../assets/icons', true);
+import { productContext } from '../../Business/ProductContext';
+import { serviceContext } from '../../Business/ServiceContext';
+import { DetailsModalProduct } from '../Products/DetailsModalProduct';
+import { DetailsModalService } from '../Services/DetailsModalService';
+const icons = require.context('../../assets/icons', true);
 
-export const Modal = () => {    
+export const Modal = ({ page }) => {
+    let context;
+    if(page === 'services') {
+        context = serviceContext;
+    } else {
+        context = productContext;
+    }
+
+    const { openModal, setOpenModal, active } = React.useContext(context);
+
+    const { descripcion, img } = active;
+
+    const handleModal = () => {
+    setOpenModal(!openModal);
+    }
+
     return (
         <>
-            <div className='container mt-5'>
-                <div className='row g-2 row-cols-sm-1 row-cols-lg-2'>
-                    <div className='col-5 cards-center'>
+            <div className='mt-5 main-modal'>
+                <div className='icon-exit'>
+                    <img src={icons('./x.svg')} className="icon" alt="Cerrar Modal" onClick={handleModal}/>
+                </div>
+                <div className='content-modal'>
+                    <div className=''>
                         <div className='modal-cards m-3 p-4'>
-                            <img src={images('./planta.png')} className="card-img-top" alt="Planta" /> 
+                            <img src={ img } className="card-img-top" alt="Planta" /> 
                         </div>
                     </div>
 
-                    <div className='col-5 cards-center'>
+                    <div className=''>
                         <div className='modal-cards m-3 p-4'>
                             <h3 className='text-center'>Detalles</h3>
-                            <p className='mb-1 mt-3'><span className='fw-bold'>Nombre: </span>Cactus A</p>
-                            <p className='mb-1'><span className='fw-bold'>Cantidad: </span>2</p>
-                            <p className='mb-1'><span className='fw-bold'>Propietario: </span>Fabricio Ulate</p>
+                            {
+                                page === 'services'
+                                    ? <DetailsModalService />
+                                    : <DetailsModalProduct />
+                            }
                             <p className='mb-1'><span className='fw-bold'>Ubicación: </span>Calle las rosas en Agua Zarcas, 100 metros norte de la iglesia</p>
                         </div>
                     </div>
 
-                    <div className='col-5 cards-center'>
+                    <div className=''>
                         
                         <div className='modal-cards m-3'>
                             <h5 className='fw-bold'>Descripción</h5>
                             <div className='modal-cards--color p-4'>
-                                <p className='cards-center'>Es un cactus muy bonito, lo regalo porque ya tengo muchos en mi casa, espero que el siguiente dueño lo cuide tanto como yo.</p> 
+                                <p className='cards-center'>{ descripcion }</p> 
                             </div>
                             
                         </div>
                     </div>
 
-                    <div className='col-5 cards-center'>
+                    <div className=''>
                         <div className=' modal-cards m-3'>
                             <h5 className='fw-bold'>Contacto</h5>
                             <div className='modal-cards--color p-4'>

@@ -1,10 +1,15 @@
 import React from 'react';
-import { Modal } from './components/Modal';
+import { ProductContext } from './Business/ProductContext';
+import { ProductScreen } from './components/Products/ProductScreen';
 
 export const GasutApp = () => {
   return (
-    <Modal>
-      
-    </Modal>
+    <ProductContext>
+      <div className='container-lg d-flex'>
+        <div className='cards-center gap-4 d-flex'>
+          <ProductScreen />
+        </div>
+      </div>
+    </ProductContext>
   )
 }

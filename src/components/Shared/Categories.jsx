@@ -1,22 +1,27 @@
 import React from 'react';
-import { categories } from '../data/categories';
-import { Category } from './Category';
-
-const icons = require.context('../assets/icons', true);
+import { NavItem } from "./NavItem";
+import { Navbar } from "./NavBar";
+import { DropdownMenu } from "./DropdownMenu"
+import { ReactComponent as FilterIcon } from '../../assets/icons/filtro.svg'
+import './dropdown.css';
 
 export const Categories = ({ page }) => {
-
-  const items = categories.filter(item => item.page === page);
-
   return (
     <>
-      <div className="col-4 mt-3 categories p-4 rounded">
+      <Navbar>
+        <NavItem icon={<FilterIcon/>}>
+          <DropdownMenu page={page}></DropdownMenu>
+        </NavItem>
+      </Navbar>
+      {/* <div className="col-4 mt-3 categories p-4 rounded">
         <form className='input-wrapper'>
           <input 
             type="text"
             className="form-control"
             id="search"
             placeholder="Buscar"
+            value={searchValue} 
+            onChange={onSearchValueChange}
           />
           <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
         </form>
@@ -26,7 +31,7 @@ export const Categories = ({ page }) => {
         {
           items.map( ({ id, name, image }) => <Category key={ id } name={ name } image={ image } />)
         }
-      </div>
+      </div> */}
     </>
   )
 }

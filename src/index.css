@@ -14,10 +14,18 @@ body {
   background-color: var(--page-background);
 }
 
+p {
+  margin: 0;
+}
+
+.cp {
+  cursor: pointer;
+}
+
 .categories {
   background-color: var(--white);
   height: 550px;
-  max-width: 300px;
+  width: 300px;
 }
 
 .cards-center {
@@ -61,6 +69,10 @@ body {
   background-color: var(--button-color);
 }
 
+.card-img-top {
+  height: 250px;
+}
+
 .modal-cards{
   width: 400px;
 }
@@ -76,4 +88,64 @@ body {
 
 .contact-table{
   margin: 0 auto;
+}
+
+.main-modal {
+  display: block;
+  background-color: var(--white);
+  position: fixed;
+  top: -15px;
+  padding: 20px 40px;
+  border-radius: 20px;
+}
+
+.content-modal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.icon-exit {
+  display: flex;
+  justify-content: end;
+  margin-right: -20px;
+  cursor: pointer;
+}
+
+.grid-service,
+.grid-product {
+  display: grid;
+  gap: 20px;
+}
+
+@media(min-width: 550px) {
+  .grid-product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(min-width: 600px) {
+  .grid-service,
+  .grid-product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(min-width: 800px) {
+  .grid-product {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media(min-width: 1024px) {
+  .grid-service {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-product {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.active {
+  border-radius: 5px;
+  border-bottom: 5px solid #49b293;
 }
