@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <hr style={{ marginTop: "50px", backgroundColor: "#000" }} />
+      <hr style={{ marginTop: "0px", backgroundColor: "#000", marginBottom: '0px' }} />
       <footer className="page-footer font-small blue pt-4" style={{backgroundColor: '#EEF6F0'}}>
         <div
           className="text-center py-3"
