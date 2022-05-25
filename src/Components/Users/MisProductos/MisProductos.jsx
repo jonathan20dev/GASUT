@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { UseAppContext } from "../../../Business/Context/AppContext";
+import React, {useState,useContext} from "react";
+import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
 import { Modal } from "../../Shared/Modal/Modal.jsx";
@@ -55,7 +55,7 @@ function MisProductos() {
     ]);
   };
 
-  const { openModal, setOpenModal } = UseAppContext();
+  const { openModal, setOpenModal } = useContext(UseAppContext)
 
   const onClickButton = () => {
     setOpenModal((prevState) => !prevState);
@@ -72,7 +72,7 @@ function MisProductos() {
       />
         <div className="btn btn-sm btn-outline-light" type="button">
           <div className="nav-item dropdown">
-            <a
+            <div
               style={{
                 textDecoration: "none",
                 fontSize: "17px",
@@ -83,7 +83,7 @@ function MisProductos() {
               data-bs-toggle="dropdown"
             >
               <i className="bi bi-filter-left"></i>ordenar por
-            </a>
+            </div>
             <ul
               className="dropdown-menu"
               style={{ fontSize: "14px" }}
@@ -104,7 +104,7 @@ function MisProductos() {
         </div>
       </div>
       <Tabla
-        titulos={["imagen", "nombre", "tipo", "descripción"]}
+        titulos={["imagen", "nombre", "tipo", "cantidad", "descripción"]}
         filas={products}
       />
       {openModal && (

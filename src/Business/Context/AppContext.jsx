@@ -1,22 +1,46 @@
-import React from 'react'
-
-const Context = React.createContext();
-
-const UseAppContext = () => {
-    const appContext = React.useContext(Context)
-    return appContext
-}
+import React, {useReducer, useState} from 'react'
+import {UseAppContext} from "./UseAppContext"
+import collectionReducer from "./collectionReducer"
+import { getUserCollection } from "../../Firebase/getUserDocs"
+import { useAuth } from "./AuthContext"
 
 const AppContext = ({children}) => {
-    const [openModal, setOpenModal] = React.useState(false);
+    const { user } = useAuth();
+    const initialState  = {
+        products:[],
+        services : [],
+    }
+    const [state, dispatch] = useReducer(collectionReducer, initialState)
+    const [openModal, setOpenModal] = useState(false);
+
+    const getUserProducts = async () => {
+        const productos = await getUserCollection(user.reloadUserInfo.localId, "Productos")
+        dispatch({
+            type:'GET_PRODUCTS',
+            payload: productos
+        })
+    }
+
+    const getUserServices = async () => {
+        const servicios = await getUserCollection(user.reloadUserInfo.localId, "Servicios")
+        dispatch({
+            type:'GET_SERVICES',
+            payload: servicios
+        })
+    }
+
     return (
-        <Context.Provider value={{
+        <UseAppContext.Provider value={{
+            products: state.products,
+            services: state.services,
             openModal,
-            setOpenModal
+            setOpenModal,
+            getUserProducts,
+            getUserServices
         }}>
             {children}
-        </Context.Provider>
+        </UseAppContext.Provider>
     );
 }
 
-export {AppContext, UseAppContext}
+export {AppContext}
