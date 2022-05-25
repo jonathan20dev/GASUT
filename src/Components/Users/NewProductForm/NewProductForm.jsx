@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./NewProductForm.css";
 import { Button } from "../../Shared/Button.jsx";
-import { UseAppContext } from "../../../Business/Context/AppContext";
+
+import { UseAppContext } from "../../../Business/Context/UseAppContext";
 
 function NewProductForm() {
-  const { setOpenModal } = UseAppContext();
+  const { setOpenModal } = useContext(UseAppContext)
 
   const onCancel = () => {
     setOpenModal(false);

@@ -33,7 +33,8 @@ const UserProfile = () => {
     <div style={{backgroundColor: '#F7F7F6', paddingBottom: '40px', paddingTop: '40px'}}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 offset-lg-0 text-center"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
+            <div className="col-lg-4 border border-1 offset-lg-0 text-center">
+              <div className="p-3 p-xl-4"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
                 <p style={{ marginTop:"15px", color: "rgb(0,0,0)" }}>
                   Email de inicio de sesión:
                   <br />
@@ -43,6 +44,7 @@ const UserProfile = () => {
                   <br/>
                 </p>
                 <Button clase={"btn btn-primary"} texto={"Cambiar contraseña"}/>
+              </div>
             </div>
             <div className="col">
               <section className="position-relative">
