@@ -104,7 +104,7 @@ function MisProductos() {
         </div>
       </div>
       <Tabla
-        titulos={["imagen", "nombre", "tipo", "descripción"]}
+        titulos={["imagen", "nombre", "tipo", 'cantidad', "descripción"]}
         filas={products}
       />
       {openModal && (

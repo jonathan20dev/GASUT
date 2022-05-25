@@ -33,8 +33,7 @@ const UserProfile = () => {
     <div style={{backgroundColor: '#F7F7F6', paddingBottom: '40px', paddingTop: '40px'}}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 offset-lg-0 text-center">
-              <form className="p-3 p-xl-4" method="post"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
+            <div className="col-lg-4 offset-lg-0 text-center"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
                 <p style={{ marginTop:"15px", color: "rgb(0,0,0)" }}>
                   Email de inicio de sesión:
                   <br />
@@ -44,7 +43,6 @@ const UserProfile = () => {
                   <br/>
                 </p>
                 <Button clase={"btn btn-primary"} texto={"Cambiar contraseña"}/>
-              </form>
             </div>
             <div className="col">
               <section className="position-relative">
@@ -52,13 +50,13 @@ const UserProfile = () => {
                   <div className="row d-flex justify-content-center">
                     <div className="col">
                       <nav className="navbar navbar-light navbar-expand-md sticky-top textprimary fs-6 fw-normal text-primary py-3">
-                        <div className="container">
+                        <div className='container'>
                           <p className="link-dark" style={styles.navItem}>
                             <NavLink
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misDatos"
                             >
@@ -70,7 +68,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misServicios"
                             >
@@ -83,7 +81,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misProductos"
                             >

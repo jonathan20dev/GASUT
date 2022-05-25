@@ -17,7 +17,7 @@ function NewProductForm() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='nuevoProductoForm' onSubmit={onSubmit}>
       <table>
         <tbody>
           <tr>
