@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from "../../../Business/Context/AuthContext";
-import { Header } from "../../Shared/Header"
+import { Header } from "../../Shared/Header/Header.jsx"
 import {Footer} from "../../Shared/Footer"
 import { getUser } from "../../../Firebase/getUser"
 import './UserProfile.css'

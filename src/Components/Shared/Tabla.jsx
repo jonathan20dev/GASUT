@@ -29,29 +29,29 @@ function Tabla({ titulos, filas }) {
       <nav style={{display: 'flex', justifyContent: 'center'}}>
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+            <div class="page-link" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
-            </a>
+            </div>
           </li>
           <li class="page-item">
-            <a class="page-link" href="#">
+            <div class="page-link">
               1
-            </a>
+            </div>
           </li>
           <li class="page-item">
-            <a class="page-link" href="#">
+            <div class="page-link" >
               2
-            </a>
+            </div>
           </li>
           <li class="page-item">
-            <a class="page-link" href="#">
+            <div class="page-link" >
               3
-            </a>
+            </div>
           </li>
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+            <div class="page-link" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
-            </a>
+            </div>
           </li>
         </ul>
       </nav>
