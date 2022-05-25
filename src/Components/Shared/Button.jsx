@@ -8,4 +8,4 @@ function Button({clase, texto, accion}) {
   )
 }
 
-export default Button
+export {Button}

@@ -5,7 +5,7 @@ import {Footer} from "../../Shared/Footer"
 import { getUser } from "../../../Firebase/getUser"
 import './UserProfile.css'
 import { NavLink, Outlet } from 'react-router-dom';
-import Button from '../../Shared/Button';
+import {Button} from '../../Shared/Button';
 
 const UserProfile = () => {
   const [userP, setUser] = useState({nombre:"", img:"", correo:""})
@@ -58,7 +58,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black'}}
+                              style={{color: 'black', zIndex: '2'}}
                               aria-current="page"
                               to="/profile/misDatos"
                             >
@@ -70,7 +70,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black'}}
+                              style={{color: 'black', zIndex: '2'}}
                               aria-current="page"
                               to="/profile/misServicios"
                             >
@@ -83,7 +83,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black'}}
+                              style={{color: 'black', zIndex: '2'}}
                               aria-current="page"
                               to="/profile/misProductos"
                             >

@@ -1,0 +1,19 @@
+form {
+    width: 90%;
+    max-width: 300px;
+    background-color: #deeaf1;
+    padding: 33px 40px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+  }
+
+.celda {
+  padding: 10px
+}
+
+.celda p {
+  color: black;
+  margin: 0px
+}
