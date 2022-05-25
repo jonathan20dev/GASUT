@@ -1,4 +1,4 @@
-import { db } from './Firebase';
+import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const getUserCollection = async (id,coleccion) => {
