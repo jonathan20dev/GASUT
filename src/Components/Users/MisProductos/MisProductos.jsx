@@ -6,7 +6,10 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { NewProductForm } from "../NewProductForm/NewProductForm.jsx";
 
 function MisProductos() {
-  const [products, setProducts] = useState([
+  const {products, getUserProducts } = useContext(UseAppContext)
+  
+
+  const [producte, setProductes] = useState([
     {
       imagen: "img",
       nombre: "nombrz",
@@ -45,12 +48,12 @@ function MisProductos() {
   ]);
 
   const handleSort = () => {
-    setProducts([...products.sort((a, b) => a.cantidad - b.cantidad)]);
+    setProductes([...producte.sort((a, b) => a.cantidad - b.cantidad)]);
   };
   const handleNameSort = () => {
-    setProducts([
-      ...products.sort((first, second) =>
-        first.nombre > second.nombre ? 1 : second.nombre > first.nombre ? -1 : 0
+    setProductes([
+      ...producte.sort((a, b) =>
+        a.nombre > b.nombre ? 1 : b.nombre > a.nombre ? -1 : 0
       ),
     ]);
   };
@@ -105,7 +108,7 @@ function MisProductos() {
       </div>
       <Tabla
         titulos={["imagen", "nombre", "tipo", "cantidad", "descripción"]}
-        filas={products}
+        filas={producte}
       />
       {openModal && (
         <Modal>
