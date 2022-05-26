@@ -45,7 +45,7 @@ function Tabla({ titulos, filas }) {
     </div>
     
        {/* Paginación */}
-       <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
+      <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
         <ul className="pagination">
           <li className="page-item">
             <div className="page-link" aria-label="Previous">
@@ -54,16 +54,16 @@ function Tabla({ titulos, filas }) {
           </li>
           <li className="page-item">
             <div className="page-link">
-              1
+              <strong>1</strong>
             </div>
           </li>
           <li className="page-item">
-            <div className="page-link" >
+            <div className="page-link" style={{color: 'grey'}} disabled>
               2
             </div>
           </li>
           <li className="page-item">
-            <div className="page-link" >
+            <div className="page-link" style={{color: 'grey'}}>
               3
             </div>
           </li>
