@@ -1,12 +1,12 @@
 import React from 'react';
-import { productContext } from '../../Business/ProductContext';
+import { appContext } from '../../Business/AppContext';
 import { Categories } from '../Shared/Categories';
 import { Modal } from '../Shared/Modal';
 import { ProductCard } from './ProductCard';
 
 export const ProductScreen = () => {
 
-  const { searchedProducts, openModal } = React.useContext(productContext);
+  const { searchedProducts, openModal } = React.useContext(appContext);
 
   return (
     <>

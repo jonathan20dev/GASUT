@@ -1,26 +1,20 @@
 import React from 'react';
 import { categories } from '../../data/categories';
-import { Category } from './Category';
-import { serviceContext } from '../../Business/ServiceContext';
-import { productContext } from '../../Business/ProductContext';
+import { CategoryService } from './CategoryService';
+import { appContext } from '../../Business/AppContext';
+
 const icons = require.context('../../assets/icons', true);
 
-export const DropdownMenu=({ page }) => {
-    let context;
-    if(page === 'services') {
-        context = serviceContext;
-    } else {
-        context = productContext;
-    }
+export const DropdownMenuService = () => {
 
-    const { searchValue, setSearchValue } = React.useContext(context);
+    const { searchServices, setSearchServices } = React.useContext(appContext);
 
     const onSearchValueChange = (event) => {
         console.log(event.target.value);
-        setSearchValue(event.target.value);
+        setSearchServices(event.target.value);
     };
 
-    const items = categories.filter(item => item.page === page);
+    const items = categories.filter(item => item.page === 'services');
 
     return (
         <div className="dropdown">
@@ -36,16 +30,16 @@ export const DropdownMenu=({ page }) => {
                         className="form-control"
                         id="search"
                         placeholder="Buscar"
-                        value={searchValue} 
+                        value={searchServices} 
                         onChange={onSearchValueChange}
                     />
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
                     </form>
                     <h5 className='text-uppercase fw-bold mt-5'>Ubicación</h5>
-                    <p>{(page === 'products' ? 'Productos' : 'Servicios' )} cercanos a Aguas Zarcas</p>
+                    <p>Servicios cercanos a Aguas Zarcas</p>
                     <h5 className='text-uppercase fw-bold mt-5 mb-3'>Categorías</h5>
                     {
-                    items.map( ({ id, name, image, page }) => <Category key={ id } name={ name } image={ image } page={ page } />)
+                        items.map( ({ id, name, image }) => <CategoryService key={ id } name={ name } image={ image } />)
                     }
                 </div>
             </div>

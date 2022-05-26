@@ -1,12 +1,12 @@
 import React from 'react';
-import { serviceContext } from '../../Business/ServiceContext';
+import { appContext } from '../../Business/AppContext';
 import { Categories } from '../Shared/Categories'
 import { Modal } from '../Shared/Modal';
 import { ServiceCard } from './ServiceCard'
 
 export const ServiceScreen = () => {
 
-  const { searchedServices, openModal } = React.useContext(serviceContext);
+  const { searchedServices, openModal } = React.useContext(appContext);
 
   return (
     <>

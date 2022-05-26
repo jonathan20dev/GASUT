@@ -1,9 +1,9 @@
 import React from 'react'
-import { serviceContext } from '../../Business/ServiceContext';
+import { appContext } from '../../Business/AppContext';
 
 export const DetailsModalService = () => {
 
-  const { active } = React.useContext(serviceContext);
+  const { active } = React.useContext(appContext);
 
   const { nombre } = active;
 

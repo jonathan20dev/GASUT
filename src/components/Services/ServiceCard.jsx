@@ -1,12 +1,12 @@
 import React from 'react';
-import { serviceContext } from '../../Business/ServiceContext';
+import { appContext } from '../../Business/AppContext';
 import { Button } from '../Shared/Button';
 
 export const ServiceCard = ({ id, name, img }) => {
 
   const images = require.context('../../assets/images', true);
 
-  const { openModal, setOpenModal, searchedServices, setActive } = React.useContext(serviceContext);
+  const { openModal, setOpenModal, searchedServices, setActive } = React.useContext(appContext);
 
   const handleModal = () => {
     const active = searchedServices.find( product => product.id === id );

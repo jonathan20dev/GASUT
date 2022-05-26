@@ -1,10 +1,10 @@
 import React from 'react';
-import { productContext } from '../../Business/ProductContext';
+import { appContext } from '../../Business/AppContext';
 import { Button } from '../Shared/Button';
 
 export const ProductCard = ({ id, name, img }) => {
 
-  const { openModal, setOpenModal, searchedProducts, setActive } = React.useContext(productContext);
+  const { openModal, setOpenModal, searchedProducts, setActive } = React.useContext(appContext);
 
   const handleModal = () => {
     const active = searchedProducts.find( product => product.id === id );

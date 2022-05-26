@@ -1,9 +1,9 @@
 import React from 'react'
-import { productContext } from '../../Business/ProductContext';
+import { appContext } from '../../Business/AppContext';
 
 export const DetailsModalProduct = () => {
 
-  const { active } = React.useContext(productContext);
+  const { active } = React.useContext(appContext);
 
   const { nombre, cantidad } = active;
 

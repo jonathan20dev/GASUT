@@ -1,19 +1,12 @@
 import React from 'react'
-import { productContext } from '../../Business/ProductContext';
-import { serviceContext } from '../../Business/ServiceContext';
+import { appContext } from '../../Business/AppContext';
 import { DetailsModalProduct } from '../Products/DetailsModalProduct';
 import { DetailsModalService } from '../Services/DetailsModalService';
 const icons = require.context('../../assets/icons', true);
 
 export const Modal = ({ page }) => {
-    let context;
-    if(page === 'services') {
-        context = serviceContext;
-    } else {
-        context = productContext;
-    }
 
-    const { openModal, setOpenModal, active } = React.useContext(context);
+    const { openModal, setOpenModal, active } = React.useContext(appContext);
 
     const { descripcion, img } = active;
 
