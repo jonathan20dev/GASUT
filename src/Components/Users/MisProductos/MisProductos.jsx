@@ -3,7 +3,7 @@ import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
 import { Modal } from "../../Shared/Modal/Modal.jsx";
-import { NewProductForm } from "../NewProductForm/NewProductForm.jsx";
+import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisProductos() {
   const {products, getUserProducts, handleSort, handleNameSort } = useContext(UseAppContext)
@@ -65,7 +65,7 @@ function MisProductos() {
       />
       {openModal && (
         <Modal>
-          <NewProductForm />
+          <CreateForm categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} elemento={'producto'}/>
         </Modal>
       )}
     </div>

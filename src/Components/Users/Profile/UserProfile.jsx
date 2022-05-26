@@ -51,8 +51,8 @@ const UserProfile = () => {
                 <div className="container position-relative">
                   <div className="row d-flex justify-content-center">
                     <div className="col">
-                      <nav className="navbar navbar-light navbar-expand-md sticky-top textprimary fs-6 fw-normal text-primary py-3">
-                        <div className='container'>
+                      <nav className="navbar navbar-light navbar-expand-md sticky-top textprimary fs-6 fw-normal text-primary py-3" style={{zIndex: 1}}>
+                        <div className='container justify-content-around'>
                           <p className="link-dark" style={styles.navItem}>
                             <NavLink
                               className={({ isActive }) =>
