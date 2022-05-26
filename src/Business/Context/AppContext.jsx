@@ -29,32 +29,14 @@ const AppContext = ({children}) => {
         })
     }
 
-    const handleSort = () => {
-        const productSorted = state.products.sort((a, b) => a.cantidad - b.cantidad)
+    const handleSort = (nombre,arreglo, propiedad, s) => {
+        const sortByNameP = arreglo.sort((a, b) => (s===">")? (a[propiedad] > b[propiedad] ? 1 : b[propiedad] > a[propiedad] ? -1 : 0) 
+        :(a[propiedad] < b[propiedad] ? 1 : b[propiedad] < a[propiedad] ? -1 : 0))
         dispatch({
-            type: 'GET_PRODUCTS',
-            payload: productSorted
+            type: (nombre === "products")? 'GET_PRODUCTS' : 'GET_SERVICES',
+            payload: sortByNameP
         })
-    };
-
-    const handleNameSort = (arreglo) => {
-        switch (arreglo) {
-            case "products":
-                const sortByNameP = state.products.sort((a, b) => a.nombre > b.nombre ? 1 : b.nombre > a.nombre ? -1 : 0)
-                dispatch({
-                    type: 'GET_PRODUCTS',
-                    payload: sortByNameP
-                })
-                break;
-            case "services":
-                const sortByNameS = state.services.sort((a, b) => a.nombre > b.nombre ? 1 : b.nombre > a.nombre ? -1 : 0)
-                dispatch({
-                    type:'GET_SERVICES',
-                    payload: sortByNameS
-                })
-                break;
-            }
-        }
+    }
 
     return (
         <UseAppContext.Provider value={{
@@ -64,8 +46,7 @@ const AppContext = ({children}) => {
             setOpenModal,
             getUserProducts,
             getUserServices,
-            handleSort,
-            handleNameSort
+            handleSort
         }}>
             {children}
         </UseAppContext.Provider>
