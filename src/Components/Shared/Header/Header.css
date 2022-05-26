@@ -117,13 +117,13 @@ img {
 }
 
 @media screen and (min-width: 300px) {
-  .navbar {
+  .headernav {
     width: 90%;
   }
 }
 
 @media screen and (max-width: 760px) {
-  .navbar {
+  .headernav {
     width: 65%;
   }
 }

@@ -1,4 +1,4 @@
-import React, {useState,useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
@@ -6,57 +6,10 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { NewProductForm } from "../NewProductForm/NewProductForm.jsx";
 
 function MisProductos() {
-  const {products, getUserProducts } = useContext(UseAppContext)
-  
-
-  const [producte, setProductes] = useState([
-    {
-      imagen: "img",
-      nombre: "nombrz",
-      tipo: "tipo",
-      cantidad: 4,
-      descripcion: "descripcion",
-    },
-    {
-      imagen: "img",
-      nombre: "nombrk",
-      tipo: "tipo",
-      cantidad: 8,
-      descripcion: "descripcion",
-    },
-    {
-      imagen: "img",
-      nombre: "nombrl",
-      tipo: "tipo",
-      cantidad: 3,
-      descripcion: "descripcion",
-    },
-    {
-      imagen: "img",
-      nombre: "nombrd",
-      tipo: "tipo",
-      cantidad: 12,
-      descripcion: "descripcion",
-    },
-    {
-      imagen: "img",
-      nombre: "nombre",
-      tipo: "tipo",
-      cantidad: 5,
-      descripcion: "descripcion",
-    },
-  ]);
-
-  const handleSort = () => {
-    setProductes([...producte.sort((a, b) => a.cantidad - b.cantidad)]);
-  };
-  const handleNameSort = () => {
-    setProductes([
-      ...producte.sort((a, b) =>
-        a.nombre > b.nombre ? 1 : b.nombre > a.nombre ? -1 : 0
-      ),
-    ]);
-  };
+  const {products, getUserProducts, handleSort, handleNameSort } = useContext(UseAppContext)
+  useEffect(() => {
+    getUserProducts();
+}, [])
 
   const { openModal, setOpenModal } = useContext(UseAppContext)
 
@@ -98,7 +51,7 @@ function MisProductos() {
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" onClick={handleNameSort}>
+                <button className="dropdown-item" onClick={()=>handleNameSort("products")}>
                   Nombre
                 </button>
               </li>
@@ -107,8 +60,8 @@ function MisProductos() {
         </div>
       </div>
       <Tabla
-        titulos={["imagen", "nombre", "tipo", "cantidad", "descripción"]}
-        filas={producte}
+        titulos={["Imagen", "Nombre", "Categoría", "Descripción", "Cantidad"]}
+        filas={products}
       />
       {openModal && (
         <Modal>

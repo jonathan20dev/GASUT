@@ -20,7 +20,7 @@ const Header = () => {
       <div
         className="d-flex flex-row justify-content-between header"
       >
-        <nav className="navbar navbar-light navbar-expand-md">
+        <nav className="headernav navbar navbar-light navbar-expand-md">
           <div
             className="container"
             style={{ flexDirection: "row", marginBottom: "5px" }}

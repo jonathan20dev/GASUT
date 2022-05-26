@@ -47,18 +47,18 @@ const UserProfile = () => {
               </div>
             </div>
             <div className="col">
-              <section className="position-relative">
+              <section className="position-relative" style={{width: "100%" }}>
                 <div className="container position-relative">
                   <div className="row d-flex justify-content-center">
                     <div className="col">
                       <nav className="navbar navbar-light navbar-expand-md sticky-top textprimary fs-6 fw-normal text-primary py-3">
-                        <div className="container">
+                        <div className='container'>
                           <p className="link-dark" style={styles.navItem}>
                             <NavLink
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misDatos"
                             >
@@ -70,7 +70,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misServicios"
                             >
@@ -83,7 +83,7 @@ const UserProfile = () => {
                               className={({ isActive }) =>
                                 `nav-link ${isActive ? "active fw-bold" : ""}`
                               }
-                              style={{color: 'black', zIndex: '2'}}
+                              style={{color: 'black'}}
                               aria-current="page"
                               to="/profile/misProductos"
                             >
