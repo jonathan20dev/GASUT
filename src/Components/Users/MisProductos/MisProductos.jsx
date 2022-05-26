@@ -6,7 +6,7 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { NewProductForm } from "../NewProductForm/NewProductForm.jsx";
 
 function MisProductos() {
-  const {products, getUserProducts, handleSort, handleNameSort } = useContext(UseAppContext)
+  const {products, getUserProducts, handleSort } = useContext(UseAppContext)
   useEffect(() => {
     getUserProducts();
 }, [])
@@ -46,13 +46,33 @@ function MisProductos() {
               aria-labelledby="navbarDropdownMenuLink"
             >
               <li>
-                <button className="dropdown-item" onClick={handleSort}>
-                  Cantidad
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "cantidad", ">")}>
+                  Cantidad (menor a mayor)
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" onClick={()=>handleNameSort("products")}>
-                  Nombre
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "cantidad", "<")}>
+                  Cantidad (mayor a menor)
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "nombre", ">")}>
+                  Nombre A-Z
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "nombre", "<")}>
+                  Nombre Z-A
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "categoria", ">")}>
+                  Categoría A-Z
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" onClick={()=>handleSort("products", products, "categoria", "<")}>
+                  Categoría Z-A
                 </button>
               </li>
             </ul>

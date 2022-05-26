@@ -5,7 +5,7 @@ import { Tabla } from '../../Shared/Tabla'
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 
 function MisServicios() {
-  const {services, getUserServices, handleNameSort } = useContext(UseAppContext)
+  const {services, getUserServices, handleSort } = useContext(UseAppContext)
   useEffect(() => {
     getUserServices();
 }, [])
@@ -16,9 +16,12 @@ function MisServicios() {
       <Button clase={"btn btn-primary"} texto={'Nuevo servicio'}/>
         <div className="btn btn-sm btn-outline-light" type="button">
         <div className="nav-item dropdown">
-        <a style={{textDecoration: 'none', fontSize:"17px", color: 'black'}} href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" ><i className="bi bi-filter-left"></i>ordenar por</a>
+        <div style={{textDecoration: 'none', fontSize:"17px", color: 'black'}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" ><i className="bi bi-filter-left"></i>ordenar por</div>
           <ul className="dropdown-menu" style={{fontSize:"14px"}} aria-labelledby="navbarDropdownMenuLink">
-            <li><button className="dropdown-item" onClick={()=>handleNameSort("services")}>Nombre</button></li>
+            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre",">")}>Nombre A-Z</button></li>
+            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre","<")}>Nombre Z-A</button></li>
+            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria",">")}>Categoría A-Z</button></li>
+            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria","<")}>Categoría Z-A</button></li>
           </ul>
         </div>
         </div>

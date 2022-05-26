@@ -6,8 +6,8 @@ const getUserCollection = async (id,coleccion) => {
     const userDocSP = await getDocs(userDocC);
     const documento = userDocSP.docs.map((element) => ({...element.data(),id: element.id})).filter(element => element.id_propietario === id)
     const another = (coleccion === "Productos")? 
-    documento.map(el => [{img: el.img, nombre: el.nombre, tipo: el.categoria, descripcion: el.descripcion, cantidad: el.cantidad, id: el.id}]).flat() : 
-    documento.map(el => [{img: el.img, nombre: el.nombre, tipo: el.categoria, descripcion: el.descripcion, id: el.id}]).flat()
+    documento.map(el => [{img: el.img, nombre: el.nombre, categoria: el.categoria, descripcion: el.descripcion, cantidad: el.cantidad, id: el.id}]).flat() : 
+    documento.map(el => [{img: el.img, nombre: el.nombre, categoria: el.categoria, descripcion: el.descripcion, id: el.id}]).flat()
     return another
 };
 
