@@ -1,20 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./CreateForm.css";
 import addImge from '../../../Assets/AddImage.png'
-
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
+import { useAuth } from "../../../Business/Context/AuthContext";
 
 function CreateForm({ categorias, elemento }) {
-  const { setOpenModal } = useContext(UseAppContext);
+  const { setOpenModal, insertDoc } = useContext(UseAppContext);
+  const { user } = useAuth();
   const [img, setImg] = useState(addImge)
   const [URL, setURL] = useState(false)
   const [nuevo, setNuevo] = useState({
     img: '',
     nombre: '',
     categoria: '',
-    descripcion: '',
-    cantidad: 0
+    descripcion: ''
   })
+
+  useEffect(() => {
+    if (elemento === 'producto') {
+      setNuevo({
+        ...nuevo,
+        ...{cantidad: 0, usuario: user.uid}
+      })
+    } else {
+      setNuevo({
+        ...nuevo,
+        ...{usuario: user.uid}
+      })
+    }
+  }, [])
+  
 
   const handleImg = (e) => {
     setImg(e.target.value)
@@ -30,12 +45,16 @@ function CreateForm({ categorias, elemento }) {
 
   const onCancel = () => {
     setOpenModal(false);
-    console.log();
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     setOpenModal(false);
+    if (elemento === 'producto'){
+      insertDoc('Productos', nuevo, 'INSERT_PRODUCTS')
+    } else {
+      insertDoc('Servicios', nuevo, 'INSERT_SERVICES')
+    }
     console.log(nuevo)
   };
 
@@ -47,7 +66,7 @@ function CreateForm({ categorias, elemento }) {
   return (
     <form className="nuevoProductoForm" onSubmit={onSubmit}>
       <div className="cerrar" onClick={onCancel}>
-        <i class="bi bi-x"></i>
+        <i className="bi bi-x"></i>
       </div>
       <div className="row">
         <div
@@ -93,7 +112,7 @@ function CreateForm({ categorias, elemento }) {
             >
               Img URL
             </label>
-            <input name='img' type="url" style={{ width: "100%" }} onChange={handleImg}/>
+            <input name='img' type="url" style={{ width: "100%" }} onChange={handleImg} value={nuevo.img}/>
           </div>)}
         </div>
       </div>
@@ -137,7 +156,7 @@ function CreateForm({ categorias, elemento }) {
                 </label>
                 <select className="formCombo" name='categoria' onChange={handleChange} value={nuevo.categoria}>
                   {categorias.map((c) => (
-                    <option value={c}>{c}</option>
+                    <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
               </div>
@@ -187,7 +206,6 @@ function CreateForm({ categorias, elemento }) {
               borderStyle: "none",
               paddingBottom: "10px",
             }}
-            defaultValue={""}
             name='descripcion'
             onChange={handleChange}
             value={nuevo.descripcion}

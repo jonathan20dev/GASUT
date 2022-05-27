@@ -3,6 +3,7 @@ import {UseAppContext} from "./UseAppContext"
 import collectionReducer from "./collectionReducer"
 import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
+import { insertDocument } from '../../Firebase/insertDoc'
 
 const AppContext = ({children}) => {
     const { user } = useAuth();
@@ -18,6 +19,16 @@ const AppContext = ({children}) => {
         dispatch({
             type:'GET_PRODUCTS',
             payload: productos
+        })
+    }
+
+    const insertDoc = async (coleccion, objeto, tipo) => {
+        const array = (coleccion === "Productos")? state.products : state.services
+        await insertDocument(coleccion, objeto)
+        const arregloFull = [...array, objeto]
+        dispatch({
+            type:tipo,
+            payload: arregloFull
         })
     }
 
@@ -46,7 +57,8 @@ const AppContext = ({children}) => {
             setOpenModal,
             getUserProducts,
             getUserServices,
-            handleSort
+            handleSort,
+            insertDoc
         }}>
             {children}
         </UseAppContext.Provider>
