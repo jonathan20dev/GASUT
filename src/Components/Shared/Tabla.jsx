@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { UseAppContext } from "../../Business/Context/UseAppContext";
 import "./tabla.css"
 
 const styles = {
@@ -17,12 +18,6 @@ const Paginacion = ({cant,setPaginado, arreglo}) => {
   return (
     <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
         <ul className="pagination">
-          <li className="page-item">
-            <div className="page-link" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </div>
-          </li>
-
             {arreglo.map((el, index) => {
               return <li key={index} className="page-item">
                       <div onClick={()=>handlePaginado(((index+1)*cant)-cant,(index+1)*cant)} className="page-link">
@@ -30,12 +25,6 @@ const Paginacion = ({cant,setPaginado, arreglo}) => {
                       </div>
                     </li>
             })}
-            
-          <li className="page-item">
-            <div className="page-link" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </div>
-          </li>
         </ul>
       </nav>
   )
@@ -44,6 +33,7 @@ const Paginacion = ({cant,setPaginado, arreglo}) => {
 function Tabla({ titulos, filas }) {
   const cant = 6 //Cantidad de elementos que se muestran por página
   const [paginado, setPaginado] = useState({inicio:0, fin:cant})
+  const { deleteDoc } = useContext(UseAppContext)
   return (
     <>
     <div className="table-responsive">
@@ -68,7 +58,7 @@ function Tabla({ titulos, filas }) {
               )}
               <td >
                 <div style={{display:"flex", flexDirection: "row"}}>
-                <i className="bi bi-trash3" style={{color: 'red', marginLeft: '10px'}}></i>
+                <i className="bi bi-trash3" onClick={()=> deleteDoc((titulos.length===5)? "Productos":"Servicios",f)} style={{color: 'red', marginLeft: '10px'}}></i>
                 <i className="bi bi-pencil" style={{color: 'blue', marginLeft: '20px'}}></i>
                 </div>
               </td>
@@ -77,7 +67,7 @@ function Tabla({ titulos, filas }) {
         </tbody>
       </table>
     </div>
-    
+      {(filas !== undefined)? <i>Has publicado {filas.length} {(titulos.length > 4)? <i>productos</i>: <i>servicios</i> }</i>: <p>0</p>}
        {/* Paginación */}
         {(filas !== undefined)? <Paginacion cant = {cant} setPaginado={setPaginado} arreglo = {filas.filter((el,index) => {
               if(index < filas.length /cant){

@@ -4,6 +4,7 @@ import collectionReducer from "./collectionReducer"
 import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
+import { deleteDocument } from "../../Firebase/deleteDoc"
 
 const AppContext = ({children}) => {
     const { user } = useAuth();
@@ -14,11 +15,11 @@ const AppContext = ({children}) => {
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState(false);
 
-    const getUserProducts = async () => {
-        const productos = await getUserCollection(user.reloadUserInfo.localId, "Productos")
+    const getUserDocument = async (coleccion) => {
+        const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
         dispatch({
-            type:'GET_PRODUCTS',
-            payload: productos
+            type: (coleccion === "Productos")?'GET_PRODUCTS':'GET_SERVICES',
+            payload: docu
         })
     }
 
@@ -32,12 +33,14 @@ const AppContext = ({children}) => {
         })
     }
 
-    const getUserServices = async () => {
-        const servicios = await getUserCollection(user.reloadUserInfo.localId, "Servicios")
+    const deleteDoc = async (coleccion, objeto) => {
+        const array = (coleccion === "Productos")? state.products : state.services
+        await deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
+        const arregloAux = array.filter(el => el.id !== objeto.id)
         dispatch({
-            type:'GET_SERVICES',
-            payload: servicios
-        })
+            type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
+            payload: arregloAux
+        }) 
     }
 
     const handleSort = (nombre,arreglo, propiedad, s) => {
@@ -55,10 +58,10 @@ const AppContext = ({children}) => {
             services: state.services,
             openModal,
             setOpenModal,
-            getUserProducts,
-            getUserServices,
+            getUserDocument,
             handleSort,
-            insertDoc
+            insertDoc,
+            deleteDoc
         }}>
             {children}
         </UseAppContext.Provider>

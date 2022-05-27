@@ -6,10 +6,10 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisServicios() {
-  const { services, getUserServices, handleSort, openModal, setOpenModal} =
+  const { services, getUserDocument, handleSort, openModal, setOpenModal} =
     useContext(UseAppContext);
   useEffect(() => {
-    getUserServices();
+    getUserDocument('Servicios');
   }, []);
 
   const onClickButton = () => {
@@ -37,10 +37,19 @@ function MisServicios() {
         </div>
         </div>
       </div>
+      
+      {(services !== undefined && services.length > 0 )?
       <Tabla
         titulos={["Imagen", "Nombre", "Categoría", "Descripción"]}
         filas={services}
       />
+      :
+      <div className="row mb-4">
+      <div className="text-center mx-auto">
+        <p className="text-muted" style={{marginLeft: '15px',paddingTop: '50px',}}>Aún no has compartido tus servicios con la comunidad</p>
+      </div>
+      </div>}
+      
       {openModal && (
         <Modal>
           <CreateForm categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} elemento={'servicio'}/>
