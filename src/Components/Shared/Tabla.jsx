@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./tabla.css"
 
 const styles = {
@@ -10,7 +10,40 @@ const styles = {
   }
 }
 
+const Paginacion = ({cant,setPaginado, arreglo}) => {
+  const handlePaginado = (i,f) =>{
+    setPaginado({inicio: i, fin:f})
+  }
+  return (
+    <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
+        <ul className="pagination">
+          <li className="page-item">
+            <div className="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </div>
+          </li>
+
+            {arreglo.map((el, index) => {
+              return <li key={index} className="page-item">
+                      <div onClick={()=>handlePaginado(((index+1)*cant)-cant,(index+1)*cant)} className="page-link">
+                        {index+1}
+                      </div>
+                    </li>
+            })}
+            
+          <li className="page-item">
+            <div className="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </div>
+          </li>
+        </ul>
+      </nav>
+  )
+}
+
 function Tabla({ titulos, filas }) {
+  const cant = 6 //Cantidad de elementos que se muestran por página
+  const [paginado, setPaginado] = useState({inicio:0, fin:cant})
   return (
     <>
     <div className="table-responsive">
@@ -24,8 +57,9 @@ function Tabla({ titulos, filas }) {
           </tr>
         </thead>
         <tbody>
-          {filas.map((f, inde) => (
-            <tr key={inde}>
+          {filas.map((f, inde) => {
+            if(inde >= paginado.inicio && inde < paginado.fin){
+            return <tr key={inde}>
               {Object.values(f).map((v, index) => {
                 if(index < titulos.length){
                   return <td key={index}>{(index === 0)? <img style={styles.img} alt="colection_article" src={v}/>: 
@@ -39,42 +73,16 @@ function Tabla({ titulos, filas }) {
                 </div>
               </td>
             </tr>
-          ))}
+          }})}
         </tbody>
       </table>
     </div>
     
        {/* Paginación */}
-      <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
-        <ul className="pagination">
-          <li className="page-item">
-            <div className="page-link" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </div>
-          </li>
-          <li className="page-item">
-            <div className="page-link">
-              <strong>1</strong>
-            </div>
-          </li>
-          <li className="page-item">
-            <div className="page-link" style={{color: 'grey'}} disabled>
-              2
-            </div>
-          </li>
-          <li className="page-item">
-            <div className="page-link" style={{color: 'grey'}}>
-              3
-            </div>
-          </li>
-          <li className="page-item">
-            <div className="page-link" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    
+        {(filas !== undefined)? <Paginacion cant = {cant} setPaginado={setPaginado} arreglo = {filas.filter((el,index) => {
+              if(index < filas.length /cant){
+                return el}})}
+          /> : <i></i>}
     </>
   );
 }
