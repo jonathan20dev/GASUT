@@ -2,7 +2,7 @@ import React from 'react';
 import { appContext } from '../../Business/AppContext';
 import { Button } from '../Shared/Button';
 
-export const ServiceCard = ({ id, name, img }) => {
+export const ServiceCard = ({ id, name, img, nameOwner }) => {
 
   const images = require.context('../../assets/images', true);
 
@@ -22,7 +22,7 @@ export const ServiceCard = ({ id, name, img }) => {
           <div className='d-flex gap-2'>
             <img src={images('./perfil.png')} className="perfil-image" alt="Perfil" />
             <div>
-              <p className='m-0'>Marco Serrano</p>
+              <p className='m-0'>{ nameOwner }</p>
               <p className='fw-bold'>{ name }</p>
             </div>
           </div>

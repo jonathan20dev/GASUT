@@ -8,7 +8,7 @@ export const Modal = ({ page }) => {
 
     const { openModal, setOpenModal, active } = React.useContext(appContext);
 
-    const { descripcion, img } = active;
+    const { descripcion, img, telefono, correo } = active;
 
     const handleModal = () => {
     setOpenModal(!openModal);
@@ -58,11 +58,11 @@ export const Modal = ({ page }) => {
                                     <tbody>
                                         <tr>
                                             <td><img src={icons('./telefono.svg')} className="" alt="Teléfono" /></td>
-                                            <td><p className='ms-3'>5013-5656</p></td>
+                                            <td><p className='ms-3'>{telefono}</p></td>
                                         </tr>
                                         <tr>
                                             <td><img src={icons('./correo.svg')} className="" alt="Teléfono" /></td>
-                                            <td><p className='ms-3'>Calichin19@gmail.com</p></td>
+                                            <td><p className='ms-3'>{correo}</p></td>
                                         </tr>
                                     </tbody>
                                 </table>

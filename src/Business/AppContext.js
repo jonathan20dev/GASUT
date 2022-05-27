@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { readProducts, readServices } from "../Firebase/readDoc";
+import { readProducts, readServices} from "../Firebase/readDoc";
 
 export const appContext = React.createContext();
 
@@ -27,7 +27,7 @@ export function AppContext({ children }) {
       setArrayServices(getServices);
     }
     fetchServices();
-  }, []);
+}, []);
 
   let searchedProducts = [];
 
