@@ -20,12 +20,12 @@ function CreateForm({ categorias, elemento }) {
     if (elemento === 'producto') {
       setNuevo({
         ...nuevo,
-        ...{cantidad: 0, usuario: user.uid}
+        ...{cantidad: 0, id_propietario: user.uid}
       })
     } else {
       setNuevo({
         ...nuevo,
-        ...{usuario: user.uid}
+        ...{id_propietario: user.uid}
       })
     }
   }, [])
