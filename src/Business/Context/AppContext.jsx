@@ -4,6 +4,7 @@ import collectionReducer from "./collectionReducer"
 import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
+import { deleteDocument } from "../../Firebase/deleteDoc"
 
 const AppContext = ({children}) => {
     const { user } = useAuth();
@@ -32,6 +33,16 @@ const AppContext = ({children}) => {
         })
     }
 
+    const deleteDoc = async (coleccion, objeto) => {
+        const array = (coleccion === "Productos")? state.products : state.services
+        await deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
+        const arregloAux = array.filter(el => el.id !== objeto.id)
+        dispatch({
+            type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
+            payload: arregloAux
+        }) 
+    }
+
     const handleSort = (nombre,arreglo, propiedad, s) => {
         const sortByNameP = arreglo.sort((a, b) => (s===">")? (a[propiedad] > b[propiedad] ? 1 : b[propiedad] > a[propiedad] ? -1 : 0) 
         :(a[propiedad] < b[propiedad] ? 1 : b[propiedad] < a[propiedad] ? -1 : 0))
@@ -49,7 +60,8 @@ const AppContext = ({children}) => {
             setOpenModal,
             getUserDocument,
             handleSort,
-            insertDoc
+            insertDoc,
+            deleteDoc
         }}>
             {children}
         </UseAppContext.Provider>

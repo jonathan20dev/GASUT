@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import React, { useState,useContext } from "react";
+import { UseAppContext } from "../../Business/Context/UseAppContext";
 import "./tabla.css"
 
 const styles = {
@@ -33,6 +33,7 @@ const Paginacion = ({cant,setPaginado, arreglo}) => {
 function Tabla({ titulos, filas }) {
   const cant = 6 //Cantidad de elementos que se muestran por página
   const [paginado, setPaginado] = useState({inicio:0, fin:cant})
+  const { deleteDoc } = useContext(UseAppContext)
   return (
     <>
     <div className="table-responsive">
@@ -57,7 +58,7 @@ function Tabla({ titulos, filas }) {
               )}
               <td >
                 <div style={{display:"flex", flexDirection: "row"}}>
-                <i className="bi bi-trash3" style={{color: 'red', marginLeft: '10px'}}></i>
+                <i className="bi bi-trash3" onClick={()=> deleteDoc((titulos.length===5)? "Productos":"Servicios",f)} style={{color: 'red', marginLeft: '10px'}}></i>
                 <i className="bi bi-pencil" style={{color: 'blue', marginLeft: '20px'}}></i>
                 </div>
               </td>
