@@ -6,10 +6,10 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisServicios() {
-  const { services, getUserServices, handleSort, openModal, setOpenModal} =
+  const { services, getUserDocument, handleSort, openModal, setOpenModal} =
     useContext(UseAppContext);
   useEffect(() => {
-    getUserServices();
+    getUserDocument('Servicios');
   }, []);
 
   const onClickButton = () => {

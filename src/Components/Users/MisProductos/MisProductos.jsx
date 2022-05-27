@@ -6,9 +6,9 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisProductos() {
-  const {products, getUserProducts, handleSort } = useContext(UseAppContext)
+  const {products, getUserDocument, handleSort } = useContext(UseAppContext)
   useEffect(() => {
-    getUserProducts();
+    getUserDocument('Productos');
 }, [])
 
   const { openModal, setOpenModal } = useContext(UseAppContext)

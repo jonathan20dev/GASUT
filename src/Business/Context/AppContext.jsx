@@ -14,11 +14,11 @@ const AppContext = ({children}) => {
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState(false);
 
-    const getUserProducts = async () => {
-        const productos = await getUserCollection(user.reloadUserInfo.localId, "Productos")
+    const getUserDocument = async (coleccion) => {
+        const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
         dispatch({
-            type:'GET_PRODUCTS',
-            payload: productos
+            type: (coleccion === "Productos")?'GET_PRODUCTS':'GET_SERVICES',
+            payload: docu
         })
     }
 
@@ -29,14 +29,6 @@ const AppContext = ({children}) => {
         dispatch({
             type:tipo,
             payload: arregloFull
-        })
-    }
-
-    const getUserServices = async () => {
-        const servicios = await getUserCollection(user.reloadUserInfo.localId, "Servicios")
-        dispatch({
-            type:'GET_SERVICES',
-            payload: servicios
         })
     }
 
@@ -55,8 +47,7 @@ const AppContext = ({children}) => {
             services: state.services,
             openModal,
             setOpenModal,
-            getUserProducts,
-            getUserServices,
+            getUserDocument,
             handleSort,
             insertDoc
         }}>
