@@ -79,10 +79,20 @@ function MisProductos() {
           </div>
         </div>
       </div>
+      
+      {(products !== undefined && products.length > 0 )?
       <Tabla
         titulos={["Imagen", "Nombre", "Categoría", "Descripción", "Cantidad"]}
         filas={products}
-      />
+      /> : 
+      <div className="row mb-4">
+      <div className="text-center mx-auto">
+        <p className="text-muted" style={{marginLeft: '15px',paddingTop: '50px',}}>Aún no has compartido algun producto con la comunidad</p>
+      </div>
+      </div>}
+      
+      
+      
       {openModal && (
         <Modal>
           <CreateForm categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} elemento={'producto'}/>
