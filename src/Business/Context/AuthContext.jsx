@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
 
   const insertUserRegister = (cp, mail, image, name, phone) => {
     const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
-      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: cp, correo: mail, img: image, nombre: name, telefono: phone, direccion: ""})
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: cp, correo: mail, img: image, nombre: name, telefono: phone, direccion: "", provincia: '', canton: '', distrito: ''})
     })
     obtenerUsuario()
   }
