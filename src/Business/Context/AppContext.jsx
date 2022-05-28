@@ -5,7 +5,7 @@ import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
-
+import { updatePoS } from '../../Firebase/updatePoS'
 const AppContext = ({children}) => {
     const { user } = useAuth();
     const initialState  = {
@@ -13,7 +13,7 @@ const AppContext = ({children}) => {
         services : [],
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
-    const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState({modal1:false, modal2:false});
 
     const getUserDocument = async (coleccion) => {
         const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
@@ -29,6 +29,17 @@ const AppContext = ({children}) => {
         const arregloFull = [...array, objeto]
         dispatch({
             type:tipo,
+            payload: arregloFull
+        })
+    }
+
+    const updateDoc = async (coleccion, objeto) => {
+        const array = (coleccion === "Productos")? state.products : state.services
+        console.log(objeto)
+        await updatePoS(objeto.id, objeto, coleccion)
+        const arregloFull = [...array.filter(x => x.id !==objeto.id), objeto]
+        dispatch({
+            type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
             payload: arregloFull
         })
     }
@@ -61,7 +72,9 @@ const AppContext = ({children}) => {
             getUserDocument,
             handleSort,
             insertDoc,
-            deleteDoc
+            deleteDoc,
+            updateDoc,
+            user
         }}>
             {children}
         </UseAppContext.Provider>

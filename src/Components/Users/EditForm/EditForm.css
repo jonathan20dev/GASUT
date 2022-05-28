@@ -1,0 +1,82 @@
+.nuevoProductoForm {
+    width: 35%;
+    background-color: #FFFFFF;
+    padding: 33px 40px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    color: black;
+    position: relative;
+}
+
+.formCombo {
+background: #EEF6F0;
+width: auto;
+border-style: none;
+border-radius: 3px;
+height: 30px;
+}
+
+.largeCombo {
+width: 100%;
+}
+
+.smallCombo {
+width: 50%;
+}
+
+.formCombo option {
+height: 30px;
+}
+
+.select-arrow {
+color: black;
+}
+
+.cerrar {
+position: absolute;
+right: 18px;
+top: 5px;
+font-size: 28px;
+color: rgb(180, 7, 7);
+cursor: pointer;
+}
+
+.imagen-responsive{
+        width: 50%;
+        height: auto;
+        background: #F1F2F1;
+        border: 2px dashed #696C63;
+        border-radius: 5px;
+        min-height: 110px;
+        cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+.nuevoProductoForm {
+    width: 45%;
+}
+.imagen-responsive{
+    width: 50%;
+}
+}
+
+@media screen and (max-width: 965px) {
+.nuevoProductoForm {
+    width: 55%;
+}
+.imagen-responsive{
+    width: 55%;
+}
+}
+
+@media screen and (max-width: 680px) {
+.nuevoProductoForm {
+    width: 75%;
+    font-size: 14px
+}
+.imagen-responsive{
+    width: 60%;
+}
+}

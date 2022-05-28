@@ -1,35 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./CreateForm.css";
 import addImge from '../../../Assets/AddImage.png'
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
-import { useAuth } from "../../../Business/Context/AuthContext";
 
-function CreateForm({ categorias, elemento }) {
-  const { setOpenModal, insertDoc } = useContext(UseAppContext);
-  const { user } = useAuth();
+function CreateForm({ categorias, elemento,objeto }) {
+  const { openModal ,setOpenModal, insertDoc } = useContext(UseAppContext);
   const [img, setImg] = useState(addImge)
   const [URL, setURL] = useState(false)
-  const [nuevo, setNuevo] = useState({
-    img: '',
-    nombre: '',
-    categoria: '',
-    descripcion: ''
-  })
-
-  useEffect(() => {
-    if (elemento === 'producto') {
-      setNuevo({
-        ...nuevo,
-        ...{cantidad: 0, id_propietario: user.uid}
-      })
-    } else {
-      setNuevo({
-        ...nuevo,
-        ...{id_propietario: user.uid}
-      })
-    }
-  }, [])
-  
+  const [nuevo, setNuevo] = useState(objeto)
 
   const handleImg = (e) => {
     setImg(e.target.value)
@@ -44,12 +22,12 @@ function CreateForm({ categorias, elemento }) {
   }
 
   const onCancel = () => {
-    setOpenModal(false);
+    setOpenModal({...openModal, modal1:false});
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setOpenModal(false);
+    setOpenModal({...openModal, modal1:false});
     if (elemento === 'producto'){
       insertDoc('Productos', nuevo, 'INSERT_PRODUCTS')
     } else {
@@ -80,6 +58,7 @@ function CreateForm({ categorias, elemento }) {
               paddingBottom: 10,
               fontWeight: "bold",
               fontSize: 18,
+              textTransform:"capitalize"
             }}
           >
             {elemento}
@@ -88,7 +67,8 @@ function CreateForm({ categorias, elemento }) {
             className="d-flex justify-content-center"
             style={{ paddingBottom: "15px" }}
           >
-            <img src={img} 
+            <img src={img}
+            alt="Producto o servicio"
               style={{
                 width: "50%",
                 height: "auto",
@@ -215,9 +195,9 @@ function CreateForm({ categorias, elemento }) {
       <button
         className="btn btn-primary w-100"
         type="submit"
-        style={{ color: "white", background: "#395B45", height: 40 }}
+        style={{ color: "white", background: "#395B45", height: 40, textTransform:"capitalize" }}
       >
-        Añadir servicio
+        Añadir {elemento}
       </button>
     </form>
   );

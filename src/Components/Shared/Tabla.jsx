@@ -1,5 +1,7 @@
 import React, { useState,useContext } from "react";
 import { UseAppContext } from "../../Business/Context/UseAppContext";
+import { EditForm } from "../Users/EditForm/EditForm";
+import { Modal } from "../Shared/Modal/Modal";
 import "./tabla.css"
 
 const styles = {
@@ -11,9 +13,9 @@ const styles = {
   }
 }
 
-const Paginacion = ({cant,setPaginado, arreglo}) => {
+const Paginacion = ({paginado, cant,setPaginado, arreglo}) => {
   const handlePaginado = (i,f) =>{
-    setPaginado({inicio: i, fin:f})
+    setPaginado({...paginado, inicio: i, fin:f})
   }
   return (
     <nav style={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
@@ -32,8 +34,12 @@ const Paginacion = ({cant,setPaginado, arreglo}) => {
 
 function Tabla({ titulos, filas }) {
   const cant = 6 //Cantidad de elementos que se muestran por página
-  const [paginado, setPaginado] = useState({inicio:0, fin:cant})
-  const { deleteDoc } = useContext(UseAppContext)
+  const [paginado, setPaginado] = useState({inicio:0, fin:cant, objeto:{}})
+  const { deleteDoc, openModal, setOpenModal } = useContext(UseAppContext)
+  const handleModal = (elemento) => {
+    setPaginado({...paginado, objeto:elemento})
+    setOpenModal({modal1: false , modal2:true})
+  }
   return (
     <>
     <div className="table-responsive">
@@ -59,7 +65,7 @@ function Tabla({ titulos, filas }) {
               <td >
                 <div style={{display:"flex", flexDirection: "row"}}>
                 <i className="bi bi-trash3" onClick={()=> deleteDoc((titulos.length===5)? "Productos":"Servicios",f)} style={{color: 'red', marginLeft: '10px'}}></i>
-                <i className="bi bi-pencil" style={{color: 'blue', marginLeft: '20px'}}></i>
+                <i className="bi bi-pencil" onClick={()=> handleModal(f) } style={{color: 'blue', marginLeft: '20px'}}></i>
                 </div>
               </td>
             </tr>
@@ -69,10 +75,16 @@ function Tabla({ titulos, filas }) {
     </div>
       {(filas !== undefined)? <i>Has publicado {filas.length} {(titulos.length > 4)? <i>productos</i>: <i>servicios</i> }</i>: <p>0</p>}
        {/* Paginación */}
-        {(filas !== undefined)? <Paginacion cant = {cant} setPaginado={setPaginado} arreglo = {filas.filter((el,index) => {
+        {(filas !== undefined)? <Paginacion paginado={paginado} cant = {cant} setPaginado={setPaginado} arreglo = {filas.filter((el,index) => {
               if(index < filas.length /cant){
                 return el}})}
           /> : <i></i>}
+    
+    {openModal.modal2 && paginado.objeto !=={} &&  (
+        <Modal>
+          <EditForm objeto={paginado.objeto} categorias={(titulos.length===5)? ['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']:['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} elemento={(titulos.length===5)? "producto":"servicio"}/>
+        </Modal>
+      )}
     </>
   );
 }
