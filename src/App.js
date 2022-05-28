@@ -43,7 +43,7 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="misDatos" element={<MisDatos />} />
+            <Route path="misDatos" element={<ProtectedRoute><MisDatos /></ProtectedRoute>} />
             <Route path="misServicios" element={<MisServicios />} />
             <Route path="misProductos" element={<MisProductos />} />
           </Route>

@@ -1,10 +1,11 @@
-import React, {useReducer, useState} from 'react'
+import React, {useReducer, useState, useEffect} from 'react'
 import {UseAppContext} from "./UseAppContext"
 import collectionReducer from "./collectionReducer"
 import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
+import { getUser } from '../../Firebase/getUser'
 
 const AppContext = ({children}) => {
     const { user } = useAuth();
@@ -14,6 +15,11 @@ const AppContext = ({children}) => {
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState(false);
+
+    const extractProfile = async () => {
+        const usuario = await getUser(user.reloadUserInfo.localId);
+        return usuario
+    };
 
     const getUserDocument = async (coleccion) => {
         const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
@@ -61,7 +67,9 @@ const AppContext = ({children}) => {
             getUserDocument,
             handleSort,
             insertDoc,
-            deleteDoc
+            deleteDoc,
+            user,
+            extractProfile
         }}>
             {children}
         </UseAppContext.Provider>

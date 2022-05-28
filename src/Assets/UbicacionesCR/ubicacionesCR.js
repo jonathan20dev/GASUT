@@ -1,4 +1,4 @@
-locations = [
+const locations = [
 {
 'SAN JOSE': [
 {
@@ -343,3 +343,5 @@ locations = [
 }
 ]}
 ]
+
+export { locations }

@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useAuth } from "../../../Business/Context/AuthContext";
+import React, { useState, useContext, useEffect } from 'react'
 import { Header } from "../../Shared/Header/Header.jsx"
 import {Footer} from "../../Shared/Footer"
-import { getUser } from "../../../Firebase/getUser"
 import './UserProfile.css'
 import { NavLink, Outlet } from 'react-router-dom';
 import {Button} from '../../Shared/Button';
+import { UseAppContext } from '../../../Business/Context/UseAppContext.jsx';
 
 const UserProfile = () => {
+  const { extractProfile } = useContext(UseAppContext);
   const [userP, setUser] = useState({nombre:"", img:"", correo:""})
-  const { user } = useAuth();
-  const extractProfile = async() => {
-    const usuario = await getUser(user.reloadUserInfo.localId)
-    setUser(usuario)
-  }
-
-  useEffect(() => {
-    extractProfile()
-  }, [])
 
   const styles = {
     navItem: {
@@ -26,6 +17,14 @@ const UserProfile = () => {
       textDecoration: 'none'
     }
   }
+
+  useEffect(() => {
+    const obtenerUsuario = async() => {
+      const u = await extractProfile()
+      setUser(u)
+    }
+    obtenerUsuario()
+}, [])
 
   return (
     <>
