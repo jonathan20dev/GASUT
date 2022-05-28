@@ -6,15 +6,17 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisServicios() {
-  const { services, getUserDocument, handleSort, openModal, setOpenModal} =
+  const { services, user,getUserDocument, handleSort, openModal, setOpenModal} =
     useContext(UseAppContext);
   useEffect(() => {
     getUserDocument('Servicios');
   }, []);
 
   const onClickButton = () => {
-    setOpenModal((prevState) => !prevState);
-    console.log(openModal);
+    setOpenModal({
+      ...openModal, 
+      modal1:true
+    })
   };
 
   return (
@@ -50,9 +52,15 @@ function MisServicios() {
       </div>
       </div>}
       
-      {openModal && (
+      {openModal.modal1 && (
         <Modal>
-          <CreateForm categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} elemento={'servicio'}/>
+          <CreateForm objeto={{img: '',
+            nombre: '',
+            categoria: '',
+            descripcion: "",
+            id_propietario: user.uid}} 
+            categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} 
+            elemento={'servicio'}/>
         </Modal>
       )}
     </div>

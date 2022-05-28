@@ -6,16 +6,18 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisProductos() {
-  const {products, getUserDocument, handleSort } = useContext(UseAppContext)
+  const {products, user,getUserDocument, handleSort } = useContext(UseAppContext)
   useEffect(() => {
     getUserDocument('Productos');
-}, [])
+  }, [])
 
   const { openModal, setOpenModal } = useContext(UseAppContext)
 
   const onClickButton = () => {
-    setOpenModal((prevState) => !prevState);
-    console.log(openModal);
+    setOpenModal({
+        ...openModal, 
+        modal1:true
+      })
   };
 
   return (
@@ -93,9 +95,15 @@ function MisProductos() {
       
       
       
-      {openModal && (
+      {openModal.modal1 && (
         <Modal>
-          <CreateForm categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} elemento={'producto'}/>
+          <CreateForm objeto = {{img: '',
+            nombre: '',
+            categoria: '',
+            descripcion: "",
+            cantidad: 0, id_propietario: user.uid}} 
+            categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} 
+            elemento={'producto'}/>
         </Modal>
       )}
     </div>
