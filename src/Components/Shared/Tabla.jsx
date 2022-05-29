@@ -3,6 +3,7 @@ import { UseAppContext } from "../../Business/Context/UseAppContext";
 import { EditForm } from "../Users/EditForm/EditForm";
 import { Modal } from "../Shared/Modal/Modal";
 import "./tabla.css"
+import { ConfirmAlert } from "./ConfirmAlert/ConfirmAlert";
 
 const styles = {
   img: {
@@ -35,10 +36,21 @@ const Paginacion = ({paginado, cant,setPaginado, arreglo}) => {
 function Tabla({ titulos, filas }) {
   const cant = 6 //Cantidad de elementos que se muestran por página
   const [paginado, setPaginado] = useState({inicio:0, fin:cant, objeto:{}})
+  const [mensaje, setMensaje] = useState('')
+  const [objeto, setObjeto] = useState({categoria: '', objeto:{} })
   const { deleteDoc, openModal, setOpenModal } = useContext(UseAppContext)
   const handleModal = (elemento) => {
     setPaginado({...paginado, objeto:elemento})
-    setOpenModal({modal1: false , modal2:true})
+    setOpenModal({...openModal, modal1: false , modal2:true})
+  }
+  const eliminar = (long, fila) => {
+    setOpenModal({...openModal, modal3: true})
+    setMensaje(`¿Deseas eliminar el elemento ${fila.nombre}?`)
+    setObjeto({
+      categoria: (long===5)? "Productos":"Servicios",
+      objeto: fila
+    })
+    //deleteDoc((long===5)? "Productos":"Servicios",fila)
   }
   return (
     <>
@@ -64,7 +76,7 @@ function Tabla({ titulos, filas }) {
               )}
               <td >
                 <div style={{display:"flex", flexDirection: "row"}}>
-                <i className="bi bi-trash3" onClick={()=> deleteDoc((titulos.length===5)? "Productos":"Servicios",f)} style={{color: 'red', marginLeft: '10px'}}></i>
+                <i className="bi bi-trash3" onClick={()=> eliminar(titulos.length, f)} style={{color: 'red', marginLeft: '10px'}}></i>
                 <i className="bi bi-pencil" onClick={()=> handleModal(f) } style={{color: 'blue', marginLeft: '20px'}}></i>
                 </div>
               </td>
@@ -79,7 +91,12 @@ function Tabla({ titulos, filas }) {
               if(index < filas.length /cant){
                 return el}})}
           /> : <i></i>}
-    
+    {
+      openModal.modal3 && 
+      <Modal>
+        <ConfirmAlert mensaje={mensaje} op1={'Cancelar'} op2={'Eliminar'} accion={deleteDoc} objeto={objeto}/>
+      </Modal>
+    }
     {openModal.modal2 && paginado.objeto !=={} &&  (
         <Modal>
           <EditForm objeto={paginado.objeto} categorias={(titulos.length===5)? ['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']:['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} elemento={(titulos.length===5)? "producto":"servicio"}/>

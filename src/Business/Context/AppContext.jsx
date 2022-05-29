@@ -15,7 +15,7 @@ const AppContext = ({children}) => {
         services : [],
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
-    const [openModal, setOpenModal] = useState({modal1:false, modal2:false});
+    const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false});
 
     const extractProfile = async () => {
         const usuario = await getUser(user.reloadUserInfo.localId);
@@ -83,7 +83,6 @@ const AppContext = ({children}) => {
             user,
             extractProfile,
             updateDoc,
-            user
         }}>
             {children}
         </UseAppContext.Provider>

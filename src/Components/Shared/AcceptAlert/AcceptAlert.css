@@ -1,0 +1,11 @@
+.acceptAlert {
+    max-width: 700px;
+    background-color: #FFFFFF;
+    padding: 33px 40px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    color: black;
+    position: relative;
+  }

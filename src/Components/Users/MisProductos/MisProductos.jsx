@@ -27,6 +27,7 @@ function MisProductos() {
         clase={"btn btn-primary"}
         texto={"Nuevo producto"}
         accion={onClickButton}
+        color={'#395B45'}
       />
         <div className="btn btn-sm btn-outline-light" type="button">
           <div className="nav-item dropdown">
@@ -92,8 +93,6 @@ function MisProductos() {
         <p className="text-muted" style={{marginLeft: '15px',paddingTop: '50px',}}>Aún no has compartido algun producto con la comunidad</p>
       </div>
       </div>}
-      
-      
       
       {openModal.modal1 && (
         <Modal>

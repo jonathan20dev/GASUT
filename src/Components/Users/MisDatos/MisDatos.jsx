@@ -3,9 +3,11 @@ import { insertUser } from "../../../Firebase/insertUser";
 import { useNavigate } from "react-router-dom";
 import { locations } from "../../../Assets/UbicacionesCR/ubicacionesCR";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
+import { AcceptAlert } from "../../Shared/AcceptAlert/AcceptAlert";
+import { Modal } from "../../Shared/Modal/Modal";
 
 function MisDatos() {
-  const { user, extractProfile } = useContext(UseAppContext);
+  const { user, extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
   const [userP, setUser] = useState({
     img: "",
     nombre: "",
@@ -41,6 +43,7 @@ function MisDatos() {
     e.preventDefault();
     insertUser(user.reloadUserInfo.localId, userP);
     navigate("/profile/misDatos");
+    setOpenModal({...openModal, modal3: true})
     //Alert cambio exitoso
   };
 
@@ -199,7 +202,7 @@ function MisDatos() {
             <button
               className="btn btn-primary"
               type="submit"
-              style={{ marginTop: "30px", width: '100%' }}
+              style={{ marginTop: "30px", width: '100%', backgroundColor: '#395B45'}}
             >
               Actualizar información
               <br />
@@ -207,6 +210,12 @@ function MisDatos() {
             </div>
           </div>
         </div>
+        {
+          openModal.modal3 && 
+          <Modal>
+            <AcceptAlert mensaje={'La información se actualizó con éxito!'}/>
+          </Modal>
+        }
     </form>
   );
 }

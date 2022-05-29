@@ -1,5 +1,5 @@
 .nuevoProductoForm {
-  width: 35%;
+  width: 32%;
   background-color: #FFFFFF;
   padding: 33px 40px;
   display: flex;
@@ -45,7 +45,7 @@ cursor: pointer;
 
 @media screen and (max-width: 1200px) {
   .nuevoProductoForm {
-    width: 45%;
+    width: 42%;
   }
 }
 

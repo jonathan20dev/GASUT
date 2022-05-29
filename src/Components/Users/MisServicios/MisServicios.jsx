@@ -26,6 +26,7 @@ function MisServicios() {
           clase={"btn btn-primary"}
           texto={"Nuevo servicio"}
           accion={onClickButton}
+          color={'#395B45'}
         />
         <div className="btn btn-sm btn-outline-light" type="button">
         <div className="nav-item dropdown">

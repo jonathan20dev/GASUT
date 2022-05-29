@@ -42,7 +42,7 @@ const UserProfile = () => {
                   <em>Tu email de inicio de sesión no se puede cambiar</em>
                   <br/>
                 </p>
-                <Button clase={"btn btn-primary"} texto={"Cambiar contraseña"}/>
+                <Button clase={"btn btn-primary"} texto={"Cambiar contraseña"} color={'#395B45'}/>
               </div>
             </div>
             <div className="col">
