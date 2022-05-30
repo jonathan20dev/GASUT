@@ -113,7 +113,7 @@ const Footer = () => {
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
-                    to="/"
+                    to="/Policies"
                   >
                     Políticas de la tienda
                   </NavLink>

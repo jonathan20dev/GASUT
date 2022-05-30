@@ -7,15 +7,74 @@ import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
 import { getUser } from '../../Firebase/getUser'
 import { updatePoS } from '../../Firebase/updatePoS'
+import { readProducts, readServices} from "../../Firebase/readDoc";
+
 
 const AppContext = ({children}) => {
+    const [arrayProducts, setArrayProducts] = useState([]);
+    const [searchProducts, setSearchProducts] = React.useState('');
+    const [arrayServices, setArrayServices] = useState([]);
+    const [searchServices, setSearchServices] = React.useState('');
+    const [filterProducts, setFilterProducts] = React.useState('todo');
+    const [filterServices, setFilterServices] = React.useState('todo');
+    const [active, setActive] = React.useState(null);
+
+    useEffect(() => {
+    
+    async function fetchProducts() {
+        const getProducts = await readProducts();
+        setArrayProducts(getProducts);
+    }
+    fetchProducts();
+
+    async function fetchServices() {
+        const getServices = await readServices();
+        setArrayServices(getServices);
+        console.log("aa")
+    }
+    fetchServices();
+    }, []);
+
+    let searchedProducts = [];
+
+    if (!searchProducts.length >= 1) {
+      searchedProducts = arrayProducts;
+    } else {
+      searchedProducts = arrayProducts.filter(product => {
+        const productName = product.nombre.toLowerCase();
+        const searchName = searchProducts.toLowerCase();
+        return productName.includes(searchName);
+      });
+    }
+  
+    let searchedServices = [];
+  
+    if (!searchServices.length >= 1) {
+      searchedServices = arrayServices;
+    } else {
+      searchedServices = arrayServices.filter(service => {
+        const serviceName = service.nombre.toLowerCase();
+        const searchName = searchServices.toLowerCase();
+        return serviceName.includes(searchName);
+      });
+    }
+  
+    if (filterProducts !== 'todo') {
+      searchedProducts = searchedProducts.filter(product => filterProducts === product.categoria.toLowerCase());
+    }
+  
+    if (filterServices !== 'todo') {
+      searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
+    }
+
+
     const { user } = useAuth();
     const initialState  = {
         products:[],
         services : [],
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
-    const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false});
+    const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
 
     const extractProfile = async () => {
         const usuario = await getUser(user.reloadUserInfo.localId);
@@ -72,6 +131,24 @@ const AppContext = ({children}) => {
 
     return (
         <UseAppContext.Provider value={{
+            arrayProducts,
+            setArrayProducts,
+            searchedProducts,
+            searchProducts, 
+            setSearchProducts,
+            arrayServices,
+            setArrayServices,
+            searchedServices,
+            searchServices, 
+            setSearchServices,
+            filterProducts, 
+            setFilterProducts,
+            filterServices, 
+            setFilterServices,
+            active, 
+            setActive,
+
+
             products: state.products,
             services: state.services,
             openModal,

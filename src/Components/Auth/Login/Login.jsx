@@ -61,7 +61,7 @@ const Login = () => {
         <div className="login-box-content">
           <div className="fb-login box-shadow" />
           <div className="gp-login box-shadow">
-            <a onClick={handleGoogleSignin} className="d-flex flex-row align-items-center social-login-link" style={{marginBottom: '10px'}} href="#!"><i className="fa fa-google" style={{color: 'rgb(255,255,255)', width: '56px'}} />Login con Google+</a></div>
+            <a onClick={handleGoogleSignin} className="d-flex flex-row align-items-center social-login-link" style={{marginBottom: '10px'}} href="#!"><i className="bi bi-google" style={{color: 'rgb(255,255,255)', width: '56px'}} />Login con Google+</a></div>
         </div>
         <div className="d-flex flex-row align-items-center login-box-seperator-container">
           <div className="login-box-seperator" />

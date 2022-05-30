@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../Business/Context/AuthContext";
 import './Header.css'
 import logo from '../../../Assets/logo.png'
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -14,6 +16,10 @@ const Header = () => {
       console.error(error.message);
     }
   };
+
+  const handleHome = () => {
+    navigate("/");
+  }
 
   return (
     <div>
@@ -45,7 +51,7 @@ const Header = () => {
               className="navbar-brand d-flex align-items-center justify-content-center"
               style={{margin: '0px'}}
             >
-              <img className='logo' src={logo} alt="logo" />
+              <img className='logo' src={logo} onClick={handleHome} alt="logo" />
             </div>
             <div id="navcol-1" className="collapse navbar-collapse">
               <ul
