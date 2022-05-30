@@ -54,11 +54,11 @@ export function AppContext({ children }) {
   }
 
   if (filterProducts !== 'todo') {
-    searchedProducts = searchedProducts.filter(product => filterProducts === product.categoria);
+    searchedProducts = searchedProducts.filter(product => filterProducts === product.categoria.toLowerCase());
   }
 
   if (filterServices !== 'todo') {
-    searchedServices = searchedServices.filter(service => filterServices === service.categoria);
+    searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
   }
 
   return (

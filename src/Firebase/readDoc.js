@@ -76,6 +76,7 @@ export const readServices = async () => {
           service.nombre_propietario = user.nombre
           service.telefono = user.telefono
           service.correo = user.correo
+          service.img_propietario = user.img
         }
       })
     });

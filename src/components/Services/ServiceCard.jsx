@@ -2,9 +2,7 @@ import React from 'react';
 import { appContext } from '../../Business/AppContext';
 import { Button } from '../Shared/Button';
 
-export const ServiceCard = ({ id, name, img, nameOwner }) => {
-
-  const images = require.context('../../assets/images', true);
+export const ServiceCard = ({ id, name, img, nameOwner, imgOwner }) => {
 
   const { openModal, setOpenModal, searchedServices, setActive } = React.useContext(appContext);
 
@@ -20,7 +18,7 @@ export const ServiceCard = ({ id, name, img, nameOwner }) => {
         <img src={ img } className="card-img-top p-3" alt="Foto" />
         <div className="card-body">
           <div className='d-flex gap-2'>
-            <img src={images('./perfil.png')} className="perfil-image" alt="Perfil" />
+            <img src={ imgOwner } className="perfil-image" alt="Perfil" />
             <div>
               <p className='m-0'>{ nameOwner }</p>
               <p className='fw-bold'>{ name }</p>

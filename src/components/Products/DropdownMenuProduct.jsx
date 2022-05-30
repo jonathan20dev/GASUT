@@ -10,7 +10,6 @@ export const DropdownMenuProduct = () => {
     const { searchProduct, setSearchProducts } = React.useContext(appContext);
 
     const onSearchValueChange = (event) => {
-        console.log(event.target.value);
         setSearchProducts(event.target.value);
     };
 

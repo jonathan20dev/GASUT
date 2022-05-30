@@ -19,6 +19,7 @@ export const ServiceScreen = () => {
             name={service.nombre}
             img={service.img}
             nameOwner = {service.nombre_propietario}
+            imgOwner = {service.img_propietario}
           />)
         }
         {
