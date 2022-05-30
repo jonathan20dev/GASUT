@@ -5,12 +5,11 @@ import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
-import { getUser } from '../../Firebase/getUser'
 import { updatePoS } from '../../Firebase/updatePoS'
 import { readProducts, readServices} from "../../Firebase/readDoc";
 
-
 const AppContext = ({children}) => {
+    const { user } = useAuth();
     const [arrayProducts, setArrayProducts] = useState([]);
     const [searchProducts, setSearchProducts] = React.useState('');
     const [arrayServices, setArrayServices] = useState([]);
@@ -20,8 +19,7 @@ const AppContext = ({children}) => {
     const [active, setActive] = React.useState(null);
 
     useEffect(() => {
-    
-    async function fetchProducts() {
+        async function fetchProducts() {
         const getProducts = await readProducts();
         setArrayProducts(getProducts);
     }
@@ -30,11 +28,11 @@ const AppContext = ({children}) => {
     async function fetchServices() {
         const getServices = await readServices();
         setArrayServices(getServices);
-        console.log("aa")
     }
     fetchServices();
     }, []);
 
+    
     let searchedProducts = [];
 
     if (!searchProducts.length >= 1) {
@@ -67,19 +65,12 @@ const AppContext = ({children}) => {
       searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
     }
 
-
-    const { user } = useAuth();
     const initialState  = {
         products:[],
         services : [],
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
-
-    const extractProfile = async () => {
-        const usuario = await getUser(user.reloadUserInfo.localId);
-        return usuario
-    };
 
     const getUserDocument = async (coleccion) => {
         const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
@@ -147,6 +138,7 @@ const AppContext = ({children}) => {
             setFilterServices,
             active, 
             setActive,
+            
 
 
             products: state.products,
@@ -158,7 +150,6 @@ const AppContext = ({children}) => {
             insertDoc,
             deleteDoc,
             user,
-            extractProfile,
             updateDoc,
         }}>
             {children}

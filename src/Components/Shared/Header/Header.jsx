@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -133,13 +133,8 @@ const Header = () => {
                 padding: "7px",
               }}
             >
-              <i
-                className="bi bi-person"
-                style={{
-                  fontSize: "1.5rem",
-                  color: "white",
-                }}
-              ></i>
+              <img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={user.img} width={40} height="auto"
+              />
             </button>
             <div
               className="dropdown-menu"

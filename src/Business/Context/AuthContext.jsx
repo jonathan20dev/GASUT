@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../Firebase/firebase";
 import { insertUser } from '../../Firebase/insertUser'
+import { getUser } from "../../Firebase/getUser";
 
 const authContext = createContext();
 
@@ -23,10 +24,15 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
+  async function fetchUser(user) {
+    const us = await getUser(user.reloadUserInfo.localId)
+    setUser(us)
+  }
+ 
   useEffect(() => {
     const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      (currentUser !== null)&& fetchUser(currentUser);
       setLoading(false);
     });
     return () => unsubuscribe();
@@ -34,7 +40,7 @@ export function AuthProvider({ children }) {
 
   const insertUserFB = () => {
     const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
-      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: "0000", correo: currentUser.email, img: currentUser.photoURL, nombre: currentUser.displayName, telefono: "0000-0000", direccion: ""})
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: "0000", correo: currentUser.email, img: currentUser.photoURL, nombre: currentUser.displayName, telefono: "0000-0000", direccion: "", provincia: '', canton: '', distrito: ''})
     })
     obtenerUsuario()
   }
@@ -76,7 +82,8 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         resetPassword,
         insertUserFB,
-        insertUserRegister
+        insertUserRegister,
+        setUser
       }}
     >
       {children}

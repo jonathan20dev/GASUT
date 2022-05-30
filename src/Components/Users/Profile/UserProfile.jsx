@@ -1,14 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React from 'react'
 import { Header } from "../../Shared/Header/Header.jsx"
 import {Footer} from "../../Shared/Footer"
 import './UserProfile.css'
 import { NavLink, Outlet } from 'react-router-dom';
 import {Button} from '../../Shared/Button';
-import { UseAppContext } from '../../../Business/Context/UseAppContext.jsx';
+import { useAuth } from '../../../Business/Context/AuthContext.jsx';
 
 const UserProfile = () => {
-  const { extractProfile } = useContext(UseAppContext);
-  const [userP, setUser] = useState({nombre:"", img:"", correo:""})
+  const { user } = useAuth()
 
   const styles = {
     navItem: {
@@ -18,14 +17,6 @@ const UserProfile = () => {
     }
   }
 
-  useEffect(() => {
-    const obtenerUsuario = async() => {
-      const u = await extractProfile()
-      setUser(u)
-    }
-    obtenerUsuario()
-}, [])
-
   return (
     <>
     <Header/>
@@ -33,11 +24,11 @@ const UserProfile = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 offset-lg-0 text-center">
-              <div className="p-3 p-xl-4"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={userP.img} width={216} height="auto" />
+              <div className="p-3 p-xl-4"><img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={user.img} width={216} height="auto" />
                 <p style={{ marginTop:"15px", color: "rgb(0,0,0)" }}>
                   Email de inicio de sesión:
                   <br />
-                  {userP.correo}
+                  {user.correo}
                   <br />
                   <em>Tu email de inicio de sesión no se puede cambiar</em>
                   <br/>
