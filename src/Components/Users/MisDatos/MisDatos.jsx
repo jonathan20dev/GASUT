@@ -7,8 +7,9 @@ import { AcceptAlert } from "../../Shared/AcceptAlert/AcceptAlert";
 import { Modal } from "../../Shared/Modal/Modal";
 
 function MisDatos() {
-  const { user, extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
+  const { extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
   const [userP, setUser] = useState({
+    id: "",
     img: "",
     nombre: "",
     telefono: "",
@@ -22,10 +23,11 @@ function MisDatos() {
     cantonU: userP.canton,
     distritoU: userP.distrito,
   });
+
   const navigate = useNavigate();
-  const prov =
-    ubicacionU.provinciaU !== "" &&
-    locations.find((p) => Object.keys(p)[0] === ubicacionU.provinciaU);
+  const prov = ubicacionU.provinciaU !== "" && locations.find((p) => Object.keys(p)[0] === ubicacionU.provinciaU);
+
+  
 
   useEffect(() => {
     const obtenerUsuario = async () => {
@@ -41,10 +43,9 @@ function MisDatos() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    insertUser(user.reloadUserInfo.localId, userP);
+    insertUser(userP.id, userP);
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
-    //Alert cambio exitoso
   };
 
   return (
@@ -58,7 +59,7 @@ function MisDatos() {
               type="text"
               id="name"
               name="name"
-              placeholder={userP.nombre}
+              value={userP.nombre}
               onChange={(e) => setUser({ ...userP, nombre: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
@@ -72,7 +73,7 @@ function MisDatos() {
             <input
               className="form-control"
               type="tel"
-              placeholder={userP.telefono}
+              value={userP.telefono}
               onChange={(e) => setUser({ ...userP, telefono: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
@@ -84,8 +85,7 @@ function MisDatos() {
             <input
               className="form-control"
               type="number"
-              min="4"
-              placeholder={userP.codigo_postal}
+              value={userP.codigo_postal}
               onChange={(e) =>
                 setUser({ ...userP, codigo_postal: e.target.value })
               }

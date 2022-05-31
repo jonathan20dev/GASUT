@@ -5,12 +5,12 @@ import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
 import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
-import { getUser } from '../../Firebase/getUser'
 import { updatePoS } from '../../Firebase/updatePoS'
 import { readProducts, readServices} from "../../Firebase/readDoc";
+import { getUser } from "../../Firebase/getUser"
 
-
-const AppContext = ({children}) => {
+const AppContext = ({tam, setTam, children}) => {
+    const { user } = useAuth();
     const [arrayProducts, setArrayProducts] = useState([]);
     const [searchProducts, setSearchProducts] = React.useState('');
     const [arrayServices, setArrayServices] = useState([]);
@@ -20,8 +20,7 @@ const AppContext = ({children}) => {
     const [active, setActive] = React.useState(null);
 
     useEffect(() => {
-    
-    async function fetchProducts() {
+        async function fetchProducts() {
         const getProducts = await readProducts();
         setArrayProducts(getProducts);
     }
@@ -34,6 +33,7 @@ const AppContext = ({children}) => {
     fetchServices();
     }, []);
 
+    
     let searchedProducts = [];
 
     if (!searchProducts.length >= 1) {
@@ -66,8 +66,6 @@ const AppContext = ({children}) => {
       searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
     }
 
-
-    const { user } = useAuth();
     const initialState  = {
         products:[],
         services : [],
@@ -76,12 +74,12 @@ const AppContext = ({children}) => {
     const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
 
     const extractProfile = async () => {
-        const usuario = await getUser(user.reloadUserInfo.localId);
+        const usuario = await getUser(user.id || user.reloadUserInfo.localId);
         return usuario
     };
 
     const getUserDocument = async (coleccion) => {
-        const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
+        const docu = await getUserCollection(user.id || user.reloadUserInfo.localId, coleccion)
         dispatch({
             type: (coleccion === "Productos")?'GET_PRODUCTS':'GET_SERVICES',
             payload: docu
@@ -146,8 +144,9 @@ const AppContext = ({children}) => {
             setFilterServices,
             active, 
             setActive,
+            tam, setTam,
 
-
+            extractProfile,
             products: state.products,
             services: state.services,
             openModal,
@@ -157,7 +156,6 @@ const AppContext = ({children}) => {
             insertDoc,
             deleteDoc,
             user,
-            extractProfile,
             updateDoc,
         }}>
             {children}

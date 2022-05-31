@@ -6,9 +6,11 @@ import { ProductCard } from './ProductCard';
 import { Header } from "../Shared/Header/Header"
 import { Footer } from "../Shared/Footer"
 import { NothingFound } from '../Shared/NothingFound';
+import { useAuth } from "../../Business/Context/AuthContext"
 
 const ProductScreen = () => {
-
+  const { user } = useAuth()
+  console.log(user);
   const { searchedProducts, openModal } = React.useContext(UseAppContext);
 
   return (

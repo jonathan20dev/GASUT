@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../Business/Context/AuthContext";
 import './Header.css'
 import logo from '../../../Assets/logo.png'
 import { useNavigate } from "react-router-dom";
+import {UseAppContext } from "../../../Business/Context/UseAppContext"
 
 const Header = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+  const { tam, setTam } = useContext(UseAppContext);
+
+  const sumTam = () => {
+    if(tam < 20){
+      setTam(tam+1)
+    }
+  }
+
+  const resTam = () => {
+    if(tam > 12){
+      setTam(tam-1)
+    }
+  }
 
   const handleLogout = async () => {
     try {
@@ -106,6 +120,14 @@ const Header = () => {
                     Acerca de
                   </NavLink>
                 </li>
+                <li className="nav-item" style={{ fontSize: "1.2rem" }}>
+                  <div className="nav-link"
+                    style={{ color: 'white', display: "flex", flexDirection: "row"}}>
+                    <div onClick={sumTam} style={{cursor: 'pointer'}}>A+</div>
+                    <div onClick={()=>setTam(16)} style={{ marginLeft: "16px", cursor: 'pointer'}}>A</div>
+                    <div onClick={resTam} style={{ marginLeft: "16px", cursor: 'pointer'}}>A-</div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -133,13 +155,8 @@ const Header = () => {
                 padding: "7px",
               }}
             >
-              <i
-                className="bi bi-person"
-                style={{
-                  fontSize: "1.5rem",
-                  color: "white",
-                }}
-              ></i>
+              <img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={user.img} width={40} height="auto"
+              />
             </button>
             <div
               className="dropdown-menu"
