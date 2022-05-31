@@ -106,6 +106,14 @@ const Header = () => {
                     Acerca de
                   </NavLink>
                 </li>
+                <li className="nav-item" style={{ fontSize: "1.2rem" }}>
+                  <NavLink className="nav-link" aria-current="page"
+                    to="/about"  style={{ color: 'white', display: "flex", flexDirection: "row"}}>
+                    <div>A+</div>
+                    <div style={{ marginLeft: "16px"}}>A</div>
+                    <div style={{ marginLeft: "16px"}}>A-</div>
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>

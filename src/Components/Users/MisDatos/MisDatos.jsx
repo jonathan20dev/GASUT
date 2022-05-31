@@ -1,17 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { insertUser } from "../../../Firebase/insertUser";
 import { useNavigate } from "react-router-dom";
 import { locations } from "../../../Assets/UbicacionesCR/ubicacionesCR";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { AcceptAlert } from "../../Shared/AcceptAlert/AcceptAlert";
 import { Modal } from "../../Shared/Modal/Modal";
-import { useAuth } from "../../../Business/Context/AuthContext"
 
 function MisDatos() {
-  const { user } = useAuth()
-  const { openModal, setOpenModal } = useContext(UseAppContext);
-
+  const { extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
   const [userP, setUser] = useState({
+    id: "",
     img: "",
     nombre: "",
     telefono: "",
@@ -25,17 +23,29 @@ function MisDatos() {
     cantonU: userP.canton,
     distritoU: userP.distrito,
   });
+
   const navigate = useNavigate();
-  const prov =
-    ubicacionU.provinciaU !== "" &&
-    locations.find((p) => Object.keys(p)[0] === ubicacionU.provinciaU);
+  const prov = ubicacionU.provinciaU !== "" && locations.find((p) => Object.keys(p)[0] === ubicacionU.provinciaU);
+
+  
+
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      const u = await extractProfile();
+      setUser(u);
+      setUbicacionU({
+        ...ubicacionU,
+        provinciaU: u.provincia,
+      });
+    };
+    obtenerUsuario();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    insertUser(user.reloadUserInfo.localId, userP);
+    insertUser(userP.id, userP);
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
-    //Alert cambio exitoso
   };
 
   return (
@@ -49,7 +59,7 @@ function MisDatos() {
               type="text"
               id="name"
               name="name"
-              placeholder={user.nombre}
+              value={userP.nombre}
               onChange={(e) => setUser({ ...userP, nombre: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
@@ -63,7 +73,7 @@ function MisDatos() {
             <input
               className="form-control"
               type="tel"
-              placeholder={user.telefono}
+              value={userP.telefono}
               onChange={(e) => setUser({ ...userP, telefono: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
@@ -75,8 +85,7 @@ function MisDatos() {
             <input
               className="form-control"
               type="number"
-              min="4"
-              placeholder={user.codigo_postal}
+              value={userP.codigo_postal}
               onChange={(e) =>
                 setUser({ ...userP, codigo_postal: e.target.value })
               }
@@ -94,7 +103,7 @@ function MisDatos() {
                 className="form-control"
                 name="provincia"
                 style={{ borderRadius: "5px" }}
-                value={user.provincia}
+                value={userP.provincia}
                 onChange={(e) => {
                   setUser({ ...userP, provincia: e.target.value });
                   setUbicacionU({ ...ubicacionU, provinciaU: e.target.value });
@@ -121,7 +130,7 @@ function MisDatos() {
                 className="form-control"
                 name="canton"
                 style={{ borderRadius: "5px"}}
-                value={user.canton}
+                value={userP.canton}
                 onChange={(e) => {
                   setUser({ ...userP, canton: e.target.value });
                   setUbicacionU({ ...ubicacionU, cantonU: e.target.value });
@@ -149,7 +158,7 @@ function MisDatos() {
                 className="form-control"
                 name="distrito"
                 style={{ borderRadius: "5px" }}
-                value={user.distrito}
+                value={userP.distrito}
                 onChange={(e) => {
                   setUser({ ...userP, distrito: e.target.value });
                   setUbicacionU({ ...ubicacionU, distritoU: e.target.value });
@@ -180,7 +189,7 @@ function MisDatos() {
             <p style={{ color: "rgb(0,0,0)" }}>Dirección</p>
             <textarea
               className="form-control"
-              value={user.direccion}
+              value={userP.direccion}
               style={{ borderRadius: "5px", height: "88.4%", resize: 'none' }}
               onChange={(e) => setUser({ ...userP, direccion: e.target.value })}
             ></textarea>

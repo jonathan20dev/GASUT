@@ -21,7 +21,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
   async function fetchUser(user) {
@@ -82,8 +82,7 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         resetPassword,
         insertUserFB,
-        insertUserRegister,
-        setUser
+        insertUserRegister
       }}
     >
       {children}

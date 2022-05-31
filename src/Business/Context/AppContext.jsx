@@ -7,6 +7,7 @@ import { insertDocument } from '../../Firebase/insertDoc'
 import { deleteDocument } from "../../Firebase/deleteDoc"
 import { updatePoS } from '../../Firebase/updatePoS'
 import { readProducts, readServices} from "../../Firebase/readDoc";
+import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({children}) => {
     const { user } = useAuth();
@@ -71,6 +72,11 @@ const AppContext = ({children}) => {
     }
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
+
+    const extractProfile = async () => {
+        const usuario = await getUser(user.id || user.reloadUserInfo.localId);
+        return usuario
+    };
 
     const getUserDocument = async (coleccion) => {
         const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
@@ -140,7 +146,7 @@ const AppContext = ({children}) => {
             setActive,
             
 
-
+            extractProfile,
             products: state.products,
             services: state.services,
             openModal,
