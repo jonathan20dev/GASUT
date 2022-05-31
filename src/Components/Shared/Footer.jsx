@@ -41,7 +41,7 @@ const Footer = () => {
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
-                    to="/"
+                    to="/services"
                   >
                     Servicios
                   </NavLink>
@@ -53,7 +53,7 @@ const Footer = () => {
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
-                    to="/"
+                    to="/contact"
                   >
                     Contacto
                   </NavLink>
@@ -65,7 +65,7 @@ const Footer = () => {
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
-                    to="/"
+                    to="/about"
                   >
                     Acerca de
                   </NavLink>
@@ -116,18 +116,6 @@ const Footer = () => {
                     to="/Policies"
                   >
                     Políticas de la tienda
-                  </NavLink>
-                </li>
-                <li>
-                <NavLink
-                    className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
-                    }
-                    style={{ color: 'Black'}}
-                    aria-current="page"
-                    to="/"
-                  >
-                    Preguntas frecuentes
                   </NavLink>
                 </li>
               </ul>

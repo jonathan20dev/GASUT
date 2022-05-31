@@ -90,8 +90,6 @@ const AppContext = ({tam, setTam, children}) => {
         const array = (coleccion === "Productos")? state.products : state.services
         await insertDocument(coleccion, objeto)
         const arregloFull = [...array, objeto]
-        console.log("Objeto", objeto)
-        console.log(arregloFull)
         dispatch({
             type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
@@ -100,7 +98,6 @@ const AppContext = ({tam, setTam, children}) => {
 
     const updateDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
-        console.log(objeto)
         await updatePoS(objeto.id, objeto, coleccion)
         const arregloFull = [...array.filter(x => x.id !==objeto.id), objeto]
         dispatch({

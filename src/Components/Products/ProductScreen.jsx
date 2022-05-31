@@ -10,7 +10,6 @@ import { useAuth } from "../../Business/Context/AuthContext"
 
 const ProductScreen = () => {
   const { user } = useAuth()
-  console.log(user);
   const { searchedProducts, openModal } = React.useContext(UseAppContext);
 
   return (

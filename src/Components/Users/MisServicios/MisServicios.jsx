@@ -60,7 +60,7 @@ function MisServicios() {
             categoria: '',
             descripcion: "",
             id_propietario: user.id}} 
-            categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} 
+            categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura']} 
             elemento={'servicio'}/>
         </Modal>
       )}

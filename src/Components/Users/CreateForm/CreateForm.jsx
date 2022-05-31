@@ -7,8 +7,8 @@ function CreateForm({ categorias, elemento,objeto }) {
   const { openModal ,setOpenModal, insertDoc } = useContext(UseAppContext);
   const [img, setImg] = useState(addImge)
   const [URL, setURL] = useState(false)
-  const [nuevo, setNuevo] = useState(objeto)
-
+  const [nuevo, setNuevo] = useState({...objeto, categoria: categorias[0]})
+  
   const handleImg = (e) => {
     setImg(e.target.value)
     handleChange(e)
@@ -33,7 +33,6 @@ function CreateForm({ categorias, elemento,objeto }) {
     } else {
       insertDoc('Servicios', nuevo)
     }
-    console.log(nuevo)
   };
 
   let className = 'smallCombo';

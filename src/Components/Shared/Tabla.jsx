@@ -7,9 +7,9 @@ import { ConfirmAlert } from "./ConfirmAlert/ConfirmAlert";
 
 const styles = {
   img: {
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
+    width: "auto",
+    height: "50px",
+    borderRadius: "10%",
     objectFit: "cover"
   }
 }
