@@ -8,8 +8,8 @@ import {UseAppContext } from "../../../Business/Context/UseAppContext"
 
 const Header = () => {
   const navigate = useNavigate();
-  const { logout, user } = useAuth();
-  const { tam, setTam } = useContext(UseAppContext);
+  const { logout } = useAuth();
+  const { tam, setTam, user } = useContext(UseAppContext);
 
   const sumTam = () => {
     if(tam < 20){

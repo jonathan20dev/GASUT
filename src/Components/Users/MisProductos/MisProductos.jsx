@@ -7,6 +7,7 @@ import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisProductos() {
   const {products, user,getUserDocument, handleSort } = useContext(UseAppContext)
+  
   useEffect(() => {
     getUserDocument('Productos');
   }, [])
@@ -100,7 +101,7 @@ function MisProductos() {
             nombre: '',
             categoria: '',
             descripcion: "",
-            cantidad: 0, id_propietario: user.uid}} 
+            cantidad: 0, id_propietario: user.id}} 
             categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} 
             elemento={'producto'}/>
         </Modal>

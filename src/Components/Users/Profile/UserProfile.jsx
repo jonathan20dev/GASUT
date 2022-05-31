@@ -1,13 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Header } from "../../Shared/Header/Header.jsx"
 import {Footer} from "../../Shared/Footer"
 import './UserProfile.css'
 import { NavLink, Outlet } from 'react-router-dom';
 import {Button} from '../../Shared/Button';
-import { useAuth } from '../../../Business/Context/AuthContext.jsx';
+import { UseAppContext } from "../../../Business/Context/UseAppContext";
 
 const UserProfile = () => {
-  const { user } = useAuth()
+  const { user } = useContext(UseAppContext)
 
   const styles = {
     navItem: {

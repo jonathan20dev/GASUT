@@ -11,6 +11,13 @@ import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({tam, setTam, children}) => {
     const { user } = useAuth();
+    const initialState  = {
+        products:[],
+        services : [],
+    }
+    const [state, dispatch] = useReducer(collectionReducer, initialState)
+    const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
+
     const [arrayProducts, setArrayProducts] = useState([]);
     const [searchProducts, setSearchProducts] = React.useState('');
     const [arrayServices, setArrayServices] = useState([]);
@@ -66,13 +73,6 @@ const AppContext = ({tam, setTam, children}) => {
       searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
     }
 
-    const initialState  = {
-        products:[],
-        services : [],
-    }
-    const [state, dispatch] = useReducer(collectionReducer, initialState)
-    const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
-
     const extractProfile = async () => {
         const usuario = await getUser(user.id || user.reloadUserInfo.localId);
         return usuario
@@ -86,12 +86,14 @@ const AppContext = ({tam, setTam, children}) => {
         })
     }
 
-    const insertDoc = async (coleccion, objeto, tipo) => {
+    const insertDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
         await insertDocument(coleccion, objeto)
         const arregloFull = [...array, objeto]
+        console.log("Objeto", objeto)
+        console.log(arregloFull)
         dispatch({
-            type:tipo,
+            type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
         })
     }
@@ -109,7 +111,7 @@ const AppContext = ({tam, setTam, children}) => {
 
     const deleteDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
-        await deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
+        //deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
         const arregloAux = array.filter(el => el.id !== objeto.id)
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',

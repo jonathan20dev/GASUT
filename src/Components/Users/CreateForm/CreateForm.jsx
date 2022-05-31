@@ -29,9 +29,9 @@ function CreateForm({ categorias, elemento,objeto }) {
     event.preventDefault();
     setOpenModal({...openModal, modal1:false});
     if (elemento === 'producto'){
-      insertDoc('Productos', nuevo, 'INSERT_PRODUCTS')
+      insertDoc('Productos', nuevo)
     } else {
-      insertDoc('Servicios', nuevo, 'INSERT_SERVICES')
+      insertDoc('Servicios', nuevo)
     }
     console.log(nuevo)
   };
@@ -135,8 +135,8 @@ function CreateForm({ categorias, elemento,objeto }) {
                   Categoría
                 </label>
                 <select className="formCombo" name='categoria' onChange={handleChange} value={nuevo.categoria}>
-                  {categorias.map((c) => (
-                    <option key={c} value={c}>{c}</option>
+                  {categorias.map((c,index) => (
+                    <option key={index} value={c}>{c}</option>
                   ))}
                 </select>
               </div>
