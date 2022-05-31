@@ -7,6 +7,7 @@ const ConfirmAlert = ({ mensaje, op1, op2, accion, objeto }) => {
   const { openModal, setOpenModal } = useContext(UseAppContext);
   const Accept = () => {
     accion(objeto.categoria, objeto.objeto);
+    setOpenModal({ ...openModal, modal3: false });
   };
 
   const Cancel = () => {
