@@ -15,8 +15,8 @@ const ProductScreen = () => {
   return (
     <>
       <Header/>
-      <div className='container-lg mt-5 mb-5 d-flex'>
-        <div className='cards-center gap-4 flex-ps'>
+      <div className='p-4 d-flex justify-content-center' >
+        <div className='cards-center gap-4 flex-ps justify-content-center' >
           <Categories page='products' />
           {
             (searchedProducts.length !== 0) 

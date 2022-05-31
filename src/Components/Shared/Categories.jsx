@@ -10,13 +10,11 @@ export const Categories = ({ page }) => {
   return (
     <>
       <Navbar>
-        <NavItem icon={<FilterIcon/>}>
           {
             page === 'products'
               ? <DropdownMenuProduct />
               : <DropdownMenuService />
           }
-        </NavItem>
       </Navbar>
     </>
   )
