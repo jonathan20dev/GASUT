@@ -14,6 +14,7 @@ import { AppContext } from "./Business/Context/AppContext";
 import { Contact } from "./Components/Others/Contact"
 import { About } from "./Components/Others/About.jsx"
 import { Policies } from "./Components/Others/Policies"
+import { OlvideContra } from "./Components/Users/Profile/OlvideContra"
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
       <AppContext tam={tam} setTam={setTam}>
       <div style={{fontSize: `${tam}px`}}>
         <Routes>
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<OlvideContra />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/"

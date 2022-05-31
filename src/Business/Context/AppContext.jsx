@@ -110,7 +110,7 @@ const AppContext = ({tam, setTam, children}) => {
 
     const deleteDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
-        //deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
+        deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
         const arregloAux = array.filter(el => el.id !== objeto.id)
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',

@@ -54,14 +54,14 @@ function Tabla({ titulos, filas }) {
   }
   return (
     <>
-    <div className="table-responsive">
+    <div className="table-responsive ">
       <table className="table mt-4" >
         <thead>
           <tr >
             {titulos.map((t, ind) => (
               <th key={ind} scope="col">{t}</th>
             ))}
-            <th scope="col" style={{textAlign: 'center'}}>Acciones</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +74,7 @@ function Tabla({ titulos, filas }) {
                   (index === 3)? v.slice(0, 8)+"...": v }</td>
                 }}
               )}
-              <td >
+              <td>
                 <div style={{display:"flex", flexDirection: "row"}}>
                 <i className="bi bi-trash3" onClick={()=> eliminar(titulos.length, f)} style={{color: 'red', marginLeft: '10px'}}></i>
                 <i className="bi bi-pencil" onClick={()=> handleModal(f) } style={{color: 'blue', marginLeft: '20px'}}></i>

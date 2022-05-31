@@ -92,7 +92,7 @@ const Login = () => {
                 <div className="form-check form-check-inline" id="form-check-rememberMe">
                     <input className="form-check-input" type="checkbox" id="formCheck-1" htmlFor="remember" style={{cursor: 'pointer'}} name="check" />
                     <label className="form-check-label" htmlFor="formCheck-1"><span className="label-text">Recuerdame</span></label></div>
-                    <a id="forgot-password-link" href="#!" onClick={handleResetPassword}>¿Olvido su contraseña?</a>
+                    <p><Link to="/forgot-password" id="register-link">¿Olvido su contraseña?</Link></p>
             </div>
             </div>
         </form>
