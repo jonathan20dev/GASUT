@@ -79,7 +79,7 @@ p {
 }
 
 .main-modal {
-  max-height: calc(100vh - 100px); 
+  max-height: 85%; 
   overflow-y: auto;
   display: block;
   background-color: var(--white);

@@ -30,15 +30,18 @@ const AppContext = ({tam, setTam, children}) => {
         async function fetchProducts() {
         const getProducts = await readProducts();
         setArrayProducts(getProducts);
-    }
-    fetchProducts();
+        }
+        fetchProducts();
+    }, [state.products]);
 
+    useEffect(() => {
         async function fetchServices() {
         const getServices = await readServices();
         setArrayServices(getServices);
     }
     fetchServices();
-    }, [state.products, state.services]);
+    }, [state.services]);
+
 
     let searchedProducts = [];
 
