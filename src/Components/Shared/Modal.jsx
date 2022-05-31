@@ -28,12 +28,12 @@ export const Modal = ({ page }) => {
                 <div className='content-modal'>
                     <div className='d-flex justify-content-center' >
                         <div className='modal-cards m-3 p-1 d-flex justify-content-center'>
-                            <img src={ img } style={{width: 'auto', maxWidth: '100%'}} className="card-img-top" alt="Planta" /> 
+                            <img src={ img } style={{width: 'auto', maxWidth: '100%', height: '100%'}} className="card-img-top" alt="Planta" /> 
                         </div>
                     </div>
 
                     <div className=''>
-                        <div className='modal-cards m-3 p-4'>
+                        <div className='modal-cards mt-0  m-3 p-4'>
                             <h3 className='text-center'>Detalles</h3>
                             {
                                 page === 'services'
@@ -44,9 +44,9 @@ export const Modal = ({ page }) => {
                         </div>
                     </div>
 
-                    <div className=''>
+                    <div className='' >
                         
-                        <div className='modal-cards m-3'>
+                        <div className='modal-cards m-3' >
                             <h5 className='fw-bold'>Descripción</h5>
                             <div className='modal-cards--color p-4'>
                                 <p className='cards-center'>{ descripcion }</p> 
@@ -55,8 +55,8 @@ export const Modal = ({ page }) => {
                         </div>
                     </div>
 
-                    <div className=''>
-                        <div className=' modal-cards m-3'>
+                    <div className='' >
+                        <div className=' modal-cards m-3' >
                             <h5 className='fw-bold'>Contacto</h5>
                             <div className='modal-cards--color p-4'>
                                 <table className='contact-table'>

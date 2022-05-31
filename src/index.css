@@ -62,12 +62,14 @@ p {
 
 .modal-cards{
   width: auto;
+  max-height: 220px;
+  max-width: 370px;
 }
 
 .modal-cards--color{
   background-color: var(--light-green);
   border-radius: 5px;
-  height: 200px;
+  height: 170px;
   padding: 10px;
   display: grid;
   justify-content: center;
@@ -79,7 +81,7 @@ p {
 }
 
 .main-modal {
-  max-height: calc(100vh - 100px); 
+  max-height: 85%; 
   overflow-y: auto;
   display: block;
   background-color: var(--white);
@@ -117,9 +119,9 @@ p {
     height: 250px;
   }
   
-  .modal-cards{
+  /* .modal-cards{
     width: 400px;
-  }
+  } */
   .main-modal {
     padding: 20px 40px;
     font-size: 16px;
