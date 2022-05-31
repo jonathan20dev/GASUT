@@ -25,7 +25,7 @@ p {
 .categories {
   background-color: var(--white);
   height: 550px;
-  width: 300px;
+  width: 335px;
 }
 
 .cards-center {
@@ -110,7 +110,7 @@ p {
   gap: 20px;
 }
 
-@media(min-width: 550px) {
+@media(min-width: 760px) {
   .grid-product {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -136,7 +136,7 @@ p {
   }
 }
 
-@media(min-width: 600px) {
+@media(min-width: 1127px) {
   .grid-service,
   .grid-product {
     grid-template-columns: repeat(2, 1fr);
@@ -149,7 +149,7 @@ p {
   }
 }
 
-@media(min-width: 1024px) {
+@media(min-width: 1300px) {
   .grid-service {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -168,4 +168,8 @@ p {
 
 .he{
   height: 50px;
+}
+
+.card {
+  width: 350px;
 }

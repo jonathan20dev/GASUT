@@ -14,7 +14,7 @@ import { NothingFound } from '../Shared/NothingFound';
   return (
     <>
       <Header/>
-      <div className='container-lg mt-5 mb-5 d-flex'>
+      <div className='p-4 d-flex justify-content-center'>
         <div className='cards-center gap-4 flex-ps'>
           <Categories page='services' />
           {

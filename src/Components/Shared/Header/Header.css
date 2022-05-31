@@ -116,14 +116,24 @@ img {
   color: inherit;
 }
 
+
 @media screen and (min-width: 300px) {
   .headernav {
     width: 90%;
+    flex-direction: row;
   }
 }
 
 @media screen and (max-width: 760px) {
   .headernav {
     width: 65%;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 870px){
+  .headernav {
+    width: 60%;
+    flex-direction: row;
   }
 }

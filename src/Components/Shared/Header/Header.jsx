@@ -43,7 +43,7 @@ const Header = () => {
         <nav className="headernav navbar navbar-light navbar-expand-md">
           <div
             className="container"
-            style={{ flexDirection: "row", marginBottom: "5px" }}
+            style={{ flexDirection: "row", marginBottom: "5px", width: '100%'}}
           >
             <button
               className="navbar-toggler text-primary border-0"
@@ -75,7 +75,7 @@ const Header = () => {
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
                   <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'white'}}
                     aria-current="page"
@@ -87,7 +87,7 @@ const Header = () => {
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
                   <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     aria-current="page"
                     to="/services"
@@ -99,7 +99,7 @@ const Header = () => {
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
                   <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     aria-current="page"
                     to="/contact"
@@ -111,7 +111,7 @@ const Header = () => {
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
                   <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     aria-current="page"
                     to="/about"
