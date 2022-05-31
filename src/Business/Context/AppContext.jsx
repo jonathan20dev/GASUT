@@ -33,14 +33,13 @@ const AppContext = ({tam, setTam, children}) => {
     }
     fetchProducts();
 
-    async function fetchServices() {
+        async function fetchServices() {
         const getServices = await readServices();
         setArrayServices(getServices);
     }
     fetchServices();
-    }, []);
+    }, [state.products, state.services]);
 
-    
     let searchedProducts = [];
 
     if (!searchProducts.length >= 1) {
@@ -94,6 +93,7 @@ const AppContext = ({tam, setTam, children}) => {
             type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
         })
+        (coleccion === "Productos")? setSearchProducts([...searchProducts, objeto]) : setSearchServices([...searchServices, objeto])
     }
 
     const updateDoc = async (coleccion, objeto) => {
