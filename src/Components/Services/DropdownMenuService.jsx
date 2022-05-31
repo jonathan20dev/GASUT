@@ -7,8 +7,8 @@ const icons = require.context('../../Assets/icons', true);
 
 export const DropdownMenuService = () => {
 
-    const { searchServices, setSearchServices } = React.useContext(UseAppContext);
-
+    const { searchServices, setSearchServices, active } = React.useContext(UseAppContext);
+    
     const onSearchValueChange = (event) => {
         setSearchServices(event.target.value);
     };
@@ -16,7 +16,7 @@ export const DropdownMenuService = () => {
     const items = categories.filter(item => item.page === 'services');
 
     return (
-        <div className="dropdown">
+        <div className="dropdown mb-3">
             <div
                 
                 timeout={500}

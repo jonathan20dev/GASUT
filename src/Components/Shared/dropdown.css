@@ -16,7 +16,7 @@ a {
 /* <nav> */
 .nv-merge {
   height: var(--nav-size);
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 /* <ul> */
@@ -29,7 +29,7 @@ a {
 /* <li> */
 .nv-item-merge {
   width: calc(var(--nav-size) * 0.8);
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
@@ -45,7 +45,7 @@ a {
   margin: 2px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   transition: filter 300ms;
 }
 
@@ -65,13 +65,16 @@ a {
 .dropdown-merge {
   position: absolute;
   margin: 0;
-  top: 58px;
+  top: 48px;
   width: 300px;
   height: 600px;
   transform: translateX(45%);
   overflow: hidden;
   transition: height var(--speed) ease;
   z-index: 2;
+  margin-bottom: 10px;
+  /* margin-left: 70px;
+  margin-top: 100px; */
 }
 
 .menu-merge {

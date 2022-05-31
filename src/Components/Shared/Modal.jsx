@@ -12,7 +12,7 @@ export const Modal = ({ page }) => {
 
     const { openModal, setOpenModal, active } = React.useContext(UseAppContext);
 
-    const { descripcion, img, telefono, correo } = active;
+    const { descripcion, img, telefono, correo, ubicacion } = active;
 
     const handleModal = () => {
     setOpenModal({...openModal, modalPS: !openModal.modalPS});
@@ -40,7 +40,7 @@ export const Modal = ({ page }) => {
                                     ? <DetailsModalService />
                                     : <DetailsModalProduct />
                             }
-                            <p className='mb-1'><span className='fw-bold'>Ubicación: </span>Calle las rosas en Agua Zarcas, 100 metros norte de la iglesia</p>
+                            <p className='mb-1'><span className='fw-bold'>Ubicación: </span>{ ubicacion }</p>
                         </div>
                     </div>
 

@@ -30,7 +30,6 @@ const AppContext = ({children}) => {
     async function fetchServices() {
         const getServices = await readServices();
         setArrayServices(getServices);
-        console.log("aa")
     }
     fetchServices();
     }, []);
