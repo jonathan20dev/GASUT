@@ -42,7 +42,6 @@ const AppContext = ({tam, setTam, children}) => {
     fetchServices();
     }, [state.services]);
 
-
     let searchedProducts = [];
 
     if (!searchProducts.length >= 1) {
