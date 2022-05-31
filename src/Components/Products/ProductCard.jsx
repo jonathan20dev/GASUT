@@ -16,7 +16,10 @@ export const ProductCard = ({ id, name, img }) => {
     <>
       <div className="col">
         <div className="card" >
-          <img src={ img } className="card-img-top" alt={ name } />
+          <div className='d-flex justify-content-center m-1 p-2' style={{width: '100%', maxWidth: '350px'}}>
+            <img src={ img } style={{width: 'auto', maxWidth: '100%'}} className="card-img-top" alt={ name } />
+          </div>
+          
           <div className="card-body">
             <h5 className="card-title text-center">{ name }</h5>
             <div onClick={handleModal}>
