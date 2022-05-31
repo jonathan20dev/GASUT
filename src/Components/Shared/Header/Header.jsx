@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../Business/Context/AuthContext";
 import './Header.css'
 import logo from '../../../Assets/logo.png'
 import { useNavigate } from "react-router-dom";
+import {UseAppContext } from "../../../Business/Context/UseAppContext"
 
 const Header = () => {
   const navigate = useNavigate();
   const { logout, user } = useAuth();
+  const { tam, setTam } = useContext(UseAppContext);
+
+  const sumTam = () => {
+    if(tam < 20){
+      setTam(tam+1)
+    }
+  }
+
+  const resTam = () => {
+    if(tam > 12){
+      setTam(tam-1)
+    }
+  }
 
   const handleLogout = async () => {
     try {
@@ -107,12 +121,12 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
-                  <NavLink className="nav-link" aria-current="page"
-                    to="/about"  style={{ color: 'white', display: "flex", flexDirection: "row"}}>
-                    <div>A+</div>
-                    <div style={{ marginLeft: "16px"}}>A</div>
-                    <div style={{ marginLeft: "16px"}}>A-</div>
-                  </NavLink>
+                  <div className="nav-link"
+                    style={{ color: 'white', display: "flex", flexDirection: "row"}}>
+                    <div onClick={sumTam} style={{cursor: 'pointer'}}>A+</div>
+                    <div onClick={()=>setTam(16)} style={{ marginLeft: "16px", cursor: 'pointer'}}>A</div>
+                    <div onClick={resTam} style={{ marginLeft: "16px", cursor: 'pointer'}}>A-</div>
+                  </div>
                 </li>
               </ul>
             </div>

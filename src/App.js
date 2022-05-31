@@ -1,4 +1,4 @@
-import { React } from "react";
+import React, {useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "./Components/Auth/Login/Login";
 import { Register } from "./Components/Auth/Register/Register";
@@ -13,13 +13,16 @@ import { MisProductos } from "./Components/Users/MisProductos/MisProductos.jsx";
 import { AppContext } from "./Business/Context/AppContext";
 import { Contact } from "./Components/Others/Contact"
 import { About } from "./Components/Others/About.jsx"
-
 import { Policies } from "./Components/Others/Policies"
 
+
 function App() {
+  const [tam, setTam] = useState(16)
+
   return (
     <AuthProvider>
-      <AppContext>
+      <AppContext tam={tam} setTam={setTam}>
+      <div style={{fontSize: `${tam}px`}}>
         <Routes>
         <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -76,6 +79,7 @@ function App() {
             <Route path="misProductos" element={<MisProductos />} />
           </Route>
         </Routes>
+      </div>
       </AppContext>
     </AuthProvider>
   );

@@ -9,7 +9,7 @@ import { updatePoS } from '../../Firebase/updatePoS'
 import { readProducts, readServices} from "../../Firebase/readDoc";
 import { getUser } from "../../Firebase/getUser"
 
-const AppContext = ({children}) => {
+const AppContext = ({tam, setTam, children}) => {
     const { user } = useAuth();
     const [arrayProducts, setArrayProducts] = useState([]);
     const [searchProducts, setSearchProducts] = React.useState('');
@@ -144,7 +144,7 @@ const AppContext = ({children}) => {
             setFilterServices,
             active, 
             setActive,
-            
+            tam, setTam,
 
             extractProfile,
             products: state.products,
