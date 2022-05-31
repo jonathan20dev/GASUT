@@ -7,7 +7,7 @@ const icons = require.context('../../Assets/icons', true);
 
 export const DropdownMenuProduct = () => {
 
-    const { searchProduct, setSearchProducts } = React.useContext(UseAppContext);
+    const { searchProduct, setSearchProducts, user } = React.useContext(UseAppContext);
 
     const onSearchValueChange = (event) => {
         setSearchProducts(event.target.value);
@@ -36,7 +36,7 @@ export const DropdownMenuProduct = () => {
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
                     </form>
                     <h5 className='text-uppercase fw-bold mt-5'>Ubicación</h5>
-                    <p>Productos cercanos a Aguas Zarcas</p>
+                    <p>Productos cercanos a {(user.distrito !== "")? user.distrito: user.provincia}</p>
                     <h5 className='text-uppercase fw-bold mt-5 mb-3'>Categorías</h5>
                     {
                         items.map( ({ id, name, image }) => <CategoryProduct key={ id } name={ name } image={ image } />)

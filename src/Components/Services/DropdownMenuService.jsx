@@ -7,7 +7,7 @@ const icons = require.context('../../Assets/icons', true);
 
 export const DropdownMenuService = () => {
 
-    const { searchServices, setSearchServices, active } = React.useContext(UseAppContext);
+    const { searchServices, setSearchServices, active, user } = React.useContext(UseAppContext);
     
     const onSearchValueChange = (event) => {
         setSearchServices(event.target.value);
@@ -36,7 +36,7 @@ export const DropdownMenuService = () => {
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
                     </form>
                     <h5 className='text-uppercase fw-bold mt-5'>Ubicación</h5>
-                    <p>Servicios cercanos a Aguas Zarcas</p>
+                    <p>Servicios cercanos a {(user.distrito !== "")? user.distrito: user.provincia}</p>
                     <h5 className='text-uppercase fw-bold mt-5 mb-3'>Categorías</h5>
                     {
                         items.map( ({ id, name, image }) => <CategoryService key={ id } name={ name } image={ image } />)
