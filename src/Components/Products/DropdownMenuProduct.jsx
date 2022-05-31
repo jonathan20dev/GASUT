@@ -7,7 +7,7 @@ const icons = require.context('../../Assets/icons', true);
 
 export const DropdownMenuProduct = () => {
 
-    const { searchProduct, setSearchProducts } = React.useContext(UseAppContext);
+    const { searchProducts, setSearchProducts } = React.useContext(UseAppContext);
 
     const onSearchValueChange = (event) => {
         setSearchProducts(event.target.value);
@@ -30,7 +30,7 @@ export const DropdownMenuProduct = () => {
                         className="form-control"
                         id="search"
                         placeholder="Buscar"
-                        value={searchProduct} 
+                        value={searchProducts} 
                         onChange={onSearchValueChange}
                     />
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
