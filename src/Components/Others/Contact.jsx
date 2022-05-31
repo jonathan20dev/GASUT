@@ -14,46 +14,43 @@ export const Contact = () => {
     <div className="mt-5 text-center cards-center">
         <h2 className='fw-bold'>Contáctanos</h2>
         <div style={{marginTop: '45px', marginBottom: '70px'}}>
-    <div className="row">
-        <div className="row mb-4">
-        </div>
-    </div>
-    <div className="row">
-        <div className="row row-cols-2 row-cols-md-3 d-md-flex mx-auto justify-content-md-center" style={{maxWidth: '700px'}}>
-        {integrantes.map((inte, index) => {
-            return <a key={index} className="col mb-0" href={inte.linkedin}>
-            <div className="text-center"><img className="rounded mb-2 fit-cover" width={150} height={150} src={inte.img} alt="integrante"/>
-            <h5 className="fw-bold mb-0"><strong>{inte.nombre}</strong></h5>
-            <p className="text-muted mb-3">{inte.puesto}</p>
+            <div className="row">
+                <div className="row mb-4">
+                </div>
             </div>
-            </a>})}
+            <div className="row">
+                <div className="row row-cols-2 row-cols-md-3 d-md-flex mx-auto justify-content-md-center" style={{maxWidth: '700px'}}>
+                    {integrantes.map((inte, index) => {
+                    return <a key={index} className="col mb-0" href={inte.linkedin}>
+                    <div className="text-center"><img className="rounded mb-2 fit-cover" width={150} height={150} src={inte.img} alt="integrante"/>
+                    <h5 className="fw-bold mb-0"><strong>{inte.nombre}</strong></h5>
+                    <p className="text-muted mb-3">{inte.puesto}</p>
+                    </div>
+                    </a>})}
+                </div>
+            </div>  
         </div>
-        </div>
-        
-    </div>
         
         <div className='row justify-content-evenly row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-4 m-5'>
             <div className='px-5'>
                 <h5>VISITANOS</h5>
                 <p className='mb-0'>San Carlos, de la inglesia</p>
                 <p className='mb-0'>100 metros norte</p>
-
             </div>
             <div className='px-5'>
                 <h5>HORARIO</h5>
                 <p className='mb-1'>Lun - Vier: 7:00 - 3:00</p>
                 <p className='mb-1'>Sábados: 9:00 - 3:00</p>
-
             </div>
             <div>
                 <h5>SERVICIO AL CLIENTE</h5>
                 <p className='mb-1'>2465-1212</p>
                 <p className='mb-1'>2465-1313</p>
-                <p className='mb-1'>gasut@web.com</p>
-                
+                <p className='mb-1'>gasut@web.com</p>  
             </div> 
         </div>    
     </div>
+
     <Footer/>
     </>
   )

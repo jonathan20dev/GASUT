@@ -5,6 +5,7 @@ import { Modal } from '../Shared/Modal';
 import { ProductCard } from './ProductCard';
 import { Header } from "../Shared/Header/Header"
 import { Footer } from "../Shared/Footer"
+import { NothingFound } from '../Shared/NothingFound';
 import { useAuth } from "../../Business/Context/AuthContext"
 
 const ProductScreen = () => {
@@ -14,23 +15,34 @@ const ProductScreen = () => {
 
   return (
     <>
-    <Header/>
-      <Categories page='products' />
-      <div className="grid-product g-4 mt-5">
-        {
-          searchedProducts.map( product => <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.nombre}
-            img={product.img}
-          />)
-        }
-        {
-          openModal.modalPS && <Modal page='products' />
-        }
+      <Header/>
+      <div className='container-lg mt-5 mb-5 d-flex'>
+        <div className='cards-center gap-4 flex-ps'>
+          <Categories page='products' />
+          {
+            (searchedProducts.length !== 0) 
+              ? <div className="grid-service g-4">
+              {
+                searchedProducts.map( service => <ProductCard
+                  key={service.id}
+                  id={service.id}
+                  name={service.nombre}
+                  img={service.img}
+                  nameOwner = {service.nombre_propietario}
+                  imgOwner = {service.img_propietario}
+                />)
+              }
+              {
+                openModal.modalPS && <Modal page='services' />
+              }
+            </div>
+              : <NothingFound />
+          }
+        </div>
       </div>
       <Footer/>
     </>
+    
   )
 }
 

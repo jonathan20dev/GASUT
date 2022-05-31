@@ -16,7 +16,7 @@ export const DropdownMenuProduct = () => {
     const items = categories.filter(item => item.page === 'products');
 
     return (
-        <div className="dropdown-merge">
+        <div className="dropdown mb-3">
             <div
                 
                 timeout={500}
