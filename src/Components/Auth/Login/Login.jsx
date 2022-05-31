@@ -29,6 +29,7 @@ const Login = () => {
     const handleGoogleSignin = async () => {
     try {
         await loginWithGoogle();
+        console.log('SIGUE INSERTAR EN FB')
         insertUserFB()
         navigate("/");
         

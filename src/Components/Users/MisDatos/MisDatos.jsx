@@ -5,9 +5,11 @@ import { locations } from "../../../Assets/UbicacionesCR/ubicacionesCR";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { AcceptAlert } from "../../Shared/AcceptAlert/AcceptAlert";
 import { Modal } from "../../Shared/Modal/Modal";
+import { useAuth } from "../../../Business/Context/AuthContext";
 
 function MisDatos() {
   const { extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
+  const { setRegistrado } = useAuth()
   const [userP, setUser] = useState({
     id: "",
     img: "",
@@ -44,6 +46,7 @@ function MisDatos() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     insertUser(userP.id, userP);
+    setRegistrado(userP)
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
   };

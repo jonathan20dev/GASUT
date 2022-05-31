@@ -7,7 +7,6 @@ const AcceptAlert = ({mensaje}) => {
     const { openModal, setOpenModal } = useContext(UseAppContext);
     const Aceptar = () => {
         setOpenModal({ ...openModal, modal3: false });
-        console.log(openModal)
       };
   return (
     <div className="acceptAlert">
