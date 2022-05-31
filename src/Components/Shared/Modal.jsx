@@ -21,14 +21,14 @@ export const Modal = ({ page }) => {
     return (
         <>
         <Modicon>
-            <div className='mt-5 main-modal'>
+            <div className='main-modal'>
                 <div className='icon-exit'>
                     <img src={icons('./x.svg')} className="icon" alt="Cerrar Modal" onClick={handleModal}/>
                 </div>
                 <div className='content-modal'>
-                    <div className=''>
-                        <div className='modal-cards m-3 p-1'>
-                            <img src={ img } className="card-img-top" alt="Planta" /> 
+                    <div className='d-flex justify-content-center' >
+                        <div className='modal-cards m-3 p-1 d-flex justify-content-center'>
+                            <img src={ img } style={{width: 'auto', maxWidth: '100%'}} className="card-img-top" alt="Planta" /> 
                         </div>
                     </div>
 

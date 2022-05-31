@@ -79,12 +79,11 @@ p {
 }
 
 .main-modal {
-  max-height: calc(100vh - 210px);
+  max-height: calc(100vh - 100px); 
   overflow-y: auto;
   display: block;
   background-color: var(--white);
   position: fixed;
-  top: -15px;
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 12px;
