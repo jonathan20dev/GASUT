@@ -79,7 +79,7 @@ const AppContext = ({tam, setTam, children}) => {
     };
 
     const getUserDocument = async (coleccion) => {
-        const docu = await getUserCollection(user.reloadUserInfo.localId, coleccion)
+        const docu = await getUserCollection(user.id || user.reloadUserInfo.localId, coleccion)
         dispatch({
             type: (coleccion === "Productos")?'GET_PRODUCTS':'GET_SERVICES',
             payload: docu
