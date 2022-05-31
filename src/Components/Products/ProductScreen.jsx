@@ -32,7 +32,7 @@ const ProductScreen = () => {
                 />)
               }
               {
-                openModal.modalPS && <Modal page='services' />
+                openModal.modalPS && <Modal page='products' />
               }
             </div>
               : <NothingFound />
