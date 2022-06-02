@@ -28,6 +28,8 @@ import { NothingFound } from '../Shared/NothingFound';
                   img={service.img}
                   nameOwner = {service.nombre_propietario}
                   imgOwner = {service.img_propietario}
+                  likes = {service.likes}
+                  service = {service}
                 />)
               }
               {
