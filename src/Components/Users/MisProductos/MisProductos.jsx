@@ -207,7 +207,7 @@ function MisProductos() {
               "Hogar",
               "Jardinería",
               "Prendas de vestir",
-              "Otro",
+              "Otros",
             ]}
             elemento={"producto"}
           />
