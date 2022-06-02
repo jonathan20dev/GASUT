@@ -37,32 +37,35 @@ function MisServicios() {
 
   return (
     <div className="container">
-      <div className="justify-content-start">
+      <div style={{display: 'flex', flexDirection: 'row'}}>
         <Button
           clase={"btn btn-primary"}
           texto={"Nuevo servicio"}
           accion={onClickButton}
           color={'#395B45'}
         />
-        <div className="btn btn-sm btn-outline-light" type="button">
-        <div className="nav-item dropdown">
-        <div style={{textDecoration: 'none', fontSize:"17px", color: 'black'}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" ><i className="bi bi-filter-left"></i>ordenar por</div>
-          <ul className="dropdown-menu" style={{fontSize:"14px"}} aria-labelledby="navbarDropdownMenuLink">
-            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre",">")}>Nombre A-Z</button></li>
-            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre","<")}>Nombre Z-A</button></li>
-            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria",">")}>Categoría A-Z</button></li>
-            <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria","<")}>Categoría Z-A</button></li>
-          </ul>
-        </div>
-        </div>
+        
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
 
-        <div className="btn btn-sm btn-outline-light">
-              <form className="d-flex">
-                <input className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Tienes "+userServiceSearch.length+ (userServiceSearch.length !== 1?" servicios":" servicio")} aria-label="Search"/>
-                <button className="btn btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
+          <div className="btn btn-sm btn-outline-light" type="button">
+          <div className="nav-item dropdown">
+          <div style={{textDecoration: 'none', fontSize:"17px", color: 'black'}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" ><i className="bi bi-filter-left"></i>ordenar por</div>
+            <ul className="dropdown-menu" style={{fontSize:"14px"}} aria-labelledby="navbarDropdownMenuLink">
+              <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre",">")}>Nombre A-Z</button></li>
+              <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "nombre","<")}>Nombre Z-A</button></li>
+              <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria",">")}>Categoría A-Z</button></li>
+              <li><button className="dropdown-item" onClick={()=>handleSort("services", services, "categoria","<")}>Categoría Z-A</button></li>
+            </ul>
+          </div>
+          </div>
 
+          <div className="btn btn-sm btn-outline-light">
+                <form className="d-flex">
+                  <input style={{height: "37px"}} className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Buscar..."} aria-label="Search"/>              
+              </form>
+          </div>
+
+        </div>
       </div>
       
       {(userServiceSearch !== undefined && services.length > 0 )?
@@ -83,8 +86,8 @@ function MisServicios() {
             nombre: '',
             categoria: '',
             descripcion: "",
-            id_propietario: user.id}} 
-            categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura']} 
+            id_propietario: user.id, likes: 0}} 
+            categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura']}
             elemento={'servicio'}/>
         </Modal>
       )}

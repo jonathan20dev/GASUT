@@ -101,8 +101,7 @@ function MisProductos() {
 
         <div className="btn btn-sm btn-outline-light">
               <form className="d-flex">
-                <input className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Tienes "+userProductSearch.length+ (userProductSearch.length !== 1?" productos":" producto")} aria-label="Search"/>
-                <button className="btn btn btn-outline-success" type="submit">Buscar</button>
+                <input style={{height: "37px"}} className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Buscar..."} aria-label="Search"/>
             </form>
         </div>
       </div>
