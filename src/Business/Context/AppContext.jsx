@@ -10,7 +10,7 @@ import { readProducts, readServices} from "../../Firebase/readDoc";
 import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({tam, setTam, children}) => {
-    const { user } = useAuth();
+    const { user, setUser } = useAuth();
     const initialState  = {
         products:[],
         services : [],
@@ -95,6 +95,7 @@ const AppContext = ({tam, setTam, children}) => {
         const array = (coleccion === "Productos")? state.products : state.services
         await insertDocument(coleccion, objeto)
         const arregloFull = [...array, objeto]
+        coleccion === "Productos"? setUserProductSearch(arregloFull) : setUserServiceSearch(arregloFull)
         dispatch({
             type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
@@ -109,7 +110,7 @@ const AppContext = ({tam, setTam, children}) => {
                 x = objeto
             }
             return x
-        })] 
+        })]
         coleccion === "Productos"? setUserProductSearch(arregloModificado) : setUserServiceSearch(arregloModificado)
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
@@ -196,6 +197,7 @@ const AppContext = ({tam, setTam, children}) => {
             insertDoc,
             deleteDoc,
             user,
+            setUser,
             updateDoc,
             updateUser
         }}>
