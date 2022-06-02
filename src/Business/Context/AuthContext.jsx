@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
       if (registrado !== null && user !== null) {
         insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: user.codigo_postal, correo: user.email, img: user.img, nombre: user.nombre, telefono: user.telefono, direccion: user.direccion, provincia: user.provincia, canton: user.canton, distrito: user.distrito})
       }
-    })
+    })  
     obtenerUsuario()
   }
 
