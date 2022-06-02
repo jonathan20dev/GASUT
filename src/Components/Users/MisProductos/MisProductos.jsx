@@ -102,7 +102,7 @@ function MisProductos() {
             categoria: '',
             descripcion: "",
             cantidad: 0, id_propietario: user.id}} 
-            categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']} 
+            categorias={['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otros']} 
             elemento={'producto'}/>
         </Modal>
       )}

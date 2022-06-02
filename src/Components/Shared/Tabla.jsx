@@ -99,7 +99,7 @@ function Tabla({ titulos, filas }) {
     }
     {openModal.modal2 && paginado.objeto !=={} &&  (
         <Modal>
-          <EditForm objeto={paginado.objeto} categorias={(titulos.length===5)? ['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otro']:['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura', 'Otro']} elemento={(titulos.length===5)? "producto":"servicio"}/>
+          <EditForm objeto={paginado.objeto} categorias={(titulos.length===5)? ['Deportivos', 'Electrónicos', 'Hogar', 'Jardinería', 'Prendas de vestir', 'Otros']:['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura']} elemento={(titulos.length===5)? "producto":"servicio"}/>
         </Modal>
       )}
     </>

@@ -58,6 +58,7 @@ function MisServicios() {
           <CreateForm objeto={{img: '',
             nombre: '',
             categoria: '',
+            likes: 0,
             descripcion: "",
             id_propietario: user.id}} 
             categorias={['Autónomo', 'Costura', 'Guarañar', 'Limpieza', 'Pintar', 'Manicura']} 

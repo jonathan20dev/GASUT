@@ -8,7 +8,7 @@ import { Modal } from "../../Shared/Modal/Modal";
 import { useAuth } from "../../../Business/Context/AuthContext";
 
 function MisDatos() {
-  const { extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
+  const { extractProfile, openModal, setOpenModal, updateUser } = useContext(UseAppContext);
   const { setRegistrado } = useAuth()
   const [userP, setUser] = useState({
     id: "",
@@ -47,6 +47,7 @@ function MisDatos() {
     e.preventDefault();
     insertUser(userP.id, userP);
     setRegistrado(userP)
+    updateUser()
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
   };

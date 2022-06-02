@@ -1,5 +1,5 @@
 import React, {useReducer, useState, useEffect} from 'react'
-import {UseAppContext} from "./UseAppContext"
+import { UseAppContext } from "./UseAppContext"
 import collectionReducer from "./collectionReducer"
 import { getUserCollection } from "../../Firebase/getUserDocs"
 import { useAuth } from "./AuthContext"
@@ -108,6 +108,33 @@ const AppContext = ({tam, setTam, children}) => {
         })
     }
 
+    const updateUser = async () => {
+        const usuario = await getUser(user.id || user.reloadUserInfo.localId);
+        console.log(usuario)
+        const arregloModificadoP = arrayProducts.map(product => {
+            if(usuario.id === product.id_propietario){
+                product.nombre_propietario = usuario.nombre
+                product.telefono = usuario.telefono
+                product.correo = usuario.correo
+                product.ubicacion = `${!!usuario.provincia ? usuario.provincia : "" } ${!!usuario.canton ? usuario.canton : ""} ${!!usuario.distrito ? usuario.distrito : ""}`
+                console.log(product)
+            }
+            return product
+        })
+        setArrayProducts(arregloModificadoP);
+        const arregloModificadoS = arrayServices.map(service => {
+            if(user.id === service.id_propietario){
+                service.nombre_propietario = usuario.nombre
+                service.telefono = usuario.telefono
+                service.correo = usuario.correo
+                service.img_propietario = usuario.img
+                service.ubicacion = `${!!usuario.provincia ? usuario.provincia : "" } ${!!usuario.canton ? usuario.canton : ""} ${!!usuario.distrito ? usuario.distrito : ""}`
+            }
+            return service
+        })
+        setArrayServices(arregloModificadoS);
+    }
+
     const deleteDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
         deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
@@ -158,6 +185,7 @@ const AppContext = ({tam, setTam, children}) => {
             deleteDoc,
             user,
             updateDoc,
+            updateUser,
         }}>
             {children}
         </UseAppContext.Provider>
