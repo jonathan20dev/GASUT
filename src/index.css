@@ -38,7 +38,6 @@ p {
   width: 100%;
 }
 
-
 .input-icon {
   position: absolute;
   left: 5px;
@@ -160,6 +159,34 @@ p {
   position: absolute;
   top: 2px;
   left: 60px;
+}
+
+.contenedorAccionesP {
+  display: flex;
+  height: auto;
+}
+
+.contenedorFiltros {
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end
+}
+
+.botonNuevo{
+  width: 200px;
+}
+
+@media(max-width: 768px) {
+  .contenedorAccionesP {
+    flex-direction: column;
+  }
+  .contenedorFiltros {
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  .botonNuevo {
+    width: 100%;
+  }
 }
 
 @media(min-width: 1127px) {

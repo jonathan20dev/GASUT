@@ -37,7 +37,7 @@ export const DropdownMenuProduct = () => {
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
                     </form>
                     <h5 className='text-uppercase fw-bold mt-5'>Ubicación</h5>
-                    <p>Productos cercanos a {user.distrito}</p>
+                    {(user.distrito !== "")? <p>Productos cercanos a {user.distrito}</p>: <p>Selecciona una ubicación en tú perfil.</p>}
                     <h5 className='text-uppercase fw-bold mt-5 mb-3'>Categorías</h5>
                     {
                         items.map( ({ id, name, image }) => <CategoryProduct key={ id } name={ name } image={ image } />)
