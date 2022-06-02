@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
@@ -6,7 +6,8 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisServicios() {
-  const { services, user,getUserDocument, handleSort, openModal, setOpenModal} =
+  const [busqueda, setBusqueda] = useState("")
+  const { services, user, getUserDocument, handleSort, openModal, setOpenModal, setUserServiceSearch, userServiceSearch} =
     useContext(UseAppContext);
   useEffect(() => {
     getUserDocument('Servicios');
@@ -18,6 +19,21 @@ function MisServicios() {
       modal1:true
     })
   };
+
+  const handleSearch = (e) => {
+    setBusqueda(e.target.value)
+    filtrar(e.target.value)
+  }
+
+  const filtrar = (busca) => {
+        const busquedaResuelta = services.filter(service => {
+          if(service.nombre.toLowerCase().includes(busca.toLowerCase())
+          || service.categoria.toLowerCase().includes(busca.toLowerCase())
+          ){return service
+          }
+        })
+        setUserServiceSearch(busquedaResuelta)
+  }
 
   return (
     <div className="container">
@@ -39,12 +55,20 @@ function MisServicios() {
           </ul>
         </div>
         </div>
+
+        <div className="btn btn-sm btn-outline-light">
+              <form className="d-flex">
+                <input className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Tienes "+userServiceSearch.length+ " servicios"} aria-label="Search"/>
+                <button className="btn btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+
       </div>
       
-      {(services !== undefined && services.length > 0 )?
+      {(userServiceSearch !== undefined && services.length > 0 )?
       <Tabla
         titulos={["Imagen", "Nombre", "Categoría", "Descripción"]}
-        filas={services}
+        filas={userServiceSearch}
       />
       :
       <div className="row mb-4">

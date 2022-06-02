@@ -85,7 +85,7 @@ function Tabla({ titulos, filas }) {
         </tbody>
       </table>
     </div>
-      {(filas !== undefined)? <i>Has publicado {filas.length} {(titulos.length > 4)? <i>productos</i>: <i>servicios</i> }</i>: <p>0</p>}
+      {(filas !== undefined)? <i>Hay {filas.length} {(filas.length !== 1)? "resultados": "resultado"} </i>: <p>0</p>}
        {/* Paginación */}
         {(filas !== undefined)? <Paginacion paginado={paginado} cant = {cant} setPaginado={setPaginado} arreglo = {filas.filter((el,index) => {
               if(index < filas.length /cant){

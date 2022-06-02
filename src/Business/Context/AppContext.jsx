@@ -15,6 +15,9 @@ const AppContext = ({tam, setTam, children}) => {
         products:[],
         services : [],
     }
+    const [userProductSearch, setUserProductSearch ] = useState([])
+    const [userServiceSearch, setUserServiceSearch ] = useState([])
+
     const [state, dispatch] = useReducer(collectionReducer, initialState)
     const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
 
@@ -81,6 +84,7 @@ const AppContext = ({tam, setTam, children}) => {
 
     const getUserDocument = async (coleccion) => {
         const docu = await getUserCollection(user.id || user.reloadUserInfo.localId, coleccion)
+        coleccion === "Productos"? setUserProductSearch(docu) : setUserServiceSearch(docu)
         dispatch({
             type: (coleccion === "Productos")?'GET_PRODUCTS':'GET_SERVICES',
             payload: docu
@@ -95,16 +99,21 @@ const AppContext = ({tam, setTam, children}) => {
             type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
         })
-        (coleccion === "Productos")? setSearchProducts([...searchProducts, objeto]) : setSearchServices([...searchServices, objeto])
     }
 
     const updateDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
         await updatePoS(objeto.id, objeto, coleccion)
-        const arregloFull = [...array.filter(x => x.id !==objeto.id), objeto]
+        const arregloModificado = [...array.map(x => {
+            if(x.id === objeto.id){
+                x = objeto
+            }
+            return x
+        })] 
+        coleccion === "Productos"? setUserProductSearch(arregloModificado) : setUserServiceSearch(arregloModificado)
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
-            payload: arregloFull
+            payload: arregloModificado
         })
     }
 
@@ -112,6 +121,7 @@ const AppContext = ({tam, setTam, children}) => {
         const array = (coleccion === "Productos")? state.products : state.services
         deleteDocument(coleccion, objeto.id) //Comenten esta linea si no quieren eliminar de la bd, pero si del array
         const arregloAux = array.filter(el => el.id !== objeto.id)
+        coleccion === "Productos"? setUserProductSearch(arregloAux) : setUserServiceSearch(arregloAux)
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
             payload: arregloAux
@@ -147,6 +157,10 @@ const AppContext = ({tam, setTam, children}) => {
             setActive,
             tam, setTam,
 
+            setUserServiceSearch,
+            userServiceSearch,
+            setUserProductSearch,
+            userProductSearch,
             extractProfile,
             products: state.products,
             services: state.services,

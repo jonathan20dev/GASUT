@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
@@ -6,7 +6,8 @@ import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
 
 function MisProductos() {
-  const {products, user,getUserDocument, handleSort } = useContext(UseAppContext)
+  const {products, user,getUserDocument, handleSort, userProductSearch, setUserProductSearch } = useContext(UseAppContext)
+  const [busqueda, setBusqueda] = useState("")
   
   useEffect(() => {
     getUserDocument('Productos');
@@ -21,15 +22,30 @@ function MisProductos() {
       })
   };
 
+  const handleSearch = (e) => {
+    setBusqueda(e.target.value)
+    filtrar(e.target.value)
+  }
+
+  const filtrar = (busca) => {
+        const busquedaResuelta = products.filter(product => {
+          if(product.nombre.toLowerCase().includes(busca.toLowerCase())
+          || product.categoria.toLowerCase().includes(busca.toLowerCase())
+          ){return product
+          }
+        })
+        setUserProductSearch(busquedaResuelta)
+  }
+
   return (
     <div className="container">
-      <div className="justify-content-start">
-      <Button
-        clase={"btn btn-primary"}
-        texto={"Nuevo producto"}
-        accion={onClickButton}
-        color={'#395B45'}
-      />
+      <div className="justify-content">
+        <Button
+          clase={"btn btn-primary"}
+          texto={"Nuevo producto"}
+          accion={onClickButton}
+          color={'#395B45'}
+        />
         <div className="btn btn-sm btn-outline-light" type="button">
           <div className="nav-item dropdown">
             <div
@@ -82,12 +98,19 @@ function MisProductos() {
             </ul>
           </div>
         </div>
+
+        <div className="btn btn-sm btn-outline-light">
+              <form className="d-flex">
+                <input className="form-control me-2" type="search" value={busqueda} onChange={handleSearch} placeholder={"Tienes "+userProductSearch.length+ " productos"} aria-label="Search"/>
+                <button className="btn btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
       </div>
       
-      {(products !== undefined && products.length > 0 )?
+      {(userProductSearch !== undefined && products.length > 0 )?
       <Tabla
         titulos={["Imagen", "Nombre", "Categoría", "Descripción", "Cantidad"]}
-        filas={products}
+        filas={userProductSearch}
       /> : 
       <div className="row mb-4">
       <div className="text-center mx-auto">
