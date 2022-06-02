@@ -8,9 +8,9 @@ import { Modal } from "../../Shared/Modal/Modal";
 import { useAuth } from "../../../Business/Context/AuthContext";
 
 function MisDatos() {
-  const { extractProfile, openModal, setOpenModal } = useContext(UseAppContext);
+  const { extractProfile, openModal, setOpenModal, setUser } = useContext(UseAppContext);
   const { setRegistrado } = useAuth()
-  const [userP, setUser] = useState({
+  const [userP, setUserP] = useState({
     id: "",
     img: "",
     nombre: "",
@@ -34,7 +34,7 @@ function MisDatos() {
   useEffect(() => {
     const obtenerUsuario = async () => {
       const u = await extractProfile();
-      setUser(u);
+      setUserP(u);
       setUbicacionU({
         ...ubicacionU,
         provinciaU: u.provincia,
@@ -47,6 +47,7 @@ function MisDatos() {
     e.preventDefault();
     insertUser(userP.id, userP);
     setRegistrado(userP)
+    setUser(userP)
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
   };
@@ -63,7 +64,7 @@ function MisDatos() {
               id="name"
               name="name"
               value={userP.nombre}
-              onChange={(e) => setUser({ ...userP, nombre: e.target.value })}
+              onChange={(e) => setUserP({ ...userP, nombre: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
           </div>
@@ -77,7 +78,7 @@ function MisDatos() {
               className="form-control"
               type="tel"
               value={userP.telefono}
-              onChange={(e) => setUser({ ...userP, telefono: e.target.value })}
+              onChange={(e) => setUserP({ ...userP, telefono: e.target.value })}
               style={{ borderRadius: "5px" }}
             />
           </div>
@@ -90,7 +91,7 @@ function MisDatos() {
               type="number"
               value={userP.codigo_postal}
               onChange={(e) =>
-                setUser({ ...userP, codigo_postal: e.target.value })
+                setUserP({ ...userP, codigo_postal: e.target.value })
               }
               style={{ borderRadius: "5px" }}
             />
@@ -108,9 +109,8 @@ function MisDatos() {
                 style={{ borderRadius: "5px" }}
                 value={userP.provincia}
                 onChange={(e) => {
-                  setUser({ ...userP, provincia: e.target.value });
+                  setUserP({ ...userP, provincia: e.target.value });
                   setUbicacionU({ ...ubicacionU, provinciaU: e.target.value });
-                  console.log(userP, ubicacionU);
                 }}
               >
                 {
@@ -135,9 +135,8 @@ function MisDatos() {
                 style={{ borderRadius: "5px"}}
                 value={userP.canton}
                 onChange={(e) => {
-                  setUser({ ...userP, canton: e.target.value });
+                  setUserP({ ...userP, canton: e.target.value });
                   setUbicacionU({ ...ubicacionU, cantonU: e.target.value });
-                  console.log(userP, ubicacionU);
                 }}
               >
                 {
@@ -163,9 +162,8 @@ function MisDatos() {
                 style={{ borderRadius: "5px" }}
                 value={userP.distrito}
                 onChange={(e) => {
-                  setUser({ ...userP, distrito: e.target.value });
+                  setUserP({ ...userP, distrito: e.target.value });
                   setUbicacionU({ ...ubicacionU, distritoU: e.target.value });
-                  console.log(userP, ubicacionU);
                 }}
               >
                 {
@@ -194,7 +192,7 @@ function MisDatos() {
               className="form-control"
               value={userP.direccion}
               style={{ borderRadius: "5px", height: "88.4%", resize: 'none' }}
-              onChange={(e) => setUser({ ...userP, direccion: e.target.value })}
+              onChange={(e) => setUserP({ ...userP, direccion: e.target.value })}
             ></textarea>
           </div>
         </div>

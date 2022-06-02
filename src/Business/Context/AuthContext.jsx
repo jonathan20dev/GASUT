@@ -97,7 +97,8 @@ export function AuthProvider({ children }) {
         resetPassword,
         insertUserFB,
         insertUserRegister,
-        setRegistrado
+        setRegistrado,
+        setUser
       }}
     >
       {children}

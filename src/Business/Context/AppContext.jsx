@@ -10,7 +10,7 @@ import { readProducts, readServices} from "../../Firebase/readDoc";
 import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({tam, setTam, children}) => {
-    const { user } = useAuth();
+    const { user, setUser } = useAuth();
     const initialState  = {
         products:[],
         services : [],
@@ -172,6 +172,7 @@ const AppContext = ({tam, setTam, children}) => {
             insertDoc,
             deleteDoc,
             user,
+            setUser,
             updateDoc,
         }}>
             {children}
