@@ -30,9 +30,11 @@ export function AuthProvider({ children }) {
     setUser(us)
   }
 
-  async function validacion(userAux) {
-    if (userAux !== null){
-      const us = await getUser(userAux.reloadUserInfo.localId)
+  async function validacion(userid) {
+    if (userid !== null){
+      console.log(userid.reloadUserInfo.localId)
+      const us = await getUser(userid.reloadUserInfo.localId)
+      setUser(us)
       setRegistrado(us)
     }
   }
@@ -50,10 +52,8 @@ export function AuthProvider({ children }) {
 
   const insertUserFB = () => {
     const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
-      if (registrado !== null) {
-        insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: registrado.codigo_postal, correo: currentUser.email, img: registrado.img, nombre: currentUser.displayName, telefono: registrado.telefono, direccion: registrado.direccion, provincia: registrado.provincia, canton: registrado.canton, distrito: registrado.distrito})
-      } else {
-        insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: "0000", correo: currentUser.email, img: currentUser.photoURL, nombre: currentUser.displayName, telefono: "0000-0000", direccion: "", provincia: '', canton: '', distrito: ''})
+      if (registrado !== null && user !== null) {
+        insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: user.codigo_postal, correo: user.email, img: user.img, nombre: user.nombre, telefono: user.telefono, direccion: user.direccion, provincia: user.provincia, canton: user.canton, distrito: user.distrito})
       }
     })
     obtenerUsuario()
