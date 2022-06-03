@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
@@ -9,17 +9,11 @@ function MisProductos() {
   const {
     products,
     user,
-    getUserDocument,
     handleSort,
     userProductSearch,
     setUserProductSearch,
   } = useContext(UseAppContext);
   const [busqueda, setBusqueda] = useState("");
-
-  useEffect(() => {
-    getUserDocument("Productos");
-  }, []);
-
   const { openModal, setOpenModal } = useContext(UseAppContext);
 
   const onClickButton = () => {

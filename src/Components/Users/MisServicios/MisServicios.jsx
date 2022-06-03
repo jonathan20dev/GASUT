@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
@@ -10,17 +10,13 @@ function MisServicios() {
   const {
     services,
     user,
-    getUserDocument,
     handleSort,
     openModal,
     setOpenModal,
     setUserServiceSearch,
     userServiceSearch,
   } = useContext(UseAppContext);
-  useEffect(() => {
-    getUserDocument("Servicios");
-  }, []);
-
+  
   const onClickButton = () => {
     setOpenModal({
       ...openModal,
@@ -178,7 +174,8 @@ function MisServicios() {
               categoria: "",
               descripcion: "",
               id_propietario: user.id,
-              likes: 0,
+              likes: 1,
+              likers: [user.id],
             }}
             categorias={[
               "Autónomo",

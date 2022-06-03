@@ -8,8 +8,7 @@ import { Footer } from "../Shared/Footer"
 import { NothingFound } from '../Shared/NothingFound';
 
  const ServiceScreen = () => {
-
-  const { searchedServices, openModal } = React.useContext(UseAppContext);
+  const { openModal, aServices } = React.useContext(UseAppContext);
 
   return (
     <>
@@ -18,11 +17,11 @@ import { NothingFound } from '../Shared/NothingFound';
         <div className='cards-center gap-4 flex-ps'>
           <Categories page='services' />
           {
-            (searchedServices.length !== 0) 
+            (aServices.length !== 0) 
               ? <div className="grid-service g-4">
               {
-                searchedServices.map( service => <ServiceCard
-                  key={service.id}
+                aServices.map( (service, index) => <ServiceCard
+                  key={index}
                   id={service.id}
                   name={service.nombre}
                   img={service.img}

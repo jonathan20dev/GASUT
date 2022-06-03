@@ -22,20 +22,22 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [inicio, setInicio] = useState(false);
   const [loading, setLoading] = useState(true);
   const [registrado, setRegistrado] = useState(null)
 
   async function fetchUser(user) {
     const us = await getUser(user.reloadUserInfo.localId)
     setUser(us)
+    setInicio(true)
   }
 
   async function validacion(userid) {
     if (userid !== null){
-      console.log(userid.reloadUserInfo.localId)
       const us = await getUser(userid.reloadUserInfo.localId)
       setUser(us)
       setRegistrado(us)
+      setInicio(true)
     }
   }
  
@@ -98,7 +100,8 @@ export function AuthProvider({ children }) {
         insertUserFB,
         insertUserRegister,
         setRegistrado,
-        setUser
+        setUser,
+        inicio
       }}
     >
       {children}

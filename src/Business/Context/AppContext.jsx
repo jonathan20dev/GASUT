@@ -10,7 +10,7 @@ import { readProducts, readServices} from "../../Firebase/readDoc";
 import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({tam, setTam, children}) => {
-    const { user, setUser } = useAuth();
+    const { user, setUser,inicio } = useAuth();
     const initialState  = {
         products:[],
         services : [],
@@ -22,61 +22,55 @@ const AppContext = ({tam, setTam, children}) => {
     const [openModal, setOpenModal] = useState({modal1:false, modal2:false, modal3: false, modalPS: false});
 
     const [arrayProducts, setArrayProducts] = useState([]);
-    const [searchProducts, setSearchProducts] = React.useState('');
-    const [arrayServices, setArrayServices] = useState([]);
-    const [searchServices, setSearchServices] = React.useState('');
+    const [aProducts, setAProducts] = useState([]);
     const [filterProducts, setFilterProducts] = React.useState('todo');
+    
+    const [arrayServices, setArrayServices] = useState([]);
+    const [aServices, setAServices] = useState([]);
     const [filterServices, setFilterServices] = React.useState('todo');
+
     const [active, setActive] = React.useState(null);
 
     useEffect(() => {
-        async function fetchProducts() {
-        const getProducts = await readProducts();
-        setArrayProducts(getProducts);
+        if(user!==null){
+            async function fetchGeneral() {
+                const getProducts = await readProducts();
+                const getServices = await readServices();
+
+                setArrayProducts(getProducts);
+                setAProducts(getProducts)
+
+                setArrayServices(getServices);
+                setAServices(getServices)}
+            fetchGeneral();
         }
-        fetchProducts();
-    }, [state.products]);
+        
+    }, [inicio]);
 
     useEffect(() => {
-        async function fetchServices() {
-        const getServices = await readServices();
-        setArrayServices(getServices);
-    }
-    fetchServices();
-    }, [state.services]);
+        if(user !== null){
+            async function fetchInternal() {
+                const ds = await getUserCollection(user.id, "Servicios")
+                const dp = await getUserCollection(user.id, "Productos")
+                
+                setUserProductSearch(dp)
+                setUserServiceSearch(ds)
 
-    let searchedProducts = [];
+                dispatch({
+                        type: 'GET_PRODUCTS',
+                        payload: dp
+                    })
 
-    if (!searchProducts.length >= 1) {
-      searchedProducts = arrayProducts;
-    } else {
-      searchedProducts = arrayProducts.filter(product => {
-        const productName = product.nombre.toLowerCase();
-        const searchName = searchProducts.toLowerCase();
-        return productName.includes(searchName);
-      });
-    }
-  
-    let searchedServices = [];
-  
-    if (!searchServices.length >= 1) {
-      searchedServices = arrayServices;
-    } else {
-      searchedServices = arrayServices.filter(service => {
-        const serviceName = service.nombre.toLowerCase();
-        const searchName = searchServices.toLowerCase();
-        return serviceName.includes(searchName);
-      });
-    }
-  
-    if (filterProducts !== 'todo') {
-      searchedProducts = searchedProducts.filter(product => filterProducts === product.categoria.toLowerCase());
-    }
-  
-    if (filterServices !== 'todo') {
-      searchedServices = searchedServices.filter(service => filterServices === service.categoria.toLowerCase());
-    }
+                dispatch({
+                            type: 'GET_SERVICES',
+                            payload: ds 
+                        })}
+            fetchInternal();
+        }
+    }, [inicio]);
 
+    
+   
     const extractProfile = async () => {
         const usuario = await getUser(user.id || user.reloadUserInfo.localId);
         return usuario
@@ -93,13 +87,22 @@ const AppContext = ({tam, setTam, children}) => {
 
     const insertDoc = async (coleccion, objeto) => {
         const array = (coleccion === "Productos")? state.products : state.services
-        await insertDocument(coleccion, objeto)
+        await updatePoS(objeto.id, objeto, coleccion)
         const arregloFull = [...array, objeto]
         coleccion === "Productos"? setUserProductSearch(arregloFull) : setUserServiceSearch(arregloFull)
         dispatch({
             type:(coleccion === "Productos")? 'INSERT_PRODUCTS' : 'INSERT_SERVICES',
             payload: arregloFull
         })
+        if(coleccion === "Servicios"){
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            setArrayServices([...arrayServices, objS])
+            setAServices([...aServices, objS])
+        }else{
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            setArrayProducts([...arrayProducts, objS]);
+            setAProducts([...aProducts, objS])
+        }
     }
 
     const updateDoc = async (coleccion, objeto) => {
@@ -116,10 +119,39 @@ const AppContext = ({tam, setTam, children}) => {
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
             payload: arregloModificado
         })
+        if(coleccion === "Servicios"){
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            setArrayServices([...arrayServices.map(x => {
+                if(x.id === objS.id){
+                    x = objS
+                }
+                return x
+            })])
+            setAServices([...aServices.map(x => {
+                if(x.id === objS.id){
+                    x = objS
+                }
+                return x
+            })])
+        }else{
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            setArrayProducts([...arrayProducts.map(x => {
+                if(x.id === objS.id){
+                    x = objS
+                }
+                return x
+            })]);
+            setAProducts([...aProducts.map(x => {
+                if(x.id === objS.id){
+                    x = objS
+                }
+                return x
+            })])
+        }
     }
 
     const updateUser = async () => {
-        const usuario = await getUser(user.id || user.reloadUserInfo.localId);
+        const usuario = await getUser(user.id);
         const arregloModificadoP = arrayProducts.map(product => {
             if(usuario.id === product.id_propietario){
                 product.nombre_propietario = usuario.nombre
@@ -151,7 +183,14 @@ const AppContext = ({tam, setTam, children}) => {
         dispatch({
             type:(coleccion === "Productos")? 'GET_PRODUCTS' : 'GET_SERVICES',
             payload: arregloAux
-        }) 
+        })
+        if(coleccion === "Servicios"){
+            setArrayServices([...arrayServices.filter(el => el.id !== objeto.id)])
+            setAServices([...aServices.filter(el => el.id !== objeto.id)])
+        }else{
+            setArrayProducts([...arrayProducts.filter(el => el.id !== objeto.id)]);
+            setAProducts([...aProducts.filter(el => el.id !== objeto.id)])
+        }
     }
 
     const handleSort = (nombre,arreglo, propiedad, s) => {
@@ -167,14 +206,8 @@ const AppContext = ({tam, setTam, children}) => {
         <UseAppContext.Provider value={{
             arrayProducts,
             setArrayProducts,
-            searchedProducts,
-            searchProducts, 
-            setSearchProducts,
             arrayServices,
             setArrayServices,
-            searchedServices,
-            searchServices, 
-            setSearchServices,
             filterProducts, 
             setFilterProducts,
             filterServices, 
@@ -182,6 +215,11 @@ const AppContext = ({tam, setTam, children}) => {
             active, 
             setActive,
             tam, setTam,
+
+            aServices,
+            setAServices,
+            setAProducts,
+            aProducts,
 
             setUserServiceSearch,
             userServiceSearch,
@@ -199,7 +237,8 @@ const AppContext = ({tam, setTam, children}) => {
             user,
             setUser,
             updateDoc,
-            updateUser
+            updateUser,
+            inicio
         }}>
             {children}
         </UseAppContext.Provider>

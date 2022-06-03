@@ -4,10 +4,10 @@ import { ButtonPS } from '../Shared/ButtonPS';
 
 export const ProductCard = ({ id, name, img }) => {
 
-  const { openModal, setOpenModal, searchedProducts, setActive } = React.useContext(UseAppContext);
+  const { openModal, setOpenModal, aProducts, setActive } = React.useContext(UseAppContext);
 
   const handleModal = () => {
-    const active = searchedProducts.find( product => product.id === id );
+    const active = aProducts.find( product => product.id === id );
     setActive(active);
     setOpenModal({...openModal, modalPS: !openModal.modalPS});
   }

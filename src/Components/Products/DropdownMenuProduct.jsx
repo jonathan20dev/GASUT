@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { UseAppContext } from '../../Business/Context/UseAppContext';
 import { categories } from '../../data/categories';
 import { CategoryProduct } from './CategoryProduct';
@@ -7,12 +7,29 @@ import { useAuth } from '../../Business/Context/AuthContext';
 const icons = require.context('../../Assets/icons', true);
 
 export const DropdownMenuProduct = () => {
+    const [busqueda, setBusqueda] = useState("");
     const { user } = useAuth()
-    const { searchProducts, setSearchProducts } = React.useContext(UseAppContext);
+    const { setSearchProducts, setAProducts, arrayProducts } = React.useContext(UseAppContext);
 
     const onSearchValueChange = (event) => {
         setSearchProducts(event.target.value);
     };
+
+    const handleSearch = (e) => {
+        setBusqueda(e.target.value);
+        filtrar(e.target.value);
+      };
+    
+      const filtrar = (busca) => {
+        const busquedaResuelta = arrayProducts.filter((produc) => {
+          if (
+            produc.nombre.toLowerCase().includes(busca.toLowerCase())
+          ) {
+            return produc;
+          }
+        });
+        setAProducts(busquedaResuelta);
+      };
 
     const items = categories.filter(item => item.page === 'products');
 
@@ -31,8 +48,8 @@ export const DropdownMenuProduct = () => {
                         className="form-control"
                         id="search"
                         placeholder="Buscar"
-                        value={searchProducts} 
-                        onChange={onSearchValueChange}
+                        value={busqueda} 
+                        onChange={handleSearch}
                     />
                     <img className="input-icon icon" src={icons('./buscar.svg')} alt="Buscar" />
                     </form>
