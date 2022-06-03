@@ -8,7 +8,7 @@ import { Modal } from "../../Shared/Modal/Modal";
 import { useAuth } from "../../../Business/Context/AuthContext";
 
 function MisDatos() {
-  const { extractProfile, openModal, setOpenModal, setUser } = useContext(UseAppContext);
+  const { extractProfile, openModal, setOpenModal, setUser, updateUser } = useContext(UseAppContext);
   const { setRegistrado } = useAuth()
   const [userP, setUserP] = useState({
     id: "",
@@ -45,8 +45,9 @@ function MisDatos() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    insertUser(userP.id, userP);
+    await insertUser(userP.id, userP);
     setRegistrado(userP)
+    updateUser();
     setUser(userP)
     navigate("/profile/misDatos");
     setOpenModal({...openModal, modal3: true})
