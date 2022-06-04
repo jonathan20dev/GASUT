@@ -10,7 +10,7 @@ import { readProducts, readServices} from "../../Firebase/readDoc";
 import { getUser } from "../../Firebase/getUser"
 
 const AppContext = ({tam, setTam, children}) => {
-    const { user, setUser,inicio } = useAuth();
+    const { user, setUser, inicio } = useAuth();
     const initialState  = {
         products:[],
         services : [],
@@ -30,18 +30,22 @@ const AppContext = ({tam, setTam, children}) => {
     const [filterServices, setFilterServices] = React.useState('todo');
 
     const [active, setActive] = React.useState(null);
+    async function fetchGeneral() {
+        const getProducts = await readProducts();
+        const getServices = await readServices();
+
+        setArrayProducts(getProducts);
+        setAProducts(getProducts)
+
+        setArrayServices(getServices);
+        setAServices(getServices)
+
+        console.log(aProducts)
+        console.log(aServices)
+    }
 
     useEffect(() => {
         if(user!==null){
-            async function fetchGeneral() {
-                const getProducts = await readProducts();
-                const getServices = await readServices();
-
-                setArrayProducts(getProducts);
-                setAProducts(getProducts)
-
-                setArrayServices(getServices);
-                setAServices(getServices)}
             fetchGeneral();
         }
         
@@ -95,11 +99,11 @@ const AppContext = ({tam, setTam, children}) => {
             payload: arregloFull
         })
         if(coleccion === "Servicios"){
-            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`, distrito: user.distrito}
             setArrayServices([...arrayServices, objS])
             setAServices([...aServices, objS])
         }else{
-            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`, distrito: user.distrito}
             setArrayProducts([...arrayProducts, objS]);
             setAProducts([...aProducts, objS])
         }
@@ -120,7 +124,7 @@ const AppContext = ({tam, setTam, children}) => {
             payload: arregloModificado
         })
         if(coleccion === "Servicios"){
-            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id, img_propietario: user.img, nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`, distrito: user.distrito}
             setArrayServices([...arrayServices.map(x => {
                 if(x.id === objS.id){
                     x = objS
@@ -134,7 +138,7 @@ const AppContext = ({tam, setTam, children}) => {
                 return x
             })])
         }else{
-            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`}
+            const objS = {...objeto, correo: user.correo, id_propietario: user.id,nombre_propietario: user.nombre, telefono: user.telefono, ubicacion: `${user.provincia} ${user.canton} ${user.distrito}`, distrito: user.distrito}
             setArrayProducts([...arrayProducts.map(x => {
                 if(x.id === objS.id){
                     x = objS
@@ -158,6 +162,7 @@ const AppContext = ({tam, setTam, children}) => {
                 product.telefono = usuario.telefono
                 product.correo = usuario.correo
                 product.ubicacion = `${!!usuario.provincia ? usuario.provincia : "" } ${!!usuario.canton ? usuario.canton : ""} ${!!usuario.distrito ? usuario.distrito : ""}`
+                product.distrito = `${!!usuario.distrito ? usuario.distrito : ""}`
             }
             return product
         })
@@ -169,6 +174,7 @@ const AppContext = ({tam, setTam, children}) => {
                 service.correo = usuario.correo
                 service.img_propietario = usuario.img
                 service.ubicacion = `${!!usuario.provincia ? usuario.provincia : "" } ${!!usuario.canton ? usuario.canton : ""} ${!!usuario.distrito ? usuario.distrito : ""}`
+                service.distrito = `${!!usuario.distrito ? usuario.distrito : ""}`
             }
             return service
         })

@@ -5,7 +5,7 @@ import { UseAppContext } from "../../../Business/Context/UseAppContext";
 import { v4 as uuid } from "uuid"; //el as se aplica como en SQL
 
 function CreateForm({ categorias, elemento,objeto }) {
-  const { openModal ,setOpenModal, insertDoc } = useContext(UseAppContext);
+  const { openModal ,setOpenModal, insertDoc, } = useContext(UseAppContext);
   const [img, setImg] = useState(addImge)
   const [URL, setURL] = useState(false)
   const [nuevo, setNuevo] = useState({...objeto, categoria: categorias[0]})

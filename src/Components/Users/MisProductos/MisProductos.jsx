@@ -4,6 +4,7 @@ import { Button } from "../../Shared/Button";
 import { Tabla } from "../../Shared/Tabla";
 import { Modal } from "../../Shared/Modal/Modal.jsx";
 import { CreateForm } from "../CreateForm/CreateForm.jsx";
+import { AcceptAlert } from "../../Shared/AcceptAlert/AcceptAlert";
 
 function MisProductos() {
   const {
@@ -17,10 +18,14 @@ function MisProductos() {
   const { openModal, setOpenModal } = useContext(UseAppContext);
 
   const onClickButton = () => {
-    setOpenModal({
-      ...openModal,
-      modal1: true,
-    });
+    if (user.distrito !== '') {
+      setOpenModal({
+        ...openModal,
+        modal1: true,
+      });
+    } else {
+      setOpenModal({ ...openModal, modal3: true });
+    }
   };
 
   const handleSearch = (e) => {
@@ -207,6 +212,13 @@ function MisProductos() {
           />
         </Modal>
       )}
+      {
+        openModal.modal3 && (
+          <Modal>
+            <AcceptAlert mensaje={'Actualiza tu ubicación en el perfil antes de comenzar a publicar'}/>
+          </Modal>
+        )
+      }
     </div>
   );
 }

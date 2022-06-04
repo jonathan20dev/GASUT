@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UseAppContext } from '../../Business/Context/UseAppContext';
 import { Categories } from '../Shared/Categories';
 import { Modal } from '../Shared/Modal';
@@ -8,7 +8,7 @@ import { Footer } from "../Shared/Footer"
 import { NothingFound } from '../Shared/NothingFound';
 
 const ProductScreen = () => {
-  const { aProducts, openModal } = React.useContext(UseAppContext);
+  const { aProducts, openModal, user } = React.useContext(UseAppContext);
 
   return (
     <>
@@ -20,7 +20,7 @@ const ProductScreen = () => {
             (aProducts.length !== 0) 
               ? <div className="grid-service g-4">
               {
-                aProducts.map( service => <ProductCard
+                aProducts.filter(p => p.distrito === user.distrito).map( service => <ProductCard
                   key={service.id}
                   id={service.id}
                   name={service.nombre}
