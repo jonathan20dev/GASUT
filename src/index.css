@@ -176,6 +176,46 @@ p {
   width: 200px;
 }
 
+.card {
+  width: 350px;
+}
+
+.nv-merge{
+  margin-right: 1.5rem;
+}
+
+@media(max-width: 760px) {
+  .productScreen {
+    flex-direction: column;
+  }
+  .serviceScreen {
+    flex-direction: column;
+  }
+  .nv-merge{
+    display: flex;
+    justify-content: center;
+    margin-right: 0px;
+  }
+  .card {
+    width: 300px;
+  }
+  .main-modal {
+    max-width: 85%;
+    position: relative;
+  }
+  .icon-exit {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  .content-modal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+
 @media(max-width: 768px) {
   .contenedorAccionesP {
     flex-direction: column;
@@ -223,6 +263,3 @@ p {
   height: 50px;
 }
 
-.card {
-  width: 350px;
-}

@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../Business/Context/AuthContext";
-import './Header.css'
-import logo from '../../../Assets/logo.png'
+import "./Header.css";
+import logo from "../../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import {UseAppContext } from "../../../Business/Context/UseAppContext"
+import { UseAppContext } from "../../../Business/Context/UseAppContext";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,16 +12,16 @@ const Header = () => {
   const { tam, setTam, user } = useContext(UseAppContext);
 
   const sumTam = () => {
-    if(tam < 20){
-      setTam(tam+1)
+    if (tam < 20) {
+      setTam(tam + 1);
     }
-  }
+  };
 
   const resTam = () => {
-    if(tam > 12){
-      setTam(tam-1)
+    if (tam > 12) {
+      setTam(tam - 1);
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
@@ -33,17 +33,16 @@ const Header = () => {
 
   const handleHome = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div>
-      <div
-        className="d-flex flex-row justify-content-between header"
-      >
-        <nav className="headernav navbar navbar-light navbar-expand-md">
+      <div className="d-flex flex-row justify-content-between header">
+        <nav className="headernav navbar navbar-light navbar-expand-lg">
           <div
-            className="container"
-            style={{ flexDirection: "row", marginBottom: "5px", width: '100%'}}
+            className=""
+            style={{ flexDirection: "row", marginBottom: "5px", width: "100%", display: 'flex', flexWrap: 'inherit', alignItems: 'center',
+            justifyContent: 'space-between'}}
           >
             <button
               className="navbar-toggler text-primary border-0"
@@ -63,9 +62,14 @@ const Header = () => {
             </button>
             <div
               className="navbar-brand d-flex align-items-center justify-content-center"
-              style={{margin: '0px'}}
+              style={{ margin: "0px" }}
             >
-              <img className='logo' src={logo} onClick={handleHome} alt="logo" />
+              <img
+                className="logo"
+                src={logo}
+                onClick={handleHome}
+                alt="logo"
+              />
             </div>
             <div id="navcol-1" className="collapse navbar-collapse">
               <ul
@@ -77,7 +81,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
-                    style={{ color: 'white'}}
+                    style={{ color: "white" }}
                     aria-current="page"
                     to="/"
                   >
@@ -91,7 +95,7 @@ const Header = () => {
                     }
                     aria-current="page"
                     to="/services"
-                    style={{ color: 'white'}}
+                    style={{ color: "white" }}
                   >
                     Servicios
                   </NavLink>
@@ -103,7 +107,7 @@ const Header = () => {
                     }
                     aria-current="page"
                     to="/contact"
-                    style={{ color: 'white'}}
+                    style={{ color: "white" }}
                   >
                     Contacto
                   </NavLink>
@@ -115,17 +119,35 @@ const Header = () => {
                     }
                     aria-current="page"
                     to="/about"
-                    style={{ color: 'white'}}
+                    style={{ color: "white" }}
                   >
                     Acerca de
                   </NavLink>
                 </li>
                 <li className="nav-item" style={{ fontSize: "1.2rem" }}>
-                  <div className="nav-link"
-                    style={{ color: 'white', display: "flex", flexDirection: "row"}}>
-                    <div onClick={sumTam} style={{cursor: 'pointer'}}>A+</div>
-                    <div onClick={()=>setTam(16)} style={{ marginLeft: "16px", cursor: 'pointer'}}>A</div>
-                    <div onClick={resTam} style={{ marginLeft: "16px", cursor: 'pointer'}}>A-</div>
+                  <div
+                    className="nav-link"
+                    style={{
+                      color: "white",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div onClick={sumTam} style={{ cursor: "pointer" }}>
+                      A+
+                    </div>
+                    <div
+                      onClick={() => setTam(16)}
+                      style={{ marginLeft: "16px", cursor: "pointer" }}
+                    >
+                      A
+                    </div>
+                    <div
+                      onClick={resTam}
+                      style={{ marginLeft: "16px", cursor: "pointer" }}
+                    >
+                      A-
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -148,14 +170,19 @@ const Header = () => {
               data-bs-toggle="dropdown"
               type="button"
               style={{
-                color: 'white',
+                color: "white",
                 background: "rgba(255,255,255,0)",
                 borderWidth: "0px",
                 width: "auto",
                 padding: "7px",
               }}
             >
-              <img className="rounded-circle border border-0 border-primary shadow" alt="profile" src={user.img} width={40} height="auto"
+              <img
+                className="rounded-circle border border-0 border-primary shadow"
+                alt="profile"
+                src={user.img}
+                width={40}
+                height="auto"
               />
             </button>
             <div
@@ -169,7 +196,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active fw-bold" : ""}`
                   }
-                  style={{ color: "black", paddingLeft: '0px'}}
+                  style={{ color: "black", paddingLeft: "0px" }}
                   aria-current="page"
                   to="/profile/misDatos"
                 >
@@ -183,7 +210,14 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <hr style={{ marginBottom: "0px", marginTop: "0px", height: '10px', color: '#3E6744'}} />
+      <hr
+        style={{
+          marginBottom: "0px",
+          marginTop: "0px",
+          height: "10px",
+          color: "#3E6744",
+        }}
+      />
     </div>
   );
 };

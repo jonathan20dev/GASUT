@@ -13,9 +13,9 @@ import { NothingFound } from '../Shared/NothingFound';
   return (
     <>
       <Header/>
-      <div className='p-4 d-flex justify-content-center'>
+      <div className='serviceScreen p-4 d-flex justify-content-center'>
+      <Categories page='services' />
         <div className='cards-center gap-4 flex-ps'>
-          <Categories page='services' />
           {
             (aServices.length !== 0) 
               ? <div className="grid-service g-4">

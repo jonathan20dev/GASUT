@@ -47,93 +47,17 @@ img {
   }
 }
 
-.navigation-clean .navbar-brand {
-  font-weight: bold;
-  color: inherit;
-}
-
-.navigation-clean .navbar-brand:hover {
-  color: #222;
-}
-
-.navigation-clean .navbar-toggle {
-  border-color: #ddd;
-}
-
-.navigation-clean .navbar-toggle:hover, .navigation-clean .navbar-toggle:focus {
-  background: none;
-}
-
-.navigation-clean .navbar-toggle .icon-bar {
-  background-color: #888;
-}
-
-.navigation-clean .navbar-collapse, .navigation-clean .navbar-form {
-  border-top-color: #ddd;
-}
-
-.navigation-clean .navbar-nav > .active > a, .navigation-clean .navbar-nav > .open > a {
-  background: none;
-  box-shadow: none;
-}
-
-.navigation-clean.navbar-default .navbar-nav > .active > a, .navigation-clean.navbar-default .navbar-nav > .active > a:focus, .navigation-clean.navbar-default .navbar-nav > .active > a:hover {
-  color: #77B710;
-  box-shadow: none;
-  background: none;
-  pointer-events: none;
-}
-
-.navigation-clean.navbar .navbar-nav > li > a {
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-.navigation-clean.navbar-default .navbar-nav > li > a {
-  color: white;
-}
-
-.navigation-clean.navbar-default .navbar-nav > li > a:focus, .navigation-clean.navbar-default .navbar-nav > li > a:hover {
-  color: white !important;
-  background-color: transparent;
-}
-
-.navigation-clean .navbar-nav > li > .dropdown-menu {
-  margin-top: -5px;
-  box-shadow: 0 4px 8px rgba(0,0,0,.1);
-  background-color: #fff;
-  border-radius: 2px;
-}
-
-.navigation-clean .dropdown-menu > li > a:focus, .navigation-clean .dropdown-menu > li > a {
-  line-height: 2;
-  font-size: 14px;
-  color: #37434d;
-}
-
-.navigation-clean .dropdown-menu > li > a:focus, .navigation-clean .dropdown-menu > li > a:hover {
-  background: #eee;
-  color: inherit;
+.headernav {
+  margin-left: 10px;
+  width: 90%;
+  flex-direction: row;
 }
 
 
-@media screen and (min-width: 300px) {
+@media screen and (max-width: 991px) {
   .headernav {
-    width: 90%;
+    width: 56%;
     flex-direction: row;
   }
 }
 
-@media screen and (max-width: 760px) {
-  .headernav {
-    width: 65%;
-    flex-direction: row;
-  }
-}
-
-@media (max-width: 870px){
-  .headernav {
-    width: 60%;
-    flex-direction: row;
-  }
-}
