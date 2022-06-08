@@ -2,7 +2,7 @@ import React from 'react'
 import { UseAppContext } from '../../Business/Context/UseAppContext';
 
 export const DetailsModalProduct = () => {
-
+  
   const { active } = React.useContext(UseAppContext);
   const { nombre, cantidad, nombre_propietario } = active;
   return (

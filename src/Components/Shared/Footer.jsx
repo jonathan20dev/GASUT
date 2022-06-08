@@ -25,7 +25,7 @@ const Footer = () => {
                 <li>
                 <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
@@ -37,7 +37,7 @@ const Footer = () => {
                 <li>
                 <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
@@ -49,7 +49,7 @@ const Footer = () => {
                 <li>
                 <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
@@ -61,7 +61,7 @@ const Footer = () => {
                 <li>
                 <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"
@@ -109,7 +109,7 @@ const Footer = () => {
                 <li>
                 <NavLink
                     className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
+                      `nav-link ${isActive ? "active fw-bold" : ""}`
                     }
                     style={{ color: 'Black'}}
                     aria-current="page"

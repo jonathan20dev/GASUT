@@ -5,15 +5,28 @@ const icons = require.context('../../Assets/icons', true);
 
 export const CategoryProduct = ({ name, image }) => {
     
-  const { filterProducts, setFilterProducts } = React.useContext(UseAppContext);
+  const { filterProducts, setFilterProducts, setAProducts, arrayProducts } = React.useContext(UseAppContext);
 
   const handleFilter = () => {
     if(filterProducts !== name.toLowerCase()) {
+      filtrar(name.toLowerCase())
       setFilterProducts(name.toLowerCase())
     } else {
+      filtrar("")
       setFilterProducts("todo")
     }
   }
+
+  const filtrar = (busca) => {
+    const busquedaResuelta = arrayProducts.filter((produc) => {
+      if (
+        produc.categoria.toLowerCase().includes(busca.toLowerCase())
+      ) {
+        return produc;
+      }
+    });
+    setAProducts(busquedaResuelta);
+  };
 
   const isActive = filterProducts === name.toLowerCase() ? "d-flex align-items-center cp mb-2 active-button" : "d-flex align-items-center cp mb-2"
 

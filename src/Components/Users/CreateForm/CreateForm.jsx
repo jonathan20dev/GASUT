@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import "./CreateForm.css";
 import addImge from '../../../Assets/AddImage.png'
 import { UseAppContext } from "../../../Business/Context/UseAppContext";
+import { v4 as uuid } from "uuid"; //el as se aplica como en SQL
 
 function CreateForm({ categorias, elemento,objeto }) {
-  const { openModal ,setOpenModal, insertDoc } = useContext(UseAppContext);
+  const { openModal ,setOpenModal, insertDoc, } = useContext(UseAppContext);
   const [img, setImg] = useState(addImge)
   const [URL, setURL] = useState(false)
   const [nuevo, setNuevo] = useState({...objeto, categoria: categorias[0]})
@@ -29,9 +30,9 @@ function CreateForm({ categorias, elemento,objeto }) {
     event.preventDefault();
     setOpenModal({...openModal, modal1:false});
     if (elemento === 'producto'){
-      insertDoc('Productos', nuevo)
+      insertDoc('Productos', {...nuevo, id: uuid()})
     } else {
-      insertDoc('Servicios', nuevo)
+      insertDoc('Servicios', {...nuevo, id: uuid()})
     }
   };
 

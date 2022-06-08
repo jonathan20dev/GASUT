@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UseAppContext } from '../../Business/Context/UseAppContext';
 import { Categories } from '../Shared/Categories'
 import { Modal } from '../Shared/Modal';
@@ -8,21 +8,20 @@ import { Footer } from "../Shared/Footer"
 import { NothingFound } from '../Shared/NothingFound';
 
  const ServiceScreen = () => {
-
-  const { searchedServices, openModal } = React.useContext(UseAppContext);
+  const { openModal, aServices, user } = React.useContext(UseAppContext);
 
   return (
     <>
       <Header/>
-      <div className='p-4 d-flex justify-content-center'>
+      <div className='serviceScreen p-4 d-flex justify-content-center'>
+      <Categories page='services' />
         <div className='cards-center gap-4 flex-ps'>
-          <Categories page='services' />
           {
-            (searchedServices.length !== 0) 
+            (aServices.length !== 0) 
               ? <div className="grid-service g-4">
               {
-                searchedServices.map( service => <ServiceCard
-                  key={service.id}
+                  aServices.filter(p => p.distrito === user.distrito).map( (service, index) => <ServiceCard
+                  key={index}
                   id={service.id}
                   name={service.nombre}
                   img={service.img}

@@ -43,6 +43,7 @@ export const readProducts = async () => {
           product.telefono = user.telefono
           product.correo = user.correo
           product.ubicacion = `${!!user.provincia ? user.provincia : "" } ${!!user.canton ? user.canton : ""} ${!!user.distrito ? user.distrito : ""}`
+          product.distrito = user.distrito ? user.distrito : ""
         }
       })
       
@@ -79,6 +80,7 @@ export const readServices = async () => {
           service.correo = user.correo
           service.img_propietario = user.img
           service.ubicacion = `${!!user.provincia ? user.provincia : "" } ${!!user.canton ? user.canton : ""} ${!!user.distrito ? user.distrito : ""}`
+          service.distrito = user.distrito ? user.distrito : ""
         }
       })
     });
