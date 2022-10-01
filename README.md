@@ -9,7 +9,7 @@
 > 
 > Kimberly Vargas,
 > Jonathan Mendoza, 
-> Cristopher Gonzalez, 
+> Cristopher Gonzalez 
 > & Derian Rodriguez
 
 Figma
