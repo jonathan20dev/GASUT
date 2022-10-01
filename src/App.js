@@ -1,24 +1,89 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./Components/Auth/Login/Login";
+import { Register } from "./Components/Auth/Register/Register";
+import  {ProductScreen}  from "./Components/Products/ProductScreen";
+import  {ServiceScreen}  from "./Components/Services/ServiceScreen";
+import { ProtectedRoute } from "./Components/Security/ProtectedRoute";
+import { AuthProvider } from "./Business/Context/AuthContext";
+import { UserProfile } from "./Components/Users/Profile/UserProfile";
+import { MisDatos } from "./Components/Users/MisDatos/MisDatos.jsx";
+import { MisServicios } from "./Components/Users/MisServicios/MisServicios.jsx";
+import { MisProductos } from "./Components/Users/MisProductos/MisProductos.jsx";
+import { AppContext } from "./Business/Context/AppContext";
+import { Contact } from "./Components/Others/Contact"
+import { About } from "./Components/Others/About.jsx"
+import { Policies } from "./Components/Others/Policies"
+import { OlvideContra } from "./Components/Users/Profile/OlvideContra"
+
 
 function App() {
+  const [tam, setTam] = useState(16)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <AppContext tam={tam} setTam={setTam}>
+      <div style={{fontSize: `${tam}px`}}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<OlvideContra />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <ProductScreen />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <ProtectedRoute>
+                <Contact />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Policies"
+            element={
+              <ProtectedRoute>
+                <Policies />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <ProtectedRoute>
+                    <ServiceScreen />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="misDatos" element={<ProtectedRoute><MisDatos /></ProtectedRoute>} />
+            <Route path="misServicios" element={<MisServicios />} />
+            <Route path="misProductos" element={<MisProductos />} />
+          </Route>
+        </Routes>
+      </div>
+      </AppContext>
+    </AuthProvider>
   );
 }
 
