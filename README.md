@@ -1,70 +1,108 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Gasut
 
-## Available Scripts
+<p align="center">
+  <a href="https://github.com/jonathan20dev/my-chapp"><img src="https://user-images.githubusercontent.com/84600029/193418672-39ff4d08-91df-4031-9152-195b9769b665.png" alt="react native chat" width="30%" /></a>
+</p>
 
-In the project directory, you can run:
+***Application created as part of a course***: by 
+> 
+> Kimberly Vargas
+> Jonathan Mendoza 
+> Cristopher Gonzalez 
+> Derian Rodriguez
 
-### `npm start`
+Figma
+>  [Prototype](https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fgasut%2FPrototipo.pdf)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img align="right" src="https://user-images.githubusercontent.com/84600029/193418662-f2dcaae0-f0ca-4881-8f81-12033597d37f.png?auto=format,enhance" width="50%" />
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Gasut website has the following features:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#### Gasut  components:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ 1. **Product Module**
+		
+			Product  container
+			Product  categories
+			Product  Modal  Card
+			Accept/cancel/other  buttons
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ 2. **Service Module**
+	 
+			Service  container
+			Service  categories
+			Service  modal  card
+			Accept/cancel/other  buttons
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ 3. **User Module**
+ 
+			Login
+			Register
+			Profile
+			My  services  and  My  products
+			Modal  to  view  product  and  service  details
+			Modal  to  add/edit  service
+			Modal  to  add/edit  product
+			Delete  my  products  and  services
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Others
+		Header
+		Footer
+		Contact
+		About  GASUT
+		GASUT  Policies
 
-## Learn More
+		  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+		Firebase  Collections:
+		Products 
+		Services
+		Users
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Some images of the website
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+  
+| <img src="https://user-images.githubusercontent.com/84600029/193420152-bbff5fd7-8bb5-45d8-9168-fb4820e3cbfc.PNG" alt="react native chat" width="440px" />  |<img src="https://user-images.githubusercontent.com/84600029/193420161-1a54caab-38d1-4fc4-9160-85dd81eea993.PNG" alt="react native chat" width="440px" />  |
+|--|--|
+| ***Products section***| ***Services section*** |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| <img src="https://user-images.githubusercontent.com/84600029/193420207-d803a2e8-c6df-48d0-87d7-acb8965fe06a.PNG" alt="react native chat" width="440px" />  |<img src="https://user-images.githubusercontent.com/84600029/193420246-6762fa36-7d2d-4ba5-bbd2-1c9ba2e40284.PNG" alt="react native chat" width="440px" />  |
+|--|--|
+| ***Profile Products section***| ***Profile Services section*** |
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Installation
 
-### Advanced Configuration
+#### Clone
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+`git clone https://github.com/jonathan20dev/GASUT.git`
 
-### Deployment
+#### Install node_modules
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+`npm i`
 
-### `npm run build` fails to minify
+#### Run
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`npm start`
+
+
+
+
+## Authors
+
+
+| <img src="https://media-exp1.licdn.com/dms/image/C5603AQFIcEFL-NSfqA/profile-displayphoto-shrink_800_800/0/1627255607401?e=1669852800&v=beta&t=voVrrkA8xxrczDIkoYV21BwMfLU3z4yRKtKf17SBVZs" alt="react native chat" width="140px" />  | <img src="https://media-exp1.licdn.com/dms/image/D4E35AQFSR6tlHszb7A/profile-framedphoto-shrink_200_200/0/1663436772487?e=1665108000&v=beta&t=zEFR8hum6XrX9JLPPXNgfGYesY49fqk9B4YXUspcyQc" alt="react native chat" width="140px" />  |  <img src="https://avatars.githubusercontent.com/u/61550370?v=4" alt="react native chat" width="140px" />  |  <img src="https://avatars.githubusercontent.com/u/59376626?v=4" alt="react native chat" width="140px" />  |
+| :------------: | :------------: |:------------: | :------------: |
+|  *Kimberly Vargas* | *Jonathan Mendoza*  |   *Cristopher Gonzalez* | *Derian Rodriguez*  | 
+
+
+
