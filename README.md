@@ -7,10 +7,10 @@
 
 ***Application created as part of a course***: by 
 > 
-> Kimberly Vargas
-> Jonathan Mendoza 
-> Cristopher Gonzalez 
-> Derian Rodriguez
+> Kimberly Vargas,
+> Jonathan Mendoza, 
+> Cristopher Gonzalez, 
+> & Derian Rodriguez
 
 Figma
 >  [Prototype](https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fgasut%2FPrototipo.pdf)
