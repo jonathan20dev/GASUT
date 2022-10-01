@@ -20,7 +20,7 @@ import { NothingFound } from '../Shared/NothingFound';
             (aServices.length !== 0) 
               ? <div className="grid-service g-4">
               {
-                  aServices.filter(p => p.distrito === user.distrito).map( (service, index) => <ServiceCard
+                  aServices.map( (service, index) => <ServiceCard
                   key={index}
                   id={service.id}
                   name={service.nombre}

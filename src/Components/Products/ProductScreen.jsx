@@ -19,7 +19,6 @@ const ProductScreen = () => {
           {aProducts.length !== 0 ? (
             <div className="grid-service g-4">
               {aProducts
-                .filter((p) => p.distrito === user.distrito)
                 .map((service) => (
                   <ProductCard
                     key={service.id}

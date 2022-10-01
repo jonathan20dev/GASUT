@@ -4,10 +4,10 @@ import { Footer } from "../Shared/Footer"
 
 export const Contact = () => {
     const integrantes = [
-        {nombre: "Kimberly Vargas", img: "https://media-exp1.licdn.com/dms/image/C5603AQFIcEFL-NSfqA/profile-displayphoto-shrink_400_400/0/1627255607401?e=1658361600&v=beta&t=vOE4drpZLUitwvz_h28OuLPwZftPH0QsL3BXLzBRXAk", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com/in/kimberly-vargas-75a4471b9/"},
-        {nombre: "Jonathan Mendoza", img: "https://media-exp1.licdn.com/dms/image/D5635AQEnAISyoNMu-A/profile-framedphoto-shrink_400_400/0/1621491422913?e=1654473600&v=beta&t=xsvmQpc_7uXz50N-wjf3_2BCbeCSszLRS2fgXb6aR0c", puesto: "Frontend Developer", linkedin:"https://www.linkedin.com/in/jonathan20-dev/"},
-        {nombre: "Cristopher Gonzalez ", img: "https://media-exp1.licdn.com/dms/image/C4D03AQFFQMJRbXXcHw/profile-displayphoto-shrink_800_800/0/1651250599997?e=1659571200&v=beta&t=NflXHCMOZYGOSDvmFsoqQm8bdtJZDcP1S_p2dv5-We8", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com/in/cristopher-gonzalez-solis-6832a0239/"},
-        {nombre: "Derian Rodriguez ", img: "https://th.bing.com/th/id/OIP.DBnnvGei5EXQs_-fuVU7UgAAAA?pid=ImgDet&w=229&h=240&rs=1", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com"}]
+        {nombre: "Kimberly Vargas", img: "https://media-exp1.licdn.com/dms/image/C5603AQFIcEFL-NSfqA/profile-displayphoto-shrink_800_800/0/1627255607401?e=1669852800&v=beta&t=voVrrkA8xxrczDIkoYV21BwMfLU3z4yRKtKf17SBVZs", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com/in/kimberly-vargas-75a4471b9/"},
+        {nombre: "Jonathan Mendoza", img: "https://media-exp1.licdn.com/dms/image/D4E35AQFSR6tlHszb7A/profile-framedphoto-shrink_200_200/0/1663436772487?e=1665108000&v=beta&t=zEFR8hum6XrX9JLPPXNgfGYesY49fqk9B4YXUspcyQc", puesto: "Frontend Developer", linkedin:"https://www.linkedin.com/in/jonathan20-dev/"},
+        {nombre: "Cristopher Gonzalez ", img: "https://avatars.githubusercontent.com/u/61550370?v=4", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com/in/cristopher-gonzalez-solis-6832a0239/"},
+        {nombre: "Derian Rodriguez ", img: "https://avatars.githubusercontent.com/u/59376626?v=4", puesto: "Frontend Developer",linkedin:"https://www.linkedin.com"}]
     return (
     <>
     <Header/>
