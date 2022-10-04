@@ -16,7 +16,7 @@ Live demo
 >  [gasut.com](https://gasut.netlify.app/)
 
 Figma
->  [Prototype](https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fgasut%2FPrototipo.pdf)
+>  [prototype.pdf](https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fgasut%2FPrototipo.pdf)
 
 
 <img align="right" src="https://user-images.githubusercontent.com/84600029/193418662-f2dcaae0-f0ca-4881-8f81-12033597d37f.png?auto=format,enhance" width="50%" />
