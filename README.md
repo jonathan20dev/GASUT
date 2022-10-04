@@ -13,7 +13,7 @@
 > & Derian Rodriguez
 
 Live demo
->  [Gasut.com](https://gasut.netlify.app/)
+>  [gasut.com](https://gasut.netlify.app/)
 
 Figma
 >  [Prototype](https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fgasut%2FPrototipo.pdf)
